@@ -1290,14 +1290,14 @@ if (document.readyState === 'loading') {
 <style>
 .sheety-button {
   position: fixed;
-  bottom: 88px;
-  right: 18px;
+  bottom: 18px;
+  right: 90px;
   z-index: 9999;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #1a5f1a, #2d8f2d);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  background: transparent;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1308,15 +1308,18 @@ if (document.readyState === 'loading') {
 }
 
 .sheety-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, #2d8f2d, #3fa03f);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .sheety-button img {
-  width: 36px;
-  height: 36px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.sheety-button:hover img {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 </style>
 <a href="https://sheety.tools" target="_blank" rel="noopener noreferrer" class="sheety-button" aria-label="Visit Sheety Tools">
