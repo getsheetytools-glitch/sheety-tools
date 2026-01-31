@@ -1295,51 +1295,54 @@ if (document.readyState === 'loading') {
   init();
 }
     </script>
-<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<!-- Ko-fi floating chat -->
+<script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
 <script>
-  kofiWidgetOverlay.draw('sheetytools', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('sheetytools', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#5cb85c',
-    'floating-chat.donateButton.text-color': '#fff'
+  kofiWidgetOverlay.draw("sheetytools", {
+    type: "floating-chat",
+    "floating-chat.donateButton.text": "Support me",
+    "floating-chat.donateButton.background-color": "#5cb85c",
+    "floating-chat.donateButton.text-color": "#fff",
   });
 </script>
-<!-- Paste this code before the closing </body> tag -->
+
+<!-- Sheety button -->
 <style>
-.sheety-button {
-  position: fixed;
-  bottom: 18px;
-  left: 18px;
-  z-index: 9999;
-  width: 56px;
-  height: 150px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  .sheety-button {
+    position: fixed;
+    bottom: 18px;
+    left: 18px;
+    z-index: 9999;
+    width: 56px;
+    height: 150px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
 
-.sheety-button:hover {
-  transform: translateY(-2px) scale(1.05);
-}
+  .sheety-button:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
 
-.sheety-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
-}
+  .sheety-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
 
-.sheety-button:hover img {
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-}
+  .sheety-button:hover img {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+  }
 </style>
 
-<a href="https://sheety.tools" target="_blank" rel="noopener noreferrer" class="sheety-button" aria-label="Visit Sheety Tools">
-  <img src="Sheety_Logo.png" alt="Sheety Logo">
+<a
+  href="https://sheety.tools"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="sheety-button"
+  aria-label="Visit Sheety Tools"
+>
+  <img src="./Sheety_Logo.png" alt="Sheety Logo" />
 </a>
   </body>
 </html>
