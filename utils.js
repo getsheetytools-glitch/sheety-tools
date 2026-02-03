@@ -168,6 +168,23 @@ function exportData(focusItems) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
+  // Helper to convert HSL to RGB
+  function hslToRgb(h, s, l) {
+    s = s / 100;
+    l = l / 100;
+    const c = (1 - Math.abs(2 * l - 1)) * s;
+    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    const m = l - c / 2;
+    let r = 0, g = 0, b = 0;
+    if (h >= 0 && h < 60) { r = c; g = x; b = 0; }
+    else if (h >= 60 && h < 120) { r = x; g = c; b = 0; }
+    else if (h >= 120 && h < 180) { r = 0; g = c; b = x; }
+    else if (h >= 180 && h < 240) { r = 0; g = x; b = c; }
+    else if (h >= 240 && h < 300) { r = x; g = 0; b = c; }
+    else if (h >= 300 && h < 360) { r = c; g = 0; b = x; }
+    return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
+  }
+  
   // Title
   doc.setFontSize(22);
   doc.setFont('helvetica', 'bold');
@@ -183,94 +200,130 @@ function exportData(focusItems) {
     day: 'numeric'
   });
   doc.text(date, 105, 27, { align: 'center' });
-  
   doc.setTextColor(0, 0, 0);
   
-  // Get the SVG element
-  const svg = document.getElementById('pieChart');
-  const svgData = new XMLSerializer().serializeToString(svg);
+  // Draw pie chart
+  const centerX = 105;
+  const centerY = 90;
+  const outerRadius = 40;
+  const innerRadius = 20;
   
-  // Convert SVG to data URL
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-  const img = new Image();
+  let currentAngle = -90; // Start at top
   
-  // Set canvas size
-  canvas.width = 400;
-  canvas.height = 400;
+  focusItems.forEach((item, index) => {
+    const sweepAngle = (item.percent / 100) * 360;
+    const endAngle = currentAngle + sweepAngle;
+    
+    // Get color
+    const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
+    const hue = 120 * (1 - t); // Green to red
+    const [r, g, b] = hslToRgb(hue, 75, 55);
+    
+    doc.setFillColor(r, g, b);
+    doc.setDrawColor(11, 13, 18);
+    doc.setLineWidth(0.5);
+    
+    // Draw arc (simplified - draw as filled polygon)
+    const segments = Math.max(10, Math.ceil(Math.abs(sweepAngle) / 10));
+    const points = [];
+    
+    // Add center point for donut hole
+    for (let i = 0; i <= segments; i++) {
+      const angle = (currentAngle + (sweepAngle * i / segments)) * Math.PI / 180;
+      // Outer edge
+      points.push([
+        centerX + outerRadius * Math.cos(angle),
+        centerY + outerRadius * Math.sin(angle)
+      ]);
+    }
+    
+    // Add inner edge in reverse
+    for (let i = segments; i >= 0; i--) {
+      const angle = (currentAngle + (sweepAngle * i / segments)) * Math.PI / 180;
+      points.push([
+        centerX + innerRadius * Math.cos(angle),
+        centerY + innerRadius * Math.sin(angle)
+      ]);
+    }
+    
+    // Draw the polygon
+    doc.path(points.map((p, i) => ({
+      op: i === 0 ? 'm' : 'l',
+      c: p
+    })).concat([{ op: 's' }]));
+    doc.fillStroke();
+    
+    currentAngle = endAngle;
+  });
   
-  img.onload = function() {
-    // Draw white background
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // Draw center circle (white)
+  doc.setFillColor(255, 255, 255);
+  doc.circle(centerX, centerY, innerRadius, 'F');
+  
+  // Add item count in center
+  doc.setFontSize(20);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 0, 0);
+  doc.text(focusItems.length.toString(), centerX, centerY - 3, { align: 'center' });
+  
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(100, 100, 100);
+  doc.text(focusItems.length === 1 ? 'item' : 'items', centerX, centerY + 4, { align: 'center' });
+  
+  // Add summary list
+  let yPos = 145;
+  
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 0, 0);
+  doc.text('Focus Items:', 20, yPos);
+  
+  yPos += 8;
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  
+  focusItems.forEach((item, index) => {
+    // Get color for indicator
+    const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
+    const hue = 120 * (1 - t);
     
-    // Draw the image
-    ctx.drawImage(img, 0, 0);
+    // Draw color circle
+    const [r, g, b] = hslToRgb(hue, 75, 55);
+    doc.setFillColor(r, g, b);
+    doc.circle(22, yPos - 1.5, 1.5, 'F');
     
-    // Convert to data URL
-    const imgData = canvas.toDataURL('image/png');
+    // Add text
+    doc.setTextColor(0, 0, 0);
+    const text = `${index + 1}. ${item.text} (${item.percent.toFixed(1)}%)`;
+    const splitText = doc.splitTextToSize(text, 160);
+    doc.text(splitText, 28, yPos);
     
-    // Add image to PDF (centered)
-    const imgWidth = 120;
-    const imgHeight = 120;
-    const x = (210 - imgWidth) / 2; // Center on A4 width (210mm)
-    doc.addImage(imgData, 'PNG', x, 35, imgWidth, imgHeight);
+    yPos += splitText.length * 5 + 2;
     
-    // Add summary below the chart
-    let yPos = 165;
-    
-    doc.setFontSize(12);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Focus Items:', 20, yPos);
-    
-    yPos += 8;
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    
-    // List all items
-    focusItems.forEach((item, index) => {
-      // Get color for this item
-      const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
-      const hue = 120 * (1 - t); // Green to red
-      
-      // Simple color indicator
-      let colorEmoji = '🟢';
-      if (hue < 40) colorEmoji = '🔴';
-      else if (hue < 80) colorEmoji = '🟡';
-      
-      const text = `${colorEmoji} ${index + 1}. ${item.text} (${item.percent.toFixed(1)}%)`;
-      doc.text(text, 20, yPos);
-      yPos += 6;
-      
-      // Add new page if needed
-      if (yPos > 270 && index < focusItems.length - 1) {
-        doc.addPage();
-        yPos = 20;
-      }
-    });
-    
-    // Add note at bottom
-    yPos += 8;
-    if (yPos > 250) {
+    // Add new page if needed
+    if (yPos > 270 && index < focusItems.length - 1) {
       doc.addPage();
       yPos = 20;
     }
-    
-    doc.setFontSize(9);
-    doc.setTextColor(100, 100, 100);
-    const note = doc.splitTextToSize(
-      'Each item is worth 2x the item below it. Focus your attention on green items first.',
-      170
-    );
-    doc.text(note, 20, yPos);
-    
-    // Save
-    const filename = `focus-budget-${new Date().toISOString().split('T')[0]}.pdf`;
-    doc.save(filename);
-  };
+  });
   
-  // Load SVG into image
-  const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-  const url = URL.createObjectURL(svgBlob);
-  img.src = url;
+  // Add note at bottom
+  yPos += 8;
+  if (yPos > 250) {
+    doc.addPage();
+    yPos = 20;
+  }
+  
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  const note = doc.splitTextToSize(
+    'Each item is worth 2x the item below it. Focus your attention on green items first, then yellow, then red.',
+    170
+  );
+  doc.text(note, 20, yPos);
+  
+  // Save
+  const filename = `focus-budget-${new Date().toISOString().split('T')[0]}.pdf`;
+  doc.save(filename);
 }
