@@ -226,6 +226,8 @@ button:disabled {
   text-align: center;
   padding: 40px 20px;
   color: var(--muted);
+  position: absolute;
+  inset: 0;
 }
 
 .emptyIcon {

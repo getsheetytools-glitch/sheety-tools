@@ -17,8 +17,6 @@ const DOM = {
   itemCount: null,
   clearBtn: null,
   exportBtn: null,
-  importBtn: null,
-  importFile: null,
 };
 
 // ── Initialization ──
@@ -37,8 +35,6 @@ function init() {
   DOM.itemCount = document.getElementById("itemCount");
   DOM.clearBtn = document.getElementById("clearBtn");
   DOM.exportBtn = document.getElementById("exportBtn");
-  DOM.importBtn = document.getElementById("importBtn");
-  DOM.importFile = document.getElementById("importFile");
 
   // Load data
   focusItems = loadFocusItems();
@@ -66,8 +62,6 @@ function setupEventListeners() {
   // Footer buttons
   DOM.clearBtn.addEventListener("click", handleClearAll);
   DOM.exportBtn.addEventListener("click", handleExport);
-  DOM.importBtn.addEventListener("click", () => DOM.importFile.click());
-  DOM.importFile.addEventListener("change", handleImport);
   
   // Keyboard shortcuts
   document.addEventListener("keydown", handleKeyboardShortcuts);
@@ -83,10 +77,9 @@ function handleAddFocus(e) {
   focusItems.push(newItem);
   focusItems = recalcSlicesByRank(focusItems);
   
-  if (debouncedSave(focusItems)) {
-    DOM.focusInput.value = "";
-    render();
-  }
+  debouncedSave(focusItems);
+  DOM.focusInput.value = "";
+  render();
 }
 
 function handleListClick(e) {
@@ -214,29 +207,6 @@ function handleExport() {
   exportData(focusItems);
 }
 
-function handleImport(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  importData(file, (validData) => {
-    if (focusItems.length > 0) {
-      if (!confirm('This will replace your current focus items. Continue?')) {
-        return;
-      }
-    }
-    
-    focusItems = recalcSlicesByRank(validData);
-    selectedFocusId = null;
-    if (saveFocusItems(focusItems)) {
-      render();
-      alert(`Successfully imported ${focusItems.length} focus items.`);
-    }
-  });
-  
-  // Reset file input
-  e.target.value = '';
-}
-
 function handleDeleteFocus(id, text) {
   if (!confirm(`Delete "${text}"?`)) return;
   
@@ -308,12 +278,12 @@ function renderPieChart() {
   DOM.pieChart.innerHTML = "";
   
   if (focusItems.length === 0) {
-    DOM.pieWrap.style.display = "none";
+    DOM.pieChart.style.display = "none";
     DOM.empty.style.display = "flex";
     return;
   }
   
-  DOM.pieWrap.style.display = "flex";
+  DOM.pieChart.style.display = "block";
   DOM.empty.style.display = "none";
   
   let currentAngle = -90; // Start at top
