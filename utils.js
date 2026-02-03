@@ -15,7 +15,7 @@ const CONFIG = {
     bottomLightness: 60,  // Bottom item brightness
   },
   DISTRIBUTION: {
-    topRatio: 5,          // Top item weight
+    topRatio: 8,          // Top item weight (increased from 5)
     bottomRatio: 1,       // Bottom item weight
   },
   DEBOUNCE_MS: 500,       // Save delay in milliseconds
@@ -38,22 +38,29 @@ function cryptoRandomId() {
 function recalcSlicesByRank(items) {
   if (!items || items.length === 0) return [];
   
-  const { topRatio, bottomRatio } = CONFIG.DISTRIBUTION;
   const n = items.length;
   
-  // Calculate weights for each position
+  // If only one item, it gets 100%
+  if (n === 1) {
+    return [{ ...items[0], percent: 100 }];
+  }
+  
+  // Each item is worth 2x the next item
+  // Item 1: 2^(n-1), Item 2: 2^(n-2), ..., Item n: 2^0
+  // Total = 2^n - 1
+  
   const weights = items.map((_, i) => {
-    if (n === 1) return 1;
-    const t = i / (n - 1); // 0 to 1
-    return topRatio * (1 - t) + bottomRatio * t;
+    return Math.pow(2, n - 1 - i);
   });
   
-  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+  const totalWeight = Math.pow(2, n) - 1; // This equals sum of all weights
   
   // Convert weights to percentages
+  const percentages = weights.map(w => (w / totalWeight) * 100);
+  
   return items.map((item, i) => ({
     ...item,
-    percent: Math.max(CONFIG.PIE.minSlicePercent, (weights[i] / totalWeight) * 100)
+    percent: percentages[i]
   }));
 }
 

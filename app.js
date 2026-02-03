@@ -340,11 +340,69 @@ function renderPieChart() {
     pathEl.setAttribute("shape-rendering", "geometricPrecision");
     
     g.appendChild(pathEl);
+    
+    // Add text label for the item name
+    const midAngle = (currentAngle + endAngle) / 2;
+    const labelRadius = (innerRadius + outerRadius) / 2;
+    const labelX = cx + labelRadius * Math.cos(midAngle * Math.PI / 180);
+    const labelY = cy + labelRadius * Math.sin(midAngle * Math.PI / 180);
+    
+    // Only show label if slice is big enough
+    if (sweepAngle > 15) {
+      const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+      text.setAttribute("x", labelX);
+      text.setAttribute("y", labelY);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("dominant-baseline", "middle");
+      text.setAttribute("fill", "rgba(255, 255, 255, 0.95)");
+      text.setAttribute("font-size", "13");
+      text.setAttribute("font-weight", "600");
+      text.setAttribute("pointer-events", "none");
+      text.setAttribute("style", "text-shadow: 0 1px 3px rgba(0,0,0,0.5);");
+      
+      // Truncate text if too long
+      let displayText = item.text;
+      if (displayText.length > 20) {
+        displayText = displayText.substring(0, 17) + "...";
+      }
+      
+      text.textContent = displayText;
+      g.appendChild(text);
+    }
+    
     g.addEventListener("click", () => handleSliceClick(item.id));
     
     DOM.pieChart.appendChild(g);
     currentAngle = endAngle;
   });
+  
+  // Add center count
+  const centerGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  centerGroup.setAttribute("pointer-events", "none");
+  
+  const countText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  countText.setAttribute("x", cx);
+  countText.setAttribute("y", cy - 10);
+  countText.setAttribute("text-anchor", "middle");
+  countText.setAttribute("dominant-baseline", "middle");
+  countText.setAttribute("fill", "rgba(255, 255, 255, 0.9)");
+  countText.setAttribute("font-size", "36");
+  countText.setAttribute("font-weight", "700");
+  countText.textContent = focusItems.length;
+  
+  const labelText = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  labelText.setAttribute("x", cx);
+  labelText.setAttribute("y", cy + 15);
+  labelText.setAttribute("text-anchor", "middle");
+  labelText.setAttribute("dominant-baseline", "middle");
+  labelText.setAttribute("fill", "rgba(255, 255, 255, 0.6)");
+  labelText.setAttribute("font-size", "13");
+  labelText.setAttribute("font-weight", "500");
+  labelText.textContent = focusItems.length === 1 ? "item" : "items";
+  
+  centerGroup.appendChild(countText);
+  centerGroup.appendChild(labelText);
+  DOM.pieChart.appendChild(centerGroup);
 }
 
 function renderFocusList() {
