@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Security-Policy"
+    content="
+    default-src 'self';
+    base-uri 'self';
+    object-src 'none';
+    frame-ancestors 'none';
+    form-action 'self';
+    img-src 'self' https: data:;
+    style-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+    connect-src 'self';
+    upgrade-insecure-requests;
+    ">
+
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Permissions-Policy"
+          content="geolocation=(), camera=(), microphone=(), payment=()">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="description" content="A visual focus budget. Allocate your limited attention in slices—bigger slices get more focus." />
+    <meta name="theme-color" content="#0b0d12" />
+    
+    <title>Focus Budget</title>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+
+  <!-- Intro modal -->
+  <div class="modalOverlay" id="introModal" aria-hidden="false">
+    <div class="modalContent" role="dialog" aria-modal="true" aria-label="Focus Budget intro">
+      <div class="modalHeader">
+        <h2>You don't have unlimited focus.</h2>
+      </div>
+      <div class="modalBody">
+        <p>
+          Focus Budget helps you decide what deserves your attention
+          <strong>right now</strong>.
+        </p>
+        <p>
+          Rank what matters most, and the rest naturally takes up less space.
+        </p>
+        <p class="subtle">
+          Nothing is permanent. Reorder anytime.
+        </p>
+        <button id="introClose" type="button">Get started</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="app" role="main">
+    <header class="header">
+      <div>
+        <h1>Focus Budget</h1>
+        <p class="sub">
+          Allocate your attention in slices. Rank items to resize the cuts.
+        </p>
+        <p class="explainer">
+          Add a focus item, then drag or use arrows to change its slice.
+          <span style="opacity: 0.7;">Keyboard shortcuts: Ctrl/Cmd + ↑/↓ to move, Esc to deselect.</span>
+        </p>
+      </div>
+    </header>
+
+    <section class="composer" aria-label="Add a focus item">
+      <form id="focusForm" autocomplete="off">
+        <label for="focusInput" class="sr-only">New focus item</label>
+        <input
+          id="focusInput"
+          type="text"
+          placeholder="Add a focus item…"
+          maxlength="100"
+          required
+        />
+        <button id="addBtn" type="submit">Add</button>
+      </form>
+
+      <div class="meta">
+        <span id="itemCount">0</span> <span>items</span>
+      </div>
+    </section>
+
+    <div class="mainGrid">
+      <section class="pieWrap">
+        <svg id="pieChart" viewBox="0 0 400 400"></svg>
+
+        <div class="empty">
+          <div class="emptyIcon">🥧</div>
+          <p><strong>Your focus budget is empty</strong></p>
+          <p>Add focus items to start allocating slices.</p>
+        </div>
+      </section>
+
+      <section class="listSection">
+        <h2 class="sectionTitle">Focus items</h2>
+        <ul id="focusList" class="list"></ul>
+      </section>
+    </div>
+
+    <section class="controls" id="controlsSection" style="display: none;">
+      <div class="controlsHeader">
+        <h3 id="controlsTitle">-</h3>
+        <span class="controlsPercent" id="controlsPercent">0%</span>
+      </div>
+      
+      <div class="controlButtons">
+        <button id="moveTopBtn" class="controlBtn">⇈ Top</button>
+        <button id="moveUpBtn" class="controlBtn">↑ Up</button>
+        <button id="moveDownBtn" class="controlBtn">↓ Down</button>
+        <button id="moveBottomBtn" class="controlBtn">⇊ Bottom</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footerLeft">
+        <span class="hint">Click slices to select • 🟢 More focus → 🔴 Less focus</span>
+      </div>
+      <div class="footerRight">
+        <button id="aboutBtn" class="footerBtn" type="button" title="About Focus Budget">About</button>
+        <button id="exportBtn" class="footerBtn" type="button" title="Export focus items">Export</button>
+        <button id="clearBtn" class="footerBtn" type="button" title="Clear all focus items">Clear All</button>
+        <a id="licenseLink" class="footerBtn">License</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- License Modal -->
+  <div class="modalOverlay" id="licenseModal">
+    <div class="modalContent">
+      <div class="modalHeader">
+        <h2>License & Attribution</h2>
+        <button class="modalClose" id="licenseClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody">
+        <div class="license-tag">MIT License</div>
+        
+        <h3>Focus Budget</h3>
+        <p>
+          This tool is open source and free to use, modify, and distribute.
+        </p>
+
+        <h3>Attribution</h3>
+        <p>
+          Created by <strong>Sheety Tools</strong>. Visit 
+          <a href="https://sheety.tools" target="_blank" rel="noopener noreferrer">sheety.tools</a>
+          for more free tools.
+        </p>
+
+        <h3>Support</h3>
+        <p>
+          If you find this tool useful, consider supporting development at
+          <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener noreferrer">ko-fi.com/sheetytools</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating buttons -->
+  <a href="https://sheety.tools" target="_blank" rel="noopener noreferrer" class="floating sheety-float" aria-label="Visit Sheety Tools">
+    <img src="./Sheety_Logo.png" alt="Sheety Tools logo" />
+    <span class="label">Sheety Tools</span>
+  </a>
+
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener noreferrer" class="floating kofi-float" aria-label="Support Sheety Tools on Ko-fi">
+    <img class="kofi-icon" src="./Sparkle_mug.gif" alt="" />
+    <span class="label">Fuel the Sheet</span>
+  </a>
+
+  <!-- Scripts: Load in order of dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="./utils.js"></script>
+  <script src="./storage.js"></script>
+  <script src="./app.js"></script>
+
+  <!-- License Modal Handler -->
+  <script>
+    (function () {
+      const overlay = document.getElementById("licenseModal");
+      const closeBtn = document.getElementById("licenseClose");
+      const linkBtn  = document.getElementById("licenseLink");
+
+      function open()  { overlay.classList.add("open"); closeBtn.focus(); }
+      function close() { overlay.classList.remove("open"); linkBtn.focus(); }
+
+      linkBtn.addEventListener("click", open);
+      closeBtn.addEventListener("click", close);
+      overlay.addEventListener("click", (e) => { if (e.target === overlay) close(); });
+      overlay.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    })();
+  </script>
+
+  <!-- Intro Modal Handler -->
+  <script>
+    (function () {
+      const introModal = document.getElementById('introModal');
+      const introClose = document.getElementById('introClose');
+      const aboutBtn = document.getElementById('aboutBtn');
+      if (!introModal || !introClose) return;
+
+      function openIntro() {
+        introModal.style.display = 'flex';
+        introModal.classList.add('open');
+        introModal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeIntro() {
+        localStorage.setItem('focus-budget:intro-seen', '1');
+        introModal.classList.remove('open');
+        setTimeout(() => {
+          introModal.style.display = 'none';
+          introModal.setAttribute('aria-hidden', 'true');
+        }, 300);
+      }
+
+      // Show once on first visit
+      if (localStorage.getItem('focus-budget:intro-seen') === '1') {
+        introModal.style.display = 'none';
+        introModal.setAttribute('aria-hidden', 'true');
+      } else {
+        openIntro();
+      }
+
+      // Event listeners
+      introClose.addEventListener('click', closeIntro);
+      if (aboutBtn) {
+        aboutBtn.addEventListener('click', openIntro);
+      }
+
+      // Close on overlay click
+      introModal.addEventListener('click', (e) => {
+        if (e.target === introModal) closeIntro();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && introModal.style.display !== 'none') closeIntro();
+      });
+    })();
+  </script>
+
+</body>
+</html>
