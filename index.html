@@ -90,6 +90,12 @@
     <div class="mainGrid">
       <section class="pieWrap">
         <svg id="pieChart" viewBox="0 0 400 400"></svg>
+
+        <div class="empty">
+          <div class="emptyIcon">🥧</div>
+          <p><strong>Your focus budget is empty</strong></p>
+          <p>Add focus items to start allocating slices.</p>
+        </div>
       </section>
 
       <section class="listSection">
@@ -117,9 +123,10 @@
         <span class="hint">Click slices to select • 🟢 More focus → 🔴 Less focus</span>
       </div>
       <div class="footerRight">
-        <button id="aboutBtn" class="footerBtn" type="button" title="About Focus Budget">About</button>
         <button id="exportBtn" class="footerBtn" type="button" title="Export focus items">Export</button>
+        <button id="importBtn" class="footerBtn" type="button" title="Import focus items">Import</button>
         <button id="clearBtn" class="footerBtn" type="button" title="Clear all focus items">Clear All</button>
+        <input type="file" id="importFile" accept=".json" style="display: none;" />
         <a id="licenseLink" class="footerBtn">License</a>
       </div>
     </footer>
@@ -194,13 +201,13 @@
     (function () {
       const introModal = document.getElementById('introModal');
       const introClose = document.getElementById('introClose');
-      const aboutBtn = document.getElementById('aboutBtn');
       if (!introModal || !introClose) return;
 
-      function openIntro() {
-        introModal.style.display = 'flex';
-        introModal.classList.add('open');
-        introModal.setAttribute('aria-hidden', 'false');
+      // Show once
+      if (localStorage.getItem('focus-budget:intro-seen') === '1') {
+        introModal.style.display = 'none';
+        introModal.setAttribute('aria-hidden', 'true');
+        return;
       }
 
       function closeIntro() {
@@ -212,19 +219,10 @@
         }, 300);
       }
 
-      // Show once on first visit
-      if (localStorage.getItem('focus-budget:intro-seen') === '1') {
-        introModal.style.display = 'none';
-        introModal.setAttribute('aria-hidden', 'true');
-      } else {
-        openIntro();
-      }
+      // Show the modal
+      introModal.classList.add('open');
 
-      // Event listeners
       introClose.addEventListener('click', closeIntro);
-      if (aboutBtn) {
-        aboutBtn.addEventListener('click', openIntro);
-      }
 
       // Close on overlay click
       introModal.addEventListener('click', (e) => {
