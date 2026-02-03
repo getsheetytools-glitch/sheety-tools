@@ -218,32 +218,6 @@ button:disabled {
   stroke-width: 4;
 }
 
-.empty {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--muted);
-}
-
-.emptyIcon {
-  font-size: 64px;
-  margin-bottom: 16px;
-  opacity: 0.5;
-}
-
-.empty p {
-  margin: 4px 0;
-  line-height: 1.5;
-}
-
-.empty strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
 .listSection {
   display: flex;
   flex-direction: column;
