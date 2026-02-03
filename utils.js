@@ -185,145 +185,152 @@ function exportData(focusItems) {
     return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
   }
   
-  // Title
-  doc.setFontSize(22);
+  // Header section
+  doc.setFontSize(24);
   doc.setFont('helvetica', 'bold');
-  doc.text('Focus Budget', 105, 20, { align: 'center' });
+  doc.text('Focus Budget', 105, 22, { align: 'center' });
   
-  // Date
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(128, 128, 128);
-  const date = new Date().toLocaleDateString('en-US', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric'
-  });
-  doc.text(date, 105, 27, { align: 'center' });
-  doc.setTextColor(0, 0, 0);
+  doc.setTextColor(150, 150, 150);
+  doc.text(new Date().toLocaleDateString('en-US', { 
+    year: 'numeric', month: 'long', day: 'numeric'
+  }), 105, 28, { align: 'center' });
   
-  // Draw pie chart
-  const centerX = 105;
-  const centerY = 90;
-  const outerRadius = 40;
-  const innerRadius = 20;
+  // Draw compact pie chart
+  const centerX = 55;
+  const centerY = 65;
+  const outerRadius = 35;
+  const innerRadius = 18;
   
-  let currentAngle = -90; // Start at top
+  let currentAngle = -90;
   
   focusItems.forEach((item, index) => {
     const sweepAngle = (item.percent / 100) * 360;
     const endAngle = currentAngle + sweepAngle;
     
-    // Get color
     const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
-    const hue = 120 * (1 - t); // Green to red
+    const hue = 120 * (1 - t);
     const [r, g, b] = hslToRgb(hue, 75, 55);
     
     doc.setFillColor(r, g, b);
     doc.setDrawColor(11, 13, 18);
-    doc.setLineWidth(0.5);
+    doc.setLineWidth(0.3);
     
-    // Draw arc (simplified - draw as filled polygon)
-    const segments = Math.max(10, Math.ceil(Math.abs(sweepAngle) / 10));
+    const segments = Math.max(8, Math.ceil(Math.abs(sweepAngle) / 15));
     const points = [];
     
-    // Add center point for donut hole
     for (let i = 0; i <= segments; i++) {
       const angle = (currentAngle + (sweepAngle * i / segments)) * Math.PI / 180;
-      // Outer edge
-      points.push([
-        centerX + outerRadius * Math.cos(angle),
-        centerY + outerRadius * Math.sin(angle)
-      ]);
+      points.push([centerX + outerRadius * Math.cos(angle), centerY + outerRadius * Math.sin(angle)]);
     }
-    
-    // Add inner edge in reverse
     for (let i = segments; i >= 0; i--) {
       const angle = (currentAngle + (sweepAngle * i / segments)) * Math.PI / 180;
-      points.push([
-        centerX + innerRadius * Math.cos(angle),
-        centerY + innerRadius * Math.sin(angle)
-      ]);
+      points.push([centerX + innerRadius * Math.cos(angle), centerY + innerRadius * Math.sin(angle)]);
     }
     
-    // Draw the polygon
-    doc.path(points.map((p, i) => ({
-      op: i === 0 ? 'm' : 'l',
-      c: p
-    })).concat([{ op: 's' }]));
+    doc.path(points.map((p, i) => ({ op: i === 0 ? 'm' : 'l', c: p })).concat([{ op: 's' }]));
     doc.fillStroke();
     
     currentAngle = endAngle;
   });
   
-  // Draw center circle (white)
+  // Center circle
   doc.setFillColor(255, 255, 255);
   doc.circle(centerX, centerY, innerRadius, 'F');
-  
-  // Add item count in center
-  doc.setFontSize(20);
+  doc.setFontSize(18);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text(focusItems.length.toString(), centerX, centerY - 3, { align: 'center' });
+  doc.text(focusItems.length.toString(), centerX, centerY - 2, { align: 'center' });
+  doc.setFontSize(7);
+  doc.setTextColor(120, 120, 120);
+  doc.text(focusItems.length === 1 ? 'item' : 'items', centerX, centerY + 3, { align: 'center' });
   
-  doc.setFontSize(8);
-  doc.setFont('helvetica', 'normal');
-  doc.setTextColor(100, 100, 100);
-  doc.text(focusItems.length === 1 ? 'item' : 'items', centerX, centerY + 4, { align: 'center' });
+  // Items list (right side)
+  let yPos = 45;
   
-  // Add summary list
-  let yPos = 145;
-  
-  doc.setFontSize(12);
+  doc.setFontSize(11);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(0, 0, 0);
-  doc.text('Focus Items:', 20, yPos);
+  doc.text('Priority Ranking', 105, yPos);
   
-  yPos += 8;
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
+  yPos += 7;
   
   focusItems.forEach((item, index) => {
-    // Get color for indicator
     const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
     const hue = 120 * (1 - t);
-    
-    // Draw color circle
     const [r, g, b] = hslToRgb(hue, 75, 55);
+    
+    // Draw colored bar
     doc.setFillColor(r, g, b);
-    doc.circle(22, yPos - 1.5, 1.5, 'F');
+    const barWidth = item.percent / 2; // Scale to fit
+    doc.rect(105, yPos - 3, barWidth, 4, 'F');
     
-    // Add text
+    // Rank number
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
     doc.setTextColor(0, 0, 0);
-    const text = `${index + 1}. ${item.text} (${item.percent.toFixed(1)}%)`;
-    const splitText = doc.splitTextToSize(text, 160);
-    doc.text(splitText, 28, yPos);
+    doc.text(`${index + 1}`, 102, yPos, { align: 'right' });
     
-    yPos += splitText.length * 5 + 2;
+    // Item text
+    doc.setFont('helvetica', 'normal');
+    const maxWidth = 90;
+    let displayText = item.text;
+    if (doc.getTextWidth(displayText) > maxWidth) {
+      while (doc.getTextWidth(displayText + '...') > maxWidth && displayText.length > 10) {
+        displayText = displayText.slice(0, -1);
+      }
+      displayText += '...';
+    }
+    doc.text(displayText, 105, yPos);
     
-    // Add new page if needed
+    // Percentage
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(100, 100, 100);
+    doc.text(`${item.percent.toFixed(1)}%`, 198, yPos, { align: 'right' });
+    
+    yPos += 6;
+    
+    // New page if needed
     if (yPos > 270 && index < focusItems.length - 1) {
       doc.addPage();
       yPos = 20;
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(0, 0, 0);
+      doc.text('Priority Ranking (continued)', 105, yPos);
+      yPos += 7;
     }
   });
   
-  // Add note at bottom
-  yPos += 8;
-  if (yPos > 250) {
+  // Key insights box
+  yPos += 5;
+  if (yPos > 240) {
     doc.addPage();
     yPos = 20;
   }
   
+  // Draw a subtle box
+  doc.setDrawColor(200, 200, 200);
+  doc.setLineWidth(0.5);
+  doc.rect(15, yPos, 180, 22);
+  
+  yPos += 6;
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.setTextColor(0, 0, 0);
+  doc.text('Key Principle:', 20, yPos);
+  
+  yPos += 5;
   doc.setFontSize(9);
-  doc.setTextColor(100, 100, 100);
-  const note = doc.splitTextToSize(
-    'Each item is worth 2x the item below it. Focus your attention on green items first, then yellow, then red.',
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(60, 60, 60);
+  const principle = doc.splitTextToSize(
+    'Each item is worth 2× the next. Green = highest priority, red = lowest. Focus on green items first for maximum impact.',
     170
   );
-  doc.text(note, 20, yPos);
+  doc.text(principle, 20, yPos);
   
   // Save
-  const filename = `focus-budget-${new Date().toISOString().split('T')[0]}.pdf`;
-  doc.save(filename);
+  doc.save(`focus-budget-${new Date().toISOString().split('T')[0]}.pdf`);
 }
