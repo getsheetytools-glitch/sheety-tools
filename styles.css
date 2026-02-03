@@ -28,6 +28,7 @@ body {
     radial-gradient(900px 900px at 60% 90%, rgba(120, 255, 210, 0.06), transparent 55%),
     var(--bg);
   background-attachment: fixed;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sr-only {
@@ -128,6 +129,8 @@ button {
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:hover:not(:disabled) {
@@ -271,6 +274,7 @@ button:disabled {
   max-height: 500px;
   overflow-y: auto;
   padding-right: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .list::-webkit-scrollbar { width: 6px; }
@@ -292,6 +296,8 @@ button:disabled {
   cursor: pointer;
   transition: all var(--transition-fast);
   position: relative;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .listItem:hover {
@@ -601,8 +607,100 @@ button:disabled {
 }
 
 @media (max-width: 800px) {
+  .app {
+    margin: 20px auto;
+    padding: 16px;
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .sub {
+    font-size: 13px;
+  }
+
+  .explainer {
+    font-size: 12px;
+  }
+
   .mainGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .pieWrap {
+    order: -1; /* Show pie chart first on mobile */
+  }
+
+  .composer {
+    padding: 12px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 14px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .itemActions {
+    gap: 6px;
+  }
+
+  .arrowBtn, .deleteBtn {
+    padding: 8px 10px;
+    font-size: 16px;
+    min-width: 36px;
+    touch-action: manipulation;
+  }
+
+  .controlButtons {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .controlBtn {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .footerLeft {
+    order: 2;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footerRight {
+    order: 1;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footerBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .hint {
+    font-size: 11px;
   }
 
   .floating {
@@ -624,13 +722,117 @@ button:disabled {
     bottom: 70px;
     right: 20px;
   }
+
+  .listItem {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .dragHandle {
+    font-size: 16px;
+    padding: 4px;
+  }
+
+  .itemText {
+    font-size: 15px;
+  }
+
+  .itemMeta {
+    font-size: 14px;
+  }
+
+  .modalContent {
+    padding: 20px;
+    max-width: calc(100% - 32px);
+  }
+
+  .modalHeader h2 {
+    font-size: 18px;
+  }
+
+  .modalBody {
+    font-size: 13px;
+  }
+
+  #introModal .modalHeader h2 {
+    font-size: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .app { margin: 24px auto; }
-  h1 { font-size: 22px; }
-  .floating .label { display: none; }
-  .floating { padding: 10px; }
+  .app { 
+    margin: 12px auto;
+    padding: 12px;
+  }
+  
+  h1 { 
+    font-size: 20px; 
+  }
+
+  .sub {
+    font-size: 12px;
+  }
+
+  .explainer {
+    display: none; /* Hide detailed explainer on very small screens */
+  }
+
+  .floating .label { 
+    display: none; 
+  }
+  
+  .floating { 
+    padding: 10px;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+
+  .floating img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .sheety-float {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .kofi-float {
+    bottom: 70px;
+    right: 16px;
+  }
+
+  .dragHandle {
+    display: none; /* Hide drag handle on very small screens - use up/down arrows instead */
+  }
+
+  .itemActions {
+    flex-wrap: nowrap;
+  }
+
+  .arrowBtn, .deleteBtn {
+    padding: 10px 12px;
+    font-size: 18px;
+  }
+
+  .list {
+    max-height: 400px;
+  }
+
+  .controlsHeader h3 {
+    font-size: 14px;
+  }
+
+  .controlButtons {
+    gap: 6px;
+  }
+
+  .controlBtn {
+    padding: 12px;
+    font-size: 14px;
+  }
 }
 
 /* ── Intro Modal Specific Styling ── */

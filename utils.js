@@ -168,160 +168,109 @@ function exportData(focusItems) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
   
-  // Helper function to convert HSL to RGB
-  function hslToRgbArray(h, s, l) {
-    s = s / 100;
-    l = l / 100;
-    
-    const c = (1 - Math.abs(2 * l - 1)) * s;
-    const x = c * (1 - Math.abs((h / 60) % 2 - 1));
-    const m = l - c / 2;
-    
-    let r = 0, g = 0, b = 0;
-    
-    if (h >= 0 && h < 60) {
-      r = c; g = x; b = 0;
-    } else if (h >= 60 && h < 120) {
-      r = x; g = c; b = 0;
-    } else if (h >= 120 && h < 180) {
-      r = 0; g = c; b = x;
-    } else if (h >= 180 && h < 240) {
-      r = 0; g = x; b = c;
-    } else if (h >= 240 && h < 300) {
-      r = x; g = 0; b = c;
-    } else if (h >= 300 && h < 360) {
-      r = c; g = 0; b = x;
-    }
-    
-    r = Math.round((r + m) * 255);
-    g = Math.round((g + m) * 255);
-    b = Math.round((b + m) * 255);
-    
-    return [r, g, b];
-  }
-  
   // Title
-  doc.setFontSize(24);
+  doc.setFontSize(22);
   doc.setFont('helvetica', 'bold');
   doc.text('Focus Budget', 105, 20, { align: 'center' });
   
-  // Subtitle with date
-  doc.setFontSize(10);
+  // Date
+  doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(128, 128, 128);
   const date = new Date().toLocaleDateString('en-US', { 
     year: 'numeric', 
     month: 'long', 
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit'
+    day: 'numeric'
   });
-  doc.text(`Generated on ${date}`, 105, 28, { align: 'center' });
+  doc.text(date, 105, 27, { align: 'center' });
   
-  // Reset text color
   doc.setTextColor(0, 0, 0);
   
-  // Summary
-  doc.setFontSize(11);
-  doc.text(`Total Focus Items: ${focusItems.length}`, 20, 40);
+  // Get the SVG element
+  const svg = document.getElementById('pieChart');
+  const svgData = new XMLSerializer().serializeToString(svg);
   
-  // Prepare table data
-  const tableData = focusItems.map((item, index) => {
-    const bar = '█'.repeat(Math.round(item.percent / 2)); // Visual bar
-    return [
-      (index + 1).toString(),
-      item.text,
-      `${item.percent.toFixed(1)}%`,
-      bar
-    ];
-  });
+  // Convert SVG to data URL
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
   
-  // Create table with colors
-  doc.autoTable({
-    startY: 48,
-    head: [['Rank', 'Focus Item', 'Allocation', 'Visual']],
-    body: tableData,
-    theme: 'grid',
-    headStyles: {
-      fillColor: [11, 13, 18],
-      textColor: [255, 255, 255],
-      fontStyle: 'bold',
-      halign: 'left'
-    },
-    columnStyles: {
-      0: { cellWidth: 15, halign: 'center' },
-      1: { cellWidth: 90 },
-      2: { cellWidth: 25, halign: 'center' },
-      3: { cellWidth: 50, halign: 'left', fontStyle: 'bold' }
-    },
-    didParseCell: function(data) {
-      // Color code the rows based on rank
-      if (data.section === 'body') {
-        const rowIndex = data.row.index;
-        const total = focusItems.length;
-        
-        // Calculate color (green to red gradient)
-        const t = total > 1 ? rowIndex / (total - 1) : 0;
-        const hue = 120 * (1 - t) + 0 * t; // Green (120) to Red (0)
-        
-        const [r, g, b] = hslToRgbArray(hue, 75, 85); // Lighter for background
-        data.cell.styles.fillColor = [r, g, b];
-        
-        // Darker text for light backgrounds
-        if (hue > 80) {
-          data.cell.styles.textColor = [0, 0, 0];
-        }
+  // Set canvas size
+  canvas.width = 400;
+  canvas.height = 400;
+  
+  img.onload = function() {
+    // Draw white background
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw the image
+    ctx.drawImage(img, 0, 0);
+    
+    // Convert to data URL
+    const imgData = canvas.toDataURL('image/png');
+    
+    // Add image to PDF (centered)
+    const imgWidth = 120;
+    const imgHeight = 120;
+    const x = (210 - imgWidth) / 2; // Center on A4 width (210mm)
+    doc.addImage(imgData, 'PNG', x, 35, imgWidth, imgHeight);
+    
+    // Add summary below the chart
+    let yPos = 165;
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Focus Items:', 20, yPos);
+    
+    yPos += 8;
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    
+    // List all items
+    focusItems.forEach((item, index) => {
+      // Get color for this item
+      const t = focusItems.length > 1 ? index / (focusItems.length - 1) : 0;
+      const hue = 120 * (1 - t); // Green to red
+      
+      // Simple color indicator
+      let colorEmoji = '🟢';
+      if (hue < 40) colorEmoji = '🔴';
+      else if (hue < 80) colorEmoji = '🟡';
+      
+      const text = `${colorEmoji} ${index + 1}. ${item.text} (${item.percent.toFixed(1)}%)`;
+      doc.text(text, 20, yPos);
+      yPos += 6;
+      
+      // Add new page if needed
+      if (yPos > 270 && index < focusItems.length - 1) {
+        doc.addPage();
+        yPos = 20;
       }
-    },
-    styles: {
-      fontSize: 10,
-      cellPadding: 5,
+    });
+    
+    // Add note at bottom
+    yPos += 8;
+    if (yPos > 250) {
+      doc.addPage();
+      yPos = 20;
     }
-  });
+    
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    const note = doc.splitTextToSize(
+      'Each item is worth 2x the item below it. Focus your attention on green items first.',
+      170
+    );
+    doc.text(note, 20, yPos);
+    
+    // Save
+    const filename = `focus-budget-${new Date().toISOString().split('T')[0]}.pdf`;
+    doc.save(filename);
+  };
   
-  // Add explanation section
-  let finalY = doc.lastAutoTable.finalY + 15;
-  
-  // Check if we need a new page
-  if (finalY > 250) {
-    doc.addPage();
-    finalY = 20;
-  }
-  
-  doc.setFontSize(14);
-  doc.setFont('helvetica', 'bold');
-  doc.text('How to Use This Focus Budget', 20, finalY);
-  
-  finalY += 8;
-  doc.setFontSize(10);
-  doc.setFont('helvetica', 'normal');
-  
-  const explanationText = 
-    'Each item is worth twice the item below it. Your highest priority item gets the most ' +
-    'focus, and each subsequent item receives proportionally less attention. Use this to ' +
-    'guide your daily decisions.';
-  
-  const splitText = doc.splitTextToSize(explanationText, 170);
-  doc.text(splitText, 20, finalY);
-  
-  finalY += splitText.length * 5 + 8;
-  
-  // Color legend
-  doc.setFillColor(76, 175, 80); // Green
-  doc.circle(22, finalY, 2, 'F');
-  doc.text('Green items: Highest priority, deserve the most focus', 28, finalY + 1);
-  
-  finalY += 6;
-  doc.setFillColor(255, 235, 59); // Yellow
-  doc.circle(22, finalY, 2, 'F');
-  doc.text('Yellow items: Medium priority, important but not critical', 28, finalY + 1);
-  
-  finalY += 6;
-  doc.setFillColor(244, 67, 54); // Red
-  doc.circle(22, finalY, 2, 'F');
-  doc.text('Red items: Lower priority, address when top items are handled', 28, finalY + 1);
-  
-  // Save the PDF
-  const filename = `focus-budget-${new Date().toISOString().split('T')[0]}.pdf`;
-  doc.save(filename);
+  // Load SVG into image
+  const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(svgBlob);
+  img.src = url;
 }

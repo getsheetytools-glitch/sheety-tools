@@ -319,16 +319,9 @@ function renderPieChart() {
     
     // Only show label if slice is big enough
     if (sweepAngle > 15) {
+      // Add a background rectangle for better text visibility
+      const textBg = document.createElementNS("http://www.w3.org/2000/svg", "rect");
       const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-      text.setAttribute("x", labelX);
-      text.setAttribute("y", labelY);
-      text.setAttribute("text-anchor", "middle");
-      text.setAttribute("dominant-baseline", "middle");
-      text.setAttribute("fill", "rgba(255, 255, 255, 0.95)");
-      text.setAttribute("font-size", "13");
-      text.setAttribute("font-weight", "600");
-      text.setAttribute("pointer-events", "none");
-      text.setAttribute("style", "text-shadow: 0 1px 3px rgba(0,0,0,0.5);");
       
       // Truncate text if too long
       let displayText = item.text;
@@ -336,7 +329,18 @@ function renderPieChart() {
         displayText = displayText.substring(0, 17) + "...";
       }
       
+      // Create text first to measure it
+      text.setAttribute("x", labelX);
+      text.setAttribute("y", labelY);
+      text.setAttribute("text-anchor", "middle");
+      text.setAttribute("dominant-baseline", "middle");
+      text.setAttribute("fill", "white");
+      text.setAttribute("font-size", "14");
+      text.setAttribute("font-weight", "700");
+      text.setAttribute("pointer-events", "none");
+      text.setAttribute("style", "text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.9);");
       text.textContent = displayText;
+      
       g.appendChild(text);
     }
     
