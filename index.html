@@ -203,37 +203,24 @@
       const introClose = document.getElementById('introClose');
       if (!introModal || !introClose) return;
 
-      const KEY = 'focus-budget:intro-seen';
-
-      function safeGet() {
-        try { return localStorage.getItem(KEY); } catch (_) { return null; }
-      }
-      function safeSet() {
-        try { localStorage.setItem(KEY, '1'); } catch (_) {}
-      }
-
-      // If storage is blocked (some incognito/privacy modes), we still show the intro.
-      const seen = safeGet();
-      if (seen === '1') {
+      // Show once
+      if (localStorage.getItem('focus-budget:intro-seen') === '1') {
         introModal.style.display = 'none';
         introModal.setAttribute('aria-hidden', 'true');
         return;
       }
 
       function closeIntro() {
-        safeSet();
+        localStorage.setItem('focus-budget:intro-seen', '1');
         introModal.classList.remove('open');
-        introModal.setAttribute('aria-hidden', 'true');
-        // Let the CSS transition finish, then fully remove from layout
         setTimeout(() => {
           introModal.style.display = 'none';
+          introModal.setAttribute('aria-hidden', 'true');
         }, 300);
       }
 
       // Show the modal
-      introModal.style.display = 'flex';
       introModal.classList.add('open');
-      introModal.setAttribute('aria-hidden', 'false');
 
       introClose.addEventListener('click', closeIntro);
 
@@ -244,7 +231,7 @@
 
       // Close on Escape
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && introModal.classList.contains('open')) closeIntro();
+        if (e.key === 'Escape' && introModal.style.display !== 'none') closeIntro();
       });
     })();
   </script>
