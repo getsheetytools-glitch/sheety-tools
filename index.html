@@ -258,25 +258,6 @@
       opacity: 0.3;
     }
 
-    .form-placeholder {
-      padding: 4rem 2rem;
-      text-align: center;
-      color: var(--text3);
-    }
-    .form-placeholder .icon { font-size: 2rem; margin-bottom: 1rem; opacity: 0.5; }
-    .form-placeholder p { font-size: 0.875rem; max-width: 380px; margin: 0.5rem auto 1.25rem; line-height: 1.6; }
-    .embed-label {
-      display: inline-block;
-      background: var(--orange-sub);
-      border: 1px solid rgba(224,122,58,0.18);
-      color: var(--orange);
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 0.3rem 0.75rem;
-      border-radius: 5px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
 
     /* ─── SECTION SEPARATOR ───────────────────────────────── */
     .sep {
@@ -375,6 +356,11 @@
       background: var(--green-sub);
       color: var(--green);
       border: 1px solid rgba(46,201,126,0.18);
+    }
+    .badge-paid {
+      background: var(--orange-sub);
+      color: var(--orange);
+      border: 1px solid rgba(224,122,58,0.18);
     }
     .badge-soon {
       background: var(--surface2);
@@ -544,7 +530,6 @@
       <li><a href="#tools">Tools</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Fuel this project</a></li>
-      <li><a href="#form" class="nav-cta">Get started</a></li>
     </ul>
   </nav>
 
@@ -571,37 +556,32 @@
   <section class="form-section" id="form">
     <div class="form-wrap">
       <div class="form-shine" id="formShine"></div>
-      <!--
-        ╔══════════════════════════════════════════════════════╗
-        ║  PASTE YOUR FILLOUT EMBED CODE HERE                 ║
-        ║                                                      ║
-        ║  Example:                                            ║
-        ║  <div                                                ║
-        ║    data-fillout-id="YOUR_FORM_ID"                    ║
-        ║    data-fillout-embed-type="standard"                ║
-        ║    data-fillout-inherit-parameters                   ║
-        ║    style="width:100%;height:500px;"                  ║
-        ║  ></div>                                             ║
-        ║  <script src="https://server.fillout.com/embed/v1/"> ║
-        ║  </script>                                           ║
-        ╚══════════════════════════════════════════════════════╝
-      -->
-      <div class="form-placeholder">
-        <div class="icon">📋</div>
-        <p>Your Fillout form will appear here. Paste your embed code above to activate it.</p>
-        <span class="embed-label">Replace with Fillout embed</span>
-      </div>
+      <div style="width:100%;height:500px;" data-fillout-id="p9oKavGSHPus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+      <script src="https://server.fillout.com/embed/v1/"></script>
     </div>
   </section>
 
   <div class="sep"><hr /></div>
 
   <section class="tools-section" id="tools">
-    <p class="section-label">Free tools</p>
-    <h2 class="section-title">More from Sheety</h2>
-    <p class="section-sub">Open-source tools that run in your browser. No account, no tracking.</p>
+    <p class="section-label">All tools</p>
+    <h2 class="section-title">What we make</h2>
+    <p class="section-sub">One paid platform and a growing set of free, open-source tools.</p>
 
     <div class="tools-grid">
+
+      <a href="#form" class="tool-card">
+        <div class="card-shine"></div>
+        <div class="tool-icon">🗂️</div>
+        <div class="tool-name">Sheety Onboarding</div>
+        <p class="tool-desc">
+          A no-bloat employee onboarding platform. Fast to set up, fully customizable, and built to run without you hovering over it.
+        </p>
+        <div class="tool-foot">
+          <span class="badge badge-paid">Paid</span>
+          <span class="tool-arrow">→</span>
+        </div>
+      </a>
 
       <a href="./focus-budget.html" class="tool-card">
         <div class="card-shine"></div>
