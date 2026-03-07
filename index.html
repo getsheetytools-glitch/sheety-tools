@@ -485,6 +485,47 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* ─── MOUSE TRACKING ─────────────────────────────────── */
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(600px circle at 50% 40%, rgba(46,201,126,0.06), transparent 70%);
+      transition: background 0.1s ease;
+      z-index: 0;
+    }
+    .hero > *:not(.hero-glow) { position: relative; z-index: 1; }
+
+    .tool-card {
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+    .tool-card .card-shine {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      background: radial-gradient(400px circle at 50% 50%, rgba(255,255,255,0.04), transparent 60%);
+    }
+    .tool-card:not(.inert):hover .card-shine { opacity: 1; }
+
+    .form-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .form-wrap .form-shine {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      background: radial-gradient(350px circle at 50% 50%, rgba(46,201,126,0.04), transparent 65%);
+      z-index: 2;
+    }
+    .form-wrap:hover .form-shine { opacity: 1; }
+
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .hero-actions { flex-direction: column; align-items: stretch; }
@@ -508,6 +549,7 @@
   </nav>
 
   <section class="hero" id="onboarding">
+    <div class="hero-glow" id="heroGlow"></div>
     <div class="hero-eyebrow">Employee Onboarding</div>
     <h1>Get new hires ready.<br><em>In minutes.</em></h1>
     <p class="hero-sub">
@@ -528,6 +570,7 @@
 
   <section class="form-section" id="form">
     <div class="form-wrap">
+      <div class="form-shine" id="formShine"></div>
       <!--
         ╔══════════════════════════════════════════════════════╗
         ║  PASTE YOUR FILLOUT EMBED CODE HERE                 ║
@@ -561,6 +604,7 @@
     <div class="tools-grid">
 
       <a href="./focus-budget.html" class="tool-card">
+        <div class="card-shine"></div>
         <div class="tool-icon">🥧</div>
         <div class="tool-name">Focus Budget</div>
         <p class="tool-desc">
@@ -573,6 +617,7 @@
       </a>
 
       <div class="tool-card inert">
+        <div class="card-shine"></div>
         <div class="tool-icon">✦</div>
         <div class="tool-name">More coming soon</div>
         <p class="tool-desc">New tools are in the works. Have an idea? Reach out or fuel development on Ko-fi.</p>
@@ -625,6 +670,71 @@
     <img src="./Sparkle_mug.gif" alt="" />
     <span>Fuel this project</span>
   </a>
+  <script>
+    // ── Hero cursor glow ───────────────────────────────────
+    const hero     = document.getElementById('onboarding');
+    const heroGlow = document.getElementById('heroGlow');
 
+    hero.addEventListener('mousemove', e => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width)  * 100;
+      const y = ((e.clientY - rect.top)  / rect.height) * 100;
+      heroGlow.style.background =
+        `radial-gradient(600px circle at ${x}% ${y}%, rgba(46,201,126,0.08), transparent 65%)`;
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      heroGlow.style.background =
+        'radial-gradient(600px circle at 50% 40%, rgba(46,201,126,0.06), transparent 70%)';
+    });
+
+    // ── Card tilt + shine ──────────────────────────────────
+    document.querySelectorAll('.tool-card:not(.inert)').forEach(card => {
+      const shine = card.querySelector('.card-shine');
+
+      card.addEventListener('mousemove', e => {
+        const r  = card.getBoundingClientRect();
+        const x  = e.clientX - r.left;
+        const y  = e.clientY - r.top;
+        const cx = r.width  / 2;
+        const cy = r.height / 2;
+        const rotY =  ((x - cx) / cx) * 4;   // max 4deg
+        const rotX = -((y - cy) / cy) * 4;
+
+        card.style.transform =
+          `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(4px)`;
+
+        if (shine) {
+          const px = (x / r.width)  * 100;
+          const py = (y / r.height) * 100;
+          shine.style.background =
+            `radial-gradient(280px circle at ${px}% ${py}%, rgba(255,255,255,0.05), transparent 60%)`;
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateZ(0)';
+        card.style.transition = 'transform 0.4s ease, border-color .2s, background .2s';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'border-color .2s, background .2s';
+      });
+    });
+
+    // ── Form card shine ────────────────────────────────────
+    const formWrap  = document.querySelector('.form-wrap');
+    const formShine = document.getElementById('formShine');
+
+    if (formWrap && formShine) {
+      formWrap.addEventListener('mousemove', e => {
+        const r  = formWrap.getBoundingClientRect();
+        const px = ((e.clientX - r.left) / r.width)  * 100;
+        const py = ((e.clientY - r.top)  / r.height) * 100;
+        formShine.style.background =
+          `radial-gradient(350px circle at ${px}% ${py}%, rgba(46,201,126,0.05), transparent 60%)`;
+      });
+    }
+  </script>
 </body>
 </html>
