@@ -702,7 +702,33 @@
       });
     });
 
-    // ── Form card shine ────────────────────────────────────
+    // ── Scroll to form top on Fillout page change ──────────
+    const formSection = document.getElementById('form');
+    const filloutDiv  = formSection && formSection.querySelector('[data-fillout-id]');
+
+    if (filloutDiv) {
+      let lastHeight = 0;
+      let scrollPending = false;
+
+      const observer = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          const newHeight = entry.contentRect.height;
+          // Only trigger on meaningful height changes (page navigation),
+          // not tiny adjustments from rendering
+          if (lastHeight > 0 && Math.abs(newHeight - lastHeight) > 40 && !scrollPending) {
+            scrollPending = true;
+            // Small delay lets Fillout finish rendering before we scroll
+            setTimeout(() => {
+              formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              scrollPending = false;
+            }, 120);
+          }
+          lastHeight = newHeight;
+        }
+      });
+
+      observer.observe(filloutDiv);
+    }
     const formWrap  = document.querySelector('.form-wrap');
     const formShine = document.getElementById('formShine');
 
