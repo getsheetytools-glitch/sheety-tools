@@ -215,6 +215,8 @@
       padding: 0.75rem 1.75rem;
       border-radius: var(--radius);
       text-decoration: none;
+      border: none;
+      cursor: pointer;
       transition: opacity .18s;
       letter-spacing: 0.01em;
     }
@@ -440,7 +442,7 @@
     /* ─── FLOATING KO-FI ──────────────────────────────────── */
     .floating-kofi {
       position: fixed;
-      bottom: 1.5rem; right: 1.5rem;
+      bottom: 1.5rem; left: 1.5rem;
       z-index: 90;
       display: flex;
       align-items: center;
@@ -497,20 +499,9 @@
     }
     .tool-card:not(.inert):hover .card-shine { opacity: 1; }
 
-    .form-wrap {
-      position: relative;
-      overflow: hidden;
-    }
     .form-wrap .form-shine {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      background: radial-gradient(350px circle at 50% 50%, rgba(46,201,126,0.04), transparent 65%);
-      z-index: 2;
+      display: none;
     }
-    .form-wrap:hover .form-shine { opacity: 1; }
 
     @media (max-width: 600px) {
       .nav-links { display: none; }
@@ -548,18 +539,13 @@
       <span class="tag">Any team size</span>
     </div>
     <div class="hero-actions">
-      <a href="#form" class="btn-primary">Start onboarding →</a>
+      <button id="btn-start" class="btn-primary">Start onboarding →</button>
       <a href="#about" class="btn-ghost">Learn more</a>
     </div>
   </section>
 
-  <section class="form-section" id="form">
-    <div class="form-wrap">
-      <div class="form-shine" id="formShine"></div>
-      <div style="width:100%;height:500px;" data-fillout-id="p9oKavGSHPus" data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
-      <script src="https://server.fillout.com/embed/v1/"></script>
-    </div>
-  </section>
+  <div data-fillout-id="p9oKavGSHPus" data-fillout-embed-type="slider" data-fillout-button-text="Let's get onboarding!" data-fillout-button-float="bottom-right" data-fillout-slider-direction="right" data-fillout-inherit-parameters data-fillout-popup-size="medium"></div>
+  <script src="https://server.fillout.com/embed/v1/"></script>
 
   <div class="sep"><hr /></div>
 
@@ -570,7 +556,7 @@
 
     <div class="tools-grid">
 
-      <a href="#form" class="tool-card">
+      <div class="tool-card" id="card-onboarding" style="cursor:pointer;">
         <div class="card-shine"></div>
         <div class="tool-icon">🗂️</div>
         <div class="tool-name">Sheety Onboarding</div>
@@ -581,7 +567,7 @@
           <span class="badge badge-paid">Paid</span>
           <span class="tool-arrow">→</span>
         </div>
-      </a>
+      </div>
 
       <a href="./focus-budget.html" class="tool-card">
         <div class="card-shine"></div>
@@ -678,7 +664,7 @@
         const y  = e.clientY - r.top;
         const cx = r.width  / 2;
         const cy = r.height / 2;
-        const rotY =  ((x - cx) / cx) * 4;   // max 4deg
+        const rotY =  ((x - cx) / cx) * 4;
         const rotX = -((y - cy) / cy) * 4;
 
         card.style.transform =
@@ -702,19 +688,21 @@
       });
     });
 
-    // ── Form card shine ────────────────────────────────────
-    const formWrap  = document.querySelector('.form-wrap');
-    const formShine = document.getElementById('formShine');
-
-    if (formWrap && formShine) {
-      formWrap.addEventListener('mousemove', e => {
-        const r  = formWrap.getBoundingClientRect();
-        const px = ((e.clientX - r.left) / r.width)  * 100;
-        const py = ((e.clientY - r.top)  / r.height) * 100;
-        formShine.style.background =
-          `radial-gradient(350px circle at ${px}% ${py}%, rgba(46,201,126,0.05), transparent 60%)`;
-      });
+    // ── Trigger Fillout slider from hero CTA + onboarding card ──
+    function openFillout() {
+      const btn = document.querySelector('[data-fillout-embed-type="slider"] + script, .fillout-popup-button, [class*="fillout"]');
+      // Fillout injects a button into the DOM — find and click it
+      const filloutBtn = document.querySelector('button[class*="fillout"], a[class*="fillout"], [data-fillout-button]');
+      if (filloutBtn) {
+        filloutBtn.click();
+      } else {
+        // Fallback: Fillout exposes a global open method after load
+        if (window.fillout && window.fillout.open) window.fillout.open();
+      }
     }
+
+    document.getElementById('btn-start')?.addEventListener('click', openFillout);
+    document.getElementById('card-onboarding')?.addEventListener('click', openFillout);
   </script>
 </body>
 </html>
