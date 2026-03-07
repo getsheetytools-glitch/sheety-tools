@@ -439,11 +439,19 @@
       color: var(--text3);
     }
 
-    /* ─── FLOATING KO-FI ──────────────────────────────────── */
-    .floating-kofi {
+    /* ─── FLOATING BUTTONS ────────────────────────────────── */
+    .floating-stack {
       position: fixed;
-      bottom: 1.5rem; left: 1.5rem;
+      bottom: 1.5rem;
+      left: 1.5rem;
       z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .floating-btn {
       display: flex;
       align-items: center;
       gap: 0.45rem;
@@ -453,19 +461,44 @@
       padding: 0.45rem 0.9rem 0.45rem 0.45rem;
       text-decoration: none;
       color: var(--text2);
+      font-family: var(--font-body);
       font-size: 0.78rem;
       font-weight: 500;
       box-shadow: 0 4px 16px rgba(0,0,0,0.25);
       transition: border-color .18s, color .18s;
+      cursor: pointer;
+      white-space: nowrap;
     }
-    .floating-kofi img {
+    .floating-btn img {
       width: 26px; height: 26px;
       border-radius: 50%;
     }
-    .floating-kofi:hover {
+    .floating-btn .floating-icon {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--green-sub);
+      border: 1px solid rgba(46,201,126,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .floating-btn:hover {
       border-color: var(--orange);
       color: var(--orange);
     }
+    .floating-btn.onboard-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* Hide Fillout's native injected button */
+    [class*="fillout-popup-button"],
+    [id*="fillout-popup-button"],
+    iframe[src*="fillout"] ~ div > button,
+    div[style*="bottom"][style*="right"] > a[href*="fillout"],
+    .fillout-popup-button { display: none !important; }
 
     /* ─── ANIMATIONS ──────────────────────────────────────── */
     @keyframes fadeUp {
@@ -632,10 +665,16 @@
     </div>
   </footer>
 
-  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="floating-kofi" aria-label="Fuel this project on Ko-fi">
-    <img src="./Sparkle_mug.gif" alt="" />
-    <span>Fuel this project</span>
-  </a>
+  <div class="floating-stack">
+    <button class="floating-btn onboard-btn" id="btn-float-onboard" aria-label="Start onboarding">
+      <div class="floating-icon">🗂️</div>
+      <span>Start onboarding</span>
+    </button>
+    <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="floating-btn" aria-label="Fuel this project on Ko-fi">
+      <img src="./Sparkle_mug.gif" alt="" />
+      <span>Fuel this project</span>
+    </a>
+  </div>
   <script>
     // ── Hero cursor glow ───────────────────────────────────
     const hero     = document.getElementById('onboarding');
@@ -688,21 +727,23 @@
       });
     });
 
-    // ── Trigger Fillout slider from hero CTA + onboarding card ──
+    // ── Trigger Fillout slider ─────────────────────────────
     function openFillout() {
-      const btn = document.querySelector('[data-fillout-embed-type="slider"] + script, .fillout-popup-button, [class*="fillout"]');
-      // Fillout injects a button into the DOM — find and click it
-      const filloutBtn = document.querySelector('button[class*="fillout"], a[class*="fillout"], [data-fillout-button]');
-      if (filloutBtn) {
-        filloutBtn.click();
-      } else {
-        // Fallback: Fillout exposes a global open method after load
-        if (window.fillout && window.fillout.open) window.fillout.open();
-      }
+      // Fillout injects a button — find and click it even if hidden
+      const filloutBtn = document.querySelector('[class*="fillout"]');
+      if (filloutBtn) filloutBtn.click();
     }
+
+    // Suppress Fillout's native button as soon as it appears in the DOM
+    const killFilloutBtn = new MutationObserver(() => {
+      document.querySelectorAll('[class*="fillout-popup-button"], [id*="fillout-popup-button"]')
+        .forEach(el => el.style.setProperty('display', 'none', 'important'));
+    });
+    killFilloutBtn.observe(document.body, { childList: true, subtree: true });
 
     document.getElementById('btn-start')?.addEventListener('click', openFillout);
     document.getElementById('card-onboarding')?.addEventListener('click', openFillout);
+    document.getElementById('btn-float-onboard')?.addEventListener('click', openFillout);
   </script>
 </body>
 </html>
