@@ -493,12 +493,11 @@
       color: var(--green);
     }
 
-    /* Hide Fillout's native injected button */
-    [class*="fillout-popup-button"],
-    [id*="fillout-popup-button"],
-    iframe[src*="fillout"] ~ div > button,
-    div[style*="bottom"][style*="right"] > a[href*="fillout"],
-    .fillout-popup-button { display: none !important; }
+    /* Hide Fillout's native injected button — target by fixed positioning at bottom-right */
+    body > div[style*="position: fixed"][style*="bottom"][style*="right"],
+    body > div[style*="position:fixed"][style*="bottom"][style*="right"] {
+      display: none !important;
+    }
 
     /* ─── ANIMATIONS ──────────────────────────────────────── */
     @keyframes fadeUp {
@@ -734,10 +733,17 @@
       if (filloutBtn) filloutBtn.click();
     }
 
-    // Suppress Fillout's native button as soon as it appears in the DOM
+    // Suppress Fillout's native button aggressively as soon as it appears
     const killFilloutBtn = new MutationObserver(() => {
-      document.querySelectorAll('[class*="fillout-popup-button"], [id*="fillout-popup-button"]')
-        .forEach(el => el.style.setProperty('display', 'none', 'important'));
+      document.querySelectorAll('body > div').forEach(el => {
+        const style = el.getAttribute('style') || '';
+        const isFixed = style.includes('fixed');
+        const isBottomRight = style.includes('bottom') && style.includes('right');
+        const hasFilloutText = el.textContent.includes("Let's get onboarding");
+        if ((isFixed && isBottomRight) || hasFilloutText) {
+          el.style.setProperty('display', 'none', 'important');
+        }
+      });
     });
     killFilloutBtn.observe(document.body, { childList: true, subtree: true });
 
