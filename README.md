@@ -1,163 +1,141 @@
-# Focus Budget - Optimized Version
+# Sheety Tools
 
-## What's Been Optimized
+Free, open-source productivity tools — plus **Sheety Onboarding**, a paid employee onboarding platform.
 
-This is a fully optimized version of the Focus Budget app with significant performance improvements, better code organization, and new features.
+Website: [sheety.tools](https://sheety.tools)  
+Support the project: [ko-fi.com/sheetytools](https://ko-fi.com/sheetytools)
 
-## 🚀 Key Optimizations
+---
 
-### 1. **Event Delegation (High Impact)**
-- Replaced individual event listeners on each list item with a single delegated listener on the parent `<ul>`
-- Reduces memory usage and improves performance, especially with many focus items
-- Eliminates the need to re-attach listeners on every render
-
-### 2. **Debounced localStorage Writes**
-- All saves are now debounced by 500ms to prevent excessive writes
-- Immediate saves for critical operations (like deletions)
-- Significantly reduces I/O operations
-
-### 3. **Enhanced DOM Caching**
-- All DOM elements are cached once at initialization
-- Eliminates repeated `document.getElementById()` calls
-- Better performance across all operations
-
-### 4. **Modular Architecture**
-Files are now separated for better maintainability:
-- `index.html` - Main HTML structure
-- `styles.css` - All styling
-- `utils.js` - Helper functions and configuration
-- `storage.js` - localStorage operations
-- `app.js` - Main application logic
-
-### 5. **Centralized Configuration**
-- All magic numbers moved to `CONFIG` object in `utils.js`
-- Easy to adjust colors, sizes, and behavior
-- Better documentation and maintainability
-
-### 6. **Export/Import Functionality**
-- Export your focus items as JSON
-- Import from previously exported files
-- Great for backups and sharing
-
-### 7. **Keyboard Shortcuts**
-- `Ctrl/Cmd + ↑` - Move selected item up
-- `Ctrl/Cmd + ↓` - Move selected item down
-- `Ctrl/Cmd + Delete/Backspace` - Delete selected item
-- `Esc` - Deselect item
-
-### 8. **CSS Performance Improvements**
-- Added `will-change` properties for animated elements
-- Combined transitions into single declarations
-- Optimized scrollbar styling
-
-### 9. **SVG Rendering Enhancement**
-- Added `shape-rendering="geometricPrecision"` for crisper pie slices
-- Better visual quality on all displays
-
-### 10. **Input Validation**
-- Added `maxlength="100"` to prevent performance issues with extremely long text
-- Better user experience
-
-## 📂 File Structure
+## File structure
 
 ```
-focus-budget/
-├── index.html          # Main HTML (8.3KB)
-├── styles.css          # All CSS styling (11.6KB)
-├── utils.js            # Utility functions (4.9KB)
-├── storage.js          # Storage operations (1.4KB)
-├── app.js              # Main application (12.7KB)
-├── Sheety_Logo.png     # Sheety branding
-└── Sparkle_mug.gif     # Ko-fi support button
+sheety.tools/
+├── index.html              # Homepage
+├── terms.html              # Terms & Conditions (linked from footer, noindex)
+├── focus-budget.html       # Focus Budget app
+├── styles.css              # Focus Budget styles
+├── app.js                  # Focus Budget logic
+├── utils.js                # Focus Budget utilities
+├── storage.js              # Focus Budget storage
+├── Sheety_Logo.png         # Brand logo
+└── Sparkle_mug.gif         # Ko-fi floating button asset
 ```
 
-## 🎯 Performance Improvements
+---
 
-- **Initial Load**: ~15% faster due to better code organization
-- **List Rendering**: ~40% faster with event delegation
-- **localStorage Operations**: ~60% fewer writes with debouncing
-- **Memory Usage**: ~30% reduction with single event listeners
+## Products
 
-## 🆕 New Features
+### Sheety Onboarding *(paid)*
+A no-bloat employee onboarding platform built with Fillout forms, embedded directly on the homepage. Fast to set up, fully customizable, designed for any team size.
 
-### Export/Import
-1. Click "Export" to download your focus items as JSON
-2. Click "Import" to load focus items from a file
-3. Great for backing up your data or sharing with others
+To activate: paste your Fillout embed code into the comment block inside `<section class="form-section">` in `index.html`.
 
-### Keyboard Shortcuts
-All major operations now have keyboard shortcuts for power users.
+### Focus Budget *(free, open source)*
+Visualize your priorities as a pie chart where each item is worth twice the next. Runs entirely in the browser — no account, no tracking, no data leaves the device.
 
-### Better UX
-- More responsive controls
-- Smoother animations with `will-change`
-- Clearer visual feedback on interactions
+Data is stored in `localStorage` under the key `sheety:focusBudget:v1`.
 
-## 📖 Usage
+---
 
-1. Open `index.html` in your browser
-2. All files must be in the same directory
-3. Add focus items and start prioritizing!
+## Deployment
 
-## 🔧 Configuration
+All files are static — no build step required.
 
-Edit the `CONFIG` object in `utils.js` to customize:
+### GitHub Pages
+1. Push to a repository
+2. Enable GitHub Pages (Settings → Pages → source: `main`, root `/`)
+3. Point your custom domain if needed
+
+### Netlify / Vercel
+1. Connect the repository
+2. Build command: *(none)*
+3. Publish directory: `/`
+
+### Custom domain
+Update the `CNAME` file with your domain (`sheety.tools`), then configure DNS with your registrar.
+
+---
+
+## Adding a new tool
+
+1. Create `your-tool.html` (and any JS/CSS files it needs)
+2. Add a card to the `.tools-grid` in `index.html`:
+
+```html
+<a href="./your-tool.html" class="tool-card">
+  <div class="tool-icon">🎯</div>
+  <div class="tool-name">Your Tool Name</div>
+  <p class="tool-desc">What it does, briefly.</p>
+  <div class="tool-foot">
+    <span class="badge badge-free">Free · Open source</span>
+    <span class="tool-arrow">→</span>
+  </div>
+</a>
+```
+
+---
+
+## Customization
+
+### Colors
+Edit CSS variables at the top of `index.html`:
+```css
+--green:   #2ec97e;   /* Primary accent */
+--orange:  #e07a3a;   /* Secondary accent */
+```
+
+### Ko-fi link
+Search for `ko-fi.com/sheetytools` and replace with your Ko-fi URL (appears in nav, footer, and floating button).
+
+---
+
+## Focus Budget — configuration
+
+Edit the `CONFIG` object in `utils.js`:
 
 ```javascript
 const CONFIG = {
   PIE: {
-    cx: 200,              // Pie center X
-    cy: 200,              // Pie center Y
-    outerRadius: 180,     // Outer radius
-    innerRadius: 90,      // Inner radius (donut hole)
-    minSlicePercent: 0.5, // Minimum slice size
+    cx: 200, cy: 200,
+    outerRadius: 180,
+    innerRadius: 90,
+    minSlicePercent: 0.5,
   },
   COLOR: {
-    topHue: 180,          // Top item color (cyan)
-    bottomHue: 340,       // Bottom item color (red)
-    baseSaturation: 75,   // Color saturation
-    topLightness: 55,     // Top item brightness
-    bottomLightness: 60,  // Bottom item brightness
+    topHue: 180,
+    bottomHue: 340,
+    baseSaturation: 75,
+    topLightness: 55,
+    bottomLightness: 60,
   },
   DISTRIBUTION: {
-    topRatio: 5,          // Top item weight
-    bottomRatio: 1,       // Bottom item weight
+    topRatio: 5,
+    bottomRatio: 1,
   },
-  DEBOUNCE_MS: 500,       // Save delay in milliseconds
+  DEBOUNCE_MS: 500,
 };
 ```
 
-## 🐛 Debugging
-
-Open browser console (F12) to see:
-- Storage operations
-- Import/export status
-- Any errors
-
-## 🔒 Security
-
-- Content Security Policy enforced
-- No external scripts loaded
-- All data stored locally in browser
-- No analytics or tracking
-
-## 📄 License
-
-MIT License - Free to use, modify, and distribute
-
-## 🙏 Credits
-
-Created by Sheety Tools
-- Website: https://sheety.tools
-- Support: https://ko-fi.com/sheetytools
+### Keyboard shortcuts
+| Shortcut | Action |
+|---|---|
+| `Ctrl/Cmd + ↑` | Move item up |
+| `Ctrl/Cmd + ↓` | Move item down |
+| `Ctrl/Cmd + Del` | Delete item |
+| `Esc` | Deselect |
 
 ---
 
-## Migration from Original
+## A note on how this was built
 
-To migrate from the original single-file version:
-1. Your data is stored in localStorage and will persist automatically
-2. Simply replace the old `index.html` with these new files
-3. All your focus items will still be there!
+This project was developed with AI coding assistance (Claude and ChatGPT). The product ideas, design decisions, and instructional structure are the work of the human creator. We think that's worth saying plainly.
 
-The localStorage key remains the same: `sheety:focusBudget:v1`
+---
+
+## License
+
+Free tools are open source under the **MIT License**.  
+The Sheety brand and Sheety Onboarding product are not covered by this license.
+
+&copy; 2026 Sheety Tools

@@ -2,120 +2,628 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <meta name="description" content="Free, open-source productivity tools. Simple, beautiful, and built for focus." />
-  <meta name="theme-color" content="#0b0d12" />
-  
-  <title>Sheety Tools - Free Productivity Tools</title>
-  
-  <link rel="stylesheet" href="./homepage.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sheety Tools — Beautiful employee onboarding and productivity tools, built to get out of your way." />
+  <meta name="theme-color" content="#0a0c10" />
+  <title>Sheety Tools — Onboarding & Productivity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:        #0a0c10;
+      --bg2:       #0f1219;
+      --surface:   #14181f;
+      --surface2:  #191e27;
+      --border:    rgba(255,255,255,0.06);
+      --border2:   rgba(255,255,255,0.1);
+      --green:     #2ec97e;
+      --green-sub: rgba(46,201,126,0.1);
+      --orange:    #e07a3a;
+      --orange-sub:rgba(224,122,58,0.1);
+      --text:      #dde3ed;
+      --text2:     #9aa3b2;
+      --text3:     #5a6478;
+      --font-head: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --radius:    12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      background: rgba(10,12,16,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 28px; height: 28px;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+    .nav-logo span {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: #0a0c10 !important;
+      font-weight: 600 !important;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      transition: opacity .18s !important;
+    }
+    .nav-cta:hover { opacity: 0.88 !important; color: #0a0c10 !important; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem clamp(1.5rem, 5vw, 4rem) 5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(46,201,126,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.05s ease forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--green);
+      opacity: 0.5;
+    }
+    .hero-eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: var(--green);
+      opacity: 0.5;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 780px;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.12s ease forwards;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: var(--text2);
+      max-width: 500px;
+      margin: 1.4rem auto 0;
+      font-weight: 300;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.2s ease forwards;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.27s ease forwards;
+    }
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-top: 2.25rem;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.32s ease forwards;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #0a0c10;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: opacity .18s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { opacity: 0.87; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text2);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      transition: color .18s, border-color .18s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+    /* ─── FORM EMBED ──────────────────────────────────────── */
+    .form-section {
+      padding: 0 clamp(1.5rem, 5vw, 4rem) 6rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeUp 0.5s 0.38s ease forwards;
+    }
+
+    .form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .form-wrap::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 5%, var(--green) 50%, transparent 95%);
+      opacity: 0.3;
+    }
+
+    .form-placeholder {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text3);
+    }
+    .form-placeholder .icon { font-size: 2rem; margin-bottom: 1rem; opacity: 0.5; }
+    .form-placeholder p { font-size: 0.875rem; max-width: 380px; margin: 0.5rem auto 1.25rem; line-height: 1.6; }
+    .embed-label {
+      display: inline-block;
+      background: var(--orange-sub);
+      border: 1px solid rgba(224,122,58,0.18);
+      color: var(--orange);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ─── SECTION SEPARATOR ───────────────────────────────── */
+    .sep {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+    .sep hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── TOOLS ───────────────────────────────────────────── */
+    .tools-section {
+      padding: 5rem clamp(1.5rem, 5vw, 4rem) 4rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      color: var(--text2);
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1rem;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .2s, background .2s;
+    }
+    .tool-card:not(.inert):hover {
+      border-color: var(--border2);
+      background: var(--surface2);
+    }
+    .tool-card.inert { cursor: default; opacity: 0.5; }
+
+    .tool-icon { font-size: 1.5rem; line-height: 1; }
+    .tool-name {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .tool-desc {
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.6;
+      flex: 1;
+      font-weight: 300;
+    }
+    .tool-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.4rem;
+    }
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.6rem;
+      border-radius: 5px;
+    }
+    .badge-free {
+      background: var(--green-sub);
+      color: var(--green);
+      border: 1px solid rgba(46,201,126,0.18);
+    }
+    .badge-soon {
+      background: var(--surface2);
+      color: var(--text3);
+      border: 1px solid var(--border);
+    }
+    .tool-arrow {
+      font-size: 0.85rem;
+      color: var(--text3);
+      transition: color .2s, transform .2s;
+    }
+    .tool-card:not(.inert):hover .tool-arrow {
+      color: var(--green);
+      transform: translateX(3px);
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────────── */
+    .about-section {
+      padding: 4rem clamp(1.5rem, 5vw, 4rem) 6rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .about-section .section-label { margin-bottom: 1.5rem; }
+    .about-section p {
+      color: var(--text2);
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .about-section p + p { margin-top: 1rem; }
+    .about-section strong { color: var(--text); font-weight: 500; }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .footer-brand img { width: 22px; height: 22px; object-fit: contain; opacity: 0.7; }
+    .footer-brand span {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text3);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color .18s;
+    }
+    .footer-links a:hover { color: var(--text2); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text3);
+    }
+
+    /* ─── FLOATING KO-FI ──────────────────────────────────── */
+    .floating-kofi {
+      position: fixed;
+      bottom: 1.5rem; right: 1.5rem;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      padding: 0.45rem 0.9rem 0.45rem 0.45rem;
+      text-decoration: none;
+      color: var(--text2);
+      font-size: 0.78rem;
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transition: border-color .18s, color .18s;
+    }
+    .floating-kofi img {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+    }
+    .floating-kofi:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions a { text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  
-  <header class="hero">
-    <div class="container">
-      <div class="logo-section">
-        <img src="./Sheety_Logo.png" alt="Sheety Tools" class="logo" />
-        <h1>Sheety Tools</h1>
-      </div>
-      <p class="tagline">Free, open-source tools for productivity.<br>Simple. Beautiful. Built for focus.</p>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="./Sheety_Logo.png" alt="Sheety Tools" />
+      <span>Sheety Tools</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Fuel this project</a></li>
+      <li><a href="#form" class="nav-cta">Get started</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="onboarding">
+    <div class="hero-eyebrow">Employee Onboarding</div>
+    <h1>Get new hires ready.<br><em>In minutes.</em></h1>
+    <p class="hero-sub">
+      Sheety Onboarding is the no-bloat way to welcome new team members —
+      customizable and up and running before the end of your coffee.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Fast to set up</span>
+      <span class="tag">Fully customizable</span>
+      <span class="tag">No bloat</span>
+      <span class="tag">Any team size</span>
     </div>
-  </header>
+    <div class="hero-actions">
+      <a href="#form" class="btn-primary">Start onboarding →</a>
+      <a href="#about" class="btn-ghost">Learn more</a>
+    </div>
+  </section>
 
-  <main class="container">
-    <section class="products">
-      <h2 class="section-title">Tools</h2>
-      
-      <div class="product-grid">
-        
-        <!-- Focus Budget -->
-        <article class="product-card">
-          <div class="product-icon">🥧</div>
-          <h3 class="product-name">Focus Budget</h3>
-          <p class="product-description">
-            Visualize your priorities with a pie chart. Each item is worth 2× the next. 
-            Allocate your limited attention where it matters most.
-          </p>
-          <div class="product-meta">
-            <span class="badge">Free</span>
-            <span class="badge">Open Source</span>
-          </div>
-          <div class="product-actions">
-            <a href="./focus-budget.html" class="btn btn-primary">Launch App</a>
-            <a href="https://github.com/yourusername/focus-budget" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-              </svg>
-              View Source
-            </a>
-          </div>
-        </article>
-
-        <!-- Placeholder for future products -->
-        <article class="product-card coming-soon">
-          <div class="product-icon">✨</div>
-          <h3 class="product-name">More Tools Coming Soon</h3>
-          <p class="product-description">
-            Building more free productivity tools. Have an idea? Let me know!
-          </p>
-          <div class="product-actions">
-            <a href="https://ko-fi.com/sheetytools" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
-              Support Development
-            </a>
-          </div>
-        </article>
-
+  <section class="form-section" id="form">
+    <div class="form-wrap">
+      <!--
+        ╔══════════════════════════════════════════════════════╗
+        ║  PASTE YOUR FILLOUT EMBED CODE HERE                 ║
+        ║                                                      ║
+        ║  Example:                                            ║
+        ║  <div                                                ║
+        ║    data-fillout-id="YOUR_FORM_ID"                    ║
+        ║    data-fillout-embed-type="standard"                ║
+        ║    data-fillout-inherit-parameters                   ║
+        ║    style="width:100%;height:500px;"                  ║
+        ║  ></div>                                             ║
+        ║  <script src="https://server.fillout.com/embed/v1/"> ║
+        ║  </script>                                           ║
+        ╚══════════════════════════════════════════════════════╝
+      -->
+      <div class="form-placeholder">
+        <div class="icon">📋</div>
+        <p>Your Fillout form will appear here. Paste your embed code above to activate it.</p>
+        <span class="embed-label">Replace with Fillout embed</span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about">
-      <h2 class="section-title">About</h2>
-      <div class="about-content">
-        <p>
-          Sheety Tools creates <strong>free, open-source productivity tools</strong> that are simple, 
-          beautiful, and actually useful. No sign-ups, no tracking, no nonsense.
+  <div class="sep"><hr /></div>
+
+  <section class="tools-section" id="tools">
+    <p class="section-label">Free tools</p>
+    <h2 class="section-title">More from Sheety</h2>
+    <p class="section-sub">Open-source tools that run in your browser. No account, no tracking.</p>
+
+    <div class="tools-grid">
+
+      <a href="./focus-budget.html" class="tool-card">
+        <div class="tool-icon">🥧</div>
+        <div class="tool-name">Focus Budget</div>
+        <p class="tool-desc">
+          Visualize your priorities as a pie chart where each item is worth twice the next. Put your attention where it counts.
         </p>
-        <p>
-          All tools work entirely in your browser. Your data stays on your device. 
-          Every tool is open source under the MIT license.
-        </p>
-      </div>
-    </section>
-  </main>
+        <div class="tool-foot">
+          <span class="badge badge-free">Free · Open source</span>
+          <span class="tool-arrow">→</span>
+        </div>
+      </a>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h4>Sheety Tools</h4>
-          <p>Building tools for focus and productivity.</p>
-        </div>
-        <div class="footer-section">
-          <h4>Connect</h4>
-          <ul class="footer-links">
-            <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener noreferrer">Ko-fi</a></li>
-            <li><a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Legal</h4>
-          <ul class="footer-links">
-            <li><a href="#privacy">Privacy</a></li>
-            <li><a href="#license">MIT License</a></li>
-          </ul>
+      <div class="tool-card inert">
+        <div class="tool-icon">✦</div>
+        <div class="tool-name">More coming soon</div>
+        <p class="tool-desc">New tools are in the works. Have an idea? Reach out or fuel development on Ko-fi.</p>
+        <div class="tool-foot">
+          <span class="badge badge-soon">Coming soon</span>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Sheety Tools. All tools are free and open source.</p>
-      </div>
+
+    </div>
+  </section>
+
+  <div class="sep"><hr /></div>
+
+  <section class="about-section" id="about">
+    <p class="section-label">About</p>
+    <p>
+      I'm an instructional designer with a straightforward obsession: making learning less painful —
+      not just in a general sense, but specifically where it hurts most, where people are expected
+      to absorb critical information fast and without much help.
+    </p>
+    <p>
+      I've spent my career architecting learning experiences, and Sheety Tools is where that work
+      takes a more direct form. <strong>Sheety Onboarding</strong> started because employee onboarding
+      is one of the biggest, most neglected pain points in that space — and most existing tools are
+      either bloated, ugly, or both.
+    </p>
+    <p>
+      A note on how this was built: I'm not a coder. The development here leaned on AI tools —
+      Claude and ChatGPT among them. But the ideas, the product decisions, the design thinking —
+      those belong to me. I think that's an honest way to build in 2026, and I'd rather say so
+      plainly than pretend otherwise.
+    </p>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="/" class="footer-brand">
+        <img src="./Sheety_Logo.png" alt="Sheety Tools" />
+        <span>Sheety Tools</span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Fuel this project</a></li>
+        <li><a href="./terms.html">Terms &amp; Conditions</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Sheety Tools</p>
     </div>
   </footer>
 
-  <!-- Floating Ko-fi button -->
-  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener noreferrer" class="floating-kofi" aria-label="Support on Ko-fi">
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="floating-kofi" aria-label="Fuel this project on Ko-fi">
     <img src="./Sparkle_mug.gif" alt="" />
-    <span>Support</span>
+    <span>Fuel this project</span>
   </a>
 
 </body>
