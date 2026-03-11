@@ -751,6 +751,12 @@
     document.getElementById('btn-start')?.addEventListener('click', openFillout);
     document.getElementById('card-onboarding')?.addEventListener('click', openFillout);
     document.getElementById('btn-float-onboard')?.addEventListener('click', openFillout);
+  // Auto-open slider if redirected from /onboarding
+if (new URLSearchParams(window.location.search).get('open') === 'onboarding') {
+  window.addEventListener('load', () => {
+    setTimeout(openFillout, 800);
+  });
+}
   </script>
 </body>
 </html>
