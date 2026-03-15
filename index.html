@@ -558,6 +558,23 @@
   </a>
 
   <script>
+    // Mouse-following glow
+    const glow = document.createElement('div');
+    glow.style.cssText = `
+      position: fixed; pointer-events: none; z-index: 0;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(46,201,126,0.07) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      transition: left 0.12s ease, top 0.12s ease;
+      top: -300px; left: -300px;
+    `;
+    document.body.appendChild(glow);
+    document.addEventListener('mousemove', e => {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.12 }
