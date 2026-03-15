@@ -3,83 +3,425 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Onboarding insights from an instructional designer. Research-backed takes on why employee onboarding fails — and how to fix it." />
+  <meta name="description" content="Onboarding insights from an instructional designer. Research-backed takes on why employee onboarding fails and what actually works." />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Blog — Sheety Tools" />
-  <meta property="og:description" content="Onboarding insights from an instructional designer. Research-backed takes on why employee onboarding fails — and how to fix it." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog | Sheety Tools" />
+  <meta property="og:description" content="Onboarding insights from an instructional designer. Research-backed takes on why employee onboarding fails and what actually works." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sheety.tools/blog/" />
   <meta property="og:site_name" content="Sheety Tools" />
-  <title>Blog — Sheety Tools</title>
+
+  <title>Blog | Sheety Tools</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg:#0a0c10;--bg2:#0f1219;--surface:#14181f;--surface2:#191e27;
-      --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
-      --green:#2ec97e;--green-sub:rgba(46,201,126,0.08);--green-border:rgba(46,201,126,0.15);
-      --orange:#e07a3a;--orange-sub:rgba(224,122,58,0.08);
-      --text:#dde3ed;--text2:#9aa3b2;--text3:#5a6478;
-      --font-head:'Plus Jakarta Sans',sans-serif;--font-body:'Manrope',sans-serif;--radius:12px;
+      --bg:        #0a0c10;
+      --bg2:       #0f1219;
+      --surface:   #14181f;
+      --surface2:  #191e27;
+      --border:    rgba(255,255,255,0.06);
+      --border2:   rgba(255,255,255,0.1);
+      --green:     #2ec97e;
+      --green-sub: rgba(46,201,126,0.08);
+      --green-border: rgba(46,201,126,0.15);
+      --orange:    #e07a3a;
+      --orange-sub:rgba(224,122,58,0.08);
+      --text:      #dde3ed;
+      --text2:     #9aa3b2;
+      --text3:     #5a6478;
+      --font-head: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Manrope', sans-serif;
+      --radius:    12px;
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-weight:400;line-height:1.65;overflow-x:hidden}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,5vw,4rem);height:60px;background:rgba(10,12,16,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-    .nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
-    .nav-logo img{width:28px;height:28px;object-fit:contain;opacity:0.9}
-    .nav-logo span{font-family:var(--font-head);font-weight:700;font-size:1rem;color:var(--text);letter-spacing:-0.01em}
-    .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
-    .nav-links a{font-size:0.875rem;color:var(--text2);text-decoration:none;transition:color .18s}
-    .nav-links a:hover{color:var(--text)}
-    .nav-links a.active{color:var(--text)}
-    .nav-cta{background:var(--green)!important;color:#0a0c10!important;font-weight:600!important;padding:0.4rem 1rem;border-radius:8px;transition:opacity .18s!important}
-    .nav-cta:hover{opacity:0.88!important}
-    .page-header{padding:8rem clamp(1.5rem,5vw,4rem) 4rem;max-width:1080px;margin:0 auto;position:relative}
-    .page-header::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:300px;background:radial-gradient(ellipse at 50% 0%,rgba(46,201,126,0.06) 0%,transparent 65%);pointer-events:none}
-    .eyebrow{display:inline-flex;align-items:center;gap:0.5rem;color:var(--green);font-size:0.75rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 0.45s 0.05s ease forwards}
-    .eyebrow::before,.eyebrow::after{content:'';display:inline-block;width:18px;height:1px;background:var(--green);opacity:0.45}
-    .page-title{font-family:var(--font-head);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;opacity:0;animation:fadeUp 0.45s 0.12s ease forwards}
-    .page-sub{font-size:clamp(0.9rem,1.6vw,1rem);color:var(--text2);font-weight:300;max-width:480px;line-height:1.75;opacity:0;animation:fadeUp 0.45s 0.2s ease forwards}
-    .content{max-width:1080px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem) 6rem}
-    .featured-post{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2.5rem;text-decoration:none;color:inherit;display:grid;grid-template-columns:1fr auto;gap:0;transition:border-color .2s,background .2s;opacity:0;animation:fadeUp 0.45s 0.28s ease forwards;position:relative}
-    .featured-post::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,var(--green) 50%,transparent 95%);opacity:0.25}
-    .featured-post:hover{border-color:var(--border2);background:var(--surface2)}
-    .featured-post:hover .post-arrow{color:var(--green);transform:translateX(4px)}
-    .featured-inner{padding:2rem 2.25rem}
-    .featured-badge{display:inline-flex;align-items:center;gap:0.35rem;background:var(--green-sub);color:var(--green);border:1px solid var(--green-border);font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.22rem 0.65rem;border-radius:5px;margin-bottom:1rem}
-    .featured-title{font-family:var(--font-head);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:800;letter-spacing:-0.025em;line-height:1.2;margin-bottom:0.75rem}
-    .featured-excerpt{font-size:0.9rem;color:var(--text2);font-weight:300;line-height:1.75;max-width:560px}
-    .featured-meta{display:flex;align-items:center;gap:1rem;margin-top:1.25rem}
-    .post-arrow{color:var(--text3);font-size:1rem;transition:color .2s,transform .2s;padding:2rem 2.25rem;display:flex;align-items:center}
-    .posts-label{font-size:0.72rem;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--orange);margin-bottom:1.25rem;opacity:0;animation:fadeUp 0.45s 0.35s ease forwards}
-    .posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1rem}
-    .post-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:0.6rem;transition:border-color .2s,background .2s;opacity:0;animation:fadeUp 0.45s ease forwards}
-    .post-card:hover{border-color:var(--border2);background:var(--surface2)}
-    .post-card:hover .card-arrow{color:var(--green);transform:translateX(3px)}
-    .post-topic{font-size:0.68rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text3)}
-    .post-title{font-family:var(--font-head);font-size:1.05rem;font-weight:700;letter-spacing:-0.015em;line-height:1.3}
-    .post-excerpt{font-size:0.84rem;color:var(--text2);font-weight:300;line-height:1.7;flex:1}
-    .post-foot{display:flex;align-items:center;justify-content:space-between;margin-top:0.5rem;padding-top:0.75rem;border-top:1px solid var(--border)}
-    .post-date{font-size:0.75rem;color:var(--text3)}
-    .card-arrow{font-size:0.85rem;color:var(--text3);transition:color .2s,transform .2s}
-    .post-card.coming{opacity:0.4!important;cursor:default;pointer-events:none;animation:fadeUp 0.45s 0.6s ease forwards}
-    footer{border-top:1px solid var(--border);padding:2rem clamp(1.5rem,5vw,4rem)}
-    .footer-inner{max-width:1080px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem}
-    .footer-brand{display:flex;align-items:center;gap:8px;text-decoration:none}
-    .footer-brand img{width:22px;height:22px;object-fit:contain;opacity:0.7}
-    .footer-brand span{font-family:var(--font-head);font-weight:700;font-size:0.85rem;color:var(--text3)}
-    .footer-links{display:flex;gap:1.5rem;list-style:none}
-    .footer-links a{font-size:0.82rem;color:var(--text3);text-decoration:none;transition:color .18s}
-    .footer-links a:hover{color:var(--text2)}
-    .footer-copy{font-size:0.78rem;color:var(--text3)}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .post-card:nth-child(1){animation-delay:0.38s}
-    .post-card:nth-child(2){animation-delay:0.44s}
-    .post-card:nth-child(3){animation-delay:0.50s}
-    .post-card:nth-child(4){animation-delay:0.56s}
-    @media(max-width:720px){.featured-post{grid-template-columns:1fr}.post-arrow{display:none}.nav-links{display:none}}
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      background: rgba(10,12,16,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 28px; height: 28px;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+    .nav-logo span {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: #0a0c10 !important;
+      font-weight: 600 !important;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      transition: opacity .18s !important;
+    }
+    .nav-cta:hover { opacity: 0.88 !important; }
+
+    /* ─── PAGE HEADER ─────────────────────────────────────── */
+    .page-header {
+      padding: 8rem clamp(1.5rem, 5vw, 4rem) 4rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(46,201,126,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.05s ease forwards;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content: '';
+      display: inline-block;
+      width: 18px; height: 1px;
+      background: var(--green);
+      opacity: 0.45;
+    }
+
+    .page-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.12s ease forwards;
+    }
+
+    .page-sub {
+      font-size: clamp(0.9rem, 1.6vw, 1rem);
+      color: var(--text2);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.2s ease forwards;
+    }
+
+    /* ─── CONTENT AREA ────────────────────────────────────── */
+    .content {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem) 6rem;
+    }
+
+    /* ─── FEATURED POST ───────────────────────────────────── */
+    .featured-post {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0;
+      transition: border-color .2s, background .2s;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.28s ease forwards;
+      position: relative;
+    }
+
+    .featured-post::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 5%, var(--green) 50%, transparent 95%);
+      opacity: 0.25;
+    }
+
+    .featured-post:hover {
+      border-color: var(--border2);
+      background: var(--surface2);
+    }
+
+    .featured-post:hover .post-arrow {
+      color: var(--green);
+      transform: translateX(4px);
+    }
+
+    .featured-inner {
+      padding: 2rem 2.25rem;
+    }
+
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--green-sub);
+      color: var(--green);
+      border: 1px solid var(--green-border);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+
+    .featured-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-excerpt {
+      font-size: 0.9rem;
+      color: var(--text2);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    .featured-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+
+    .post-arrow {
+      color: var(--text3);
+      font-size: 1rem;
+      transition: color .2s, transform .2s;
+      padding: 2rem 2.25rem;
+      display: flex;
+      align-items: center;
+    }
+
+    /* ─── POST GRID ───────────────────────────────────────── */
+    .posts-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.45s 0.35s ease forwards;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color .2s, background .2s;
+      opacity: 0;
+      animation: fadeUp 0.45s ease forwards;
+    }
+
+    .post-card:hover {
+      border-color: var(--border2);
+      background: var(--surface2);
+    }
+    .post-card:hover .card-arrow {
+      color: var(--green);
+      transform: translateX(3px);
+    }
+
+    .post-topic {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .post-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+    }
+
+    .post-excerpt {
+      font-size: 0.84rem;
+      color: var(--text2);
+      font-weight: 300;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .post-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .post-date {
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+
+    .card-arrow {
+      font-size: 0.85rem;
+      color: var(--text3);
+      transition: color .2s, transform .2s;
+    }
+
+    /* ─── COMING SOON CARD ────────────────────────────────── */
+    .post-card.coming {
+      opacity: 0.4 !important;
+      cursor: default;
+      pointer-events: none;
+      animation: fadeUp 0.45s 0.6s ease forwards;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.5rem, 5vw, 4rem);
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .footer-brand img { width: 22px; height: 22px; object-fit: contain; opacity: 0.7; }
+    .footer-brand span {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text3);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: var(--text3);
+      text-decoration: none;
+      transition: color .18s;
+    }
+    .footer-links a:hover { color: var(--text2); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text3);
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stagger post cards */
+    .post-card:nth-child(1) { animation-delay: 0.38s; }
+    .post-card:nth-child(2) { animation-delay: 0.44s; }
+    .post-card:nth-child(3) { animation-delay: 0.50s; }
+    .post-card:nth-child(4) { animation-delay: 0.56s; }
+
+    @media (max-width: 720px) {
+      .featured-post { grid-template-columns: 1fr; }
+      .post-arrow { display: none; }
+      .nav-links { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -92,6 +434,7 @@
     <ul class="nav-links">
       <li><a href="/#tools">Tools</a></li>
       <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/#about">About</a></li>
       <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Fuel this project</a></li>
     </ul>
   </nav>
@@ -99,30 +442,53 @@
   <header class="page-header">
     <div class="eyebrow">From the desk</div>
     <h1 class="page-title">The onboarding blog</h1>
-    <p class="page-sub">Research-backed writing on why employee onboarding fails — and what actually works. From an instructional designer.</p>
+    <p class="page-sub">
+      Research-backed writing on why employee onboarding fails
+      and what actually works. From an instructional designer.
+    </p>
   </header>
 
   <main class="content">
 
-    <a href="/blog/why-onboarding-fails.html" class="featured-post">
+    <!-- Featured post -->
+    <a href="/blog/onboarding-checklist-small-team.html" class="featured-post">
       <div class="featured-inner">
         <div class="featured-badge">✦ Latest</div>
-        <h2 class="featured-title">Why Most Employee Onboarding Fails in the First Week</h2>
-        <p class="featured-excerpt">Most companies confuse onboarding with paperwork. The result is a new hire who knows where the bathroom is but has no idea what success looks like at 30, 60, or 90 days. Here's what the research actually shows — and why the fix is simpler than you think.</p>
+        <h2 class="featured-title">The Simple Onboarding Checklist Small Teams Actually Need</h2>
+        <p class="featured-excerpt">
+          The standard onboarding checklist runs 40 to 80 items and lands on day one all at once.
+          The problem isn't the number of tasks. It's the timing. Here's a milestone-based framework
+          that gives new hires structure without drowning them in it.
+        </p>
         <div class="featured-meta">
-          <span class="post-date" style="font-size:0.8rem;color:var(--text3)">March 2026 · 9 min read</span>
+          <span class="post-date" style="font-size:0.8rem; color:var(--text3);">March 2026 · 7 min read</span>
         </div>
       </div>
       <div class="post-arrow">→</div>
     </a>
 
+    <!-- Post grid -->
     <p class="posts-label">All articles</p>
     <div class="posts-grid">
+
+      <a href="/blog/onboarding-checklist-small-team.html" class="post-card">
+        <span class="post-topic">Checklist</span>
+        <h3 class="post-title">The Simple Onboarding Checklist Small Teams Actually Need</h3>
+        <p class="post-excerpt">
+          A good onboarding checklist doesn't have fewer items. It has better timing. Here's the milestone framework that keeps new hires focused without overwhelming them.
+        </p>
+        <div class="post-foot">
+          <span class="post-date">March 2026 · 7 min</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
 
       <a href="/blog/why-onboarding-fails.html" class="post-card">
         <span class="post-topic">Onboarding strategy</span>
         <h3 class="post-title">Why Most Employee Onboarding Fails in the First Week</h3>
-        <p class="post-excerpt">Companies treat onboarding like overhead. The data says that costs them 44 days of productivity — and often the hire itself.</p>
+        <p class="post-excerpt">
+          Companies treat onboarding like overhead. The data says that costs them 44 days of productivity and often the hire itself.
+        </p>
         <div class="post-foot">
           <span class="post-date">March 2026 · 9 min</span>
           <span class="card-arrow">→</span>
@@ -132,22 +498,16 @@
       <div class="post-card coming">
         <span class="post-topic">Instructional design</span>
         <h3 class="post-title">What a Learning Designer Sees When They Look at Your Onboarding</h3>
-        <p class="post-excerpt">Most onboarding fails the same ID tests every trained designer would catch in ten minutes.</p>
-        <div class="post-foot">
-          <span class="post-date">Coming soon</span>
-        </div>
-      </div>
-
-      <div class="post-card coming">
-        <span class="post-topic">Checklist</span>
-        <h3 class="post-title">Five Things Every New Hire Needs Before Day One</h3>
-        <p class="post-excerpt">Day one anxiety is predictable — and preventable. Most of it comes from what you didn't send before they showed up.</p>
+        <p class="post-excerpt">
+          Most onboarding fails the same ID tests every trained designer would catch in ten minutes.
+        </p>
         <div class="post-foot">
           <span class="post-date">Coming soon</span>
         </div>
       </div>
 
     </div>
+
   </main>
 
   <footer>
