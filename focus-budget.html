@@ -120,8 +120,75 @@
       }
       .site-nav-cta:hover { background: #3dda8f !important; }
 
+      /* ── Hamburger ── */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        background: none;
+        border: 1px solid var(--border-h);
+        border-radius: 9px;
+        cursor: pointer;
+        padding: 0 11px;
+        flex-shrink: 0;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--ink-2);
+        border-radius: 2px;
+        transition: transform 0.22s, opacity 0.22s;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      /* ── Mobile drawer ── */
+      .nav-drawer {
+        display: none;
+        position: fixed;
+        top: 62px;
+        left: 0; right: 0; bottom: 0;
+        background: rgba(24, 24, 27, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 199;
+        padding: 1rem clamp(1.25rem, 5vw, 2rem) 2rem;
+        flex-direction: column;
+        gap: 0.2rem;
+        border-top: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .nav-drawer.open { display: flex; }
+      .nav-drawer a {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--ink-2);
+        padding: 0.9rem 0.75rem;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-drawer a:last-of-type { border-bottom: none; }
+      .nav-drawer a:hover { background: var(--bg-card); color: var(--ink); }
+      .nav-drawer .drawer-cta {
+        background: var(--green);
+        color: #0d1f14 !important;
+        font-weight: 700;
+        text-align: center;
+        margin-top: 1rem;
+        border-bottom: none;
+        border-radius: 12px;
+      }
+
       @media (max-width: 640px) {
         .site-nav-links { display: none; }
+        .nav-hamburger { display: flex; }
       }
 
       /* ── Floating pills — match homepage style ── */
@@ -151,9 +218,21 @@
       <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">List</a></li>
       <li><a href="./focus-budget.html" class="nav-active">Focus Budget</a></li>
       <li><a href="./blog">Blog</a></li>
-      <li><a href="https://forms.gle/8ptuwNmgn8xt34sW7" target="_blank" rel="noopener" class="site-nav-cta">Join waitlist</a></li>
+      <li><a href="https://forms.gle/8ptuwNmgn8xt34sW7" target="_blank" rel="noopener" class="site-nav-cta">Try Sheety List →</a></li>
     </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+    <a href="/">Home</a>
+    <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+    <a href="./focus-budget.html">Focus Budget</a>
+    <a href="./blog">Blog</a>
+    <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+  </div>
 
   <!-- Intro modal -->
   <div class="modalOverlay" id="introModal" aria-hidden="false">
@@ -261,18 +340,11 @@
         <button class="modalClose" id="licenseClose" aria-label="Close">✕</button>
       </div>
       <div class="modalBody">
-        <div class="license-tag">MIT License</div>
-
         <h3>Focus Budget</h3>
         <p>
-          This tool is open source and free to use, modify, and distribute.
-        </p>
-
-        <h3>Attribution</h3>
-        <p>
-          Created by <strong>Sheety Tools</strong>. Visit
+          A free tool by <strong>Sheety Tools</strong>. Visit
           <a href="https://www.sheety.tools" target="_blank" rel="noopener noreferrer">sheety.tools</a>
-          for more free tools.
+          for more tools.
         </p>
 
         <h3>Support</h3>
@@ -284,13 +356,7 @@
     </div>
   </div>
 
-  <!-- Floating buttons -->
-  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener noreferrer" class="floating kofi-float" aria-label="Support Sheety Tools on Ko-fi">
-    <img class="kofi-icon" src="./Sparkle_mug.gif" alt="" />
-    <span class="label">Fuel the Sheet</span>
-  </a>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="./utils.js"></script>
   <script src="./storage.js"></script>
@@ -352,6 +418,28 @@
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && introModal.style.display !== 'none') closeIntro();
+      });
+    })();
+  </script>
+
+  <!-- Hamburger -->
+  <script>
+    (function () {
+      const hamburger = document.getElementById('hamburger');
+      const drawer = document.getElementById('drawer');
+      hamburger.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        hamburger.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
       });
     })();
   </script>
