@@ -41,7 +41,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -60,8 +60,8 @@
       --text:      #dde3ed;
       --text2:     #9aa3b2;
       --text3:     #5a6478;
-      --font-head: 'Plus Jakarta Sans', sans-serif;
-      --font-body: 'Manrope', sans-serif;
+      --font-head: 'Bricolage Grotesque', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
       --radius:    12px;
       --prose-max: 680px;
     }
@@ -104,7 +104,7 @@
     .nav-links a:hover, .nav-links a.active { color: var(--text); }
 
     .article-header {
-      padding: 8rem clamp(1.5rem, 5vw, 4rem) 3rem;
+      padding: 8.2rem clamp(1.5rem, 5vw, 4rem) 3rem;
       max-width: var(--prose-max);
       margin: 0 auto;
       position: relative;
@@ -554,16 +554,16 @@
 
   <div class="progress-bar" id="progressBar"></div>
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <img src="../Sheety_Logo.png" alt="Sheety Tools" />
-      <span>Sheety Tools</span>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3rem);height:62px;background:rgba(24,24,27,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);">
+    <a href="/" style="display:flex;align-items:center;gap:0.6rem;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-0.02em;color:#f0f0ec;text-decoration:none;">
+      <img src="../Sheety_Logo.png" alt="Sheety Tools" style="width:28px;height:28px;object-fit:contain;border-radius:7px;" />
+      Sheety Tools
     </a>
-    <ul class="nav-links">
-      <li><a href="/#tools">Tools</a></li>
-      <li><a href="/blog/" class="active">Blog</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Fuel this project</a></li>
+    <ul style="display:flex;align-items:center;gap:0.15rem;list-style:none;">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" style="font-size:0.875rem;font-weight:500;color:#a8a8a0;padding:0.4rem 0.85rem;border-radius:8px;text-decoration:none;">Sheety List</a></li>
+      <li><a href="/focus-budget.html" style="font-size:0.875rem;font-weight:500;color:#a8a8a0;padding:0.4rem 0.85rem;border-radius:8px;text-decoration:none;">Focus Budget</a></li>
+      <li><a href="/blog/" style="font-size:0.875rem;font-weight:500;color:#f0f0ec;padding:0.4rem 0.85rem;border-radius:8px;text-decoration:none;">Blog</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" style="font-size:0.875rem;font-weight:600;background:#2ec97e;color:#0d1f14;padding:0.4rem 0.85rem;border-radius:9px;text-decoration:none;">Try Sheety List →</a></li>
     </ul>
   </nav>
 
