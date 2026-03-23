@@ -1,12 +1,18 @@
----
-layout: blog-article.html
-title: The Part of Onboarding Nobody Builds: Knowing Who to Lean On | Sheety Tools
-description: Good onboarding isn't just about information. It's about knowing who to call when things go sideways. Most programs skip this entirely.
-ogType: article
-ogUrl: https://sheety.tools/blog/onboarding-who-to-lean-on.html
-navActive: blog
-permalink: /blog/onboarding-who-to-lean-on.html
-jsonLd: |
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Part of Onboarding Nobody Builds: Knowing Who to Lean On | Sheety Tools</title>
+  <meta name="description" content="Good onboarding isn't just about information. It's about knowing who to call when things go sideways. Most programs skip this entirely." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title"       content="The Part of Onboarding Nobody Builds: Knowing Who to Lean On | Sheety Tools" />
+  <meta property="og:description" content="Good onboarding isn't just about information. It's about knowing who to call when things go sideways. Most programs skip this entirely." />
+  <meta property="og:type"        content="article" />
+  <meta property="og:url"         content="https://sheety.tools/blog/onboarding-who-to-lean-on.html" />
+  <meta property="og:site_name"   content="Sheety Tools" />
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -31,311 +37,417 @@ jsonLd: |
     }
   }
   </script>
----
 
-<style>
-  .support-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-  .support-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.25rem;
-  }
-  .support-card-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 0.4rem;
-  }
-  .support-card-title {
-    font-family: var(--font-head);
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 0.35rem;
-  }
-  .support-card-desc {
-    font-size: 0.82rem;
-    color: var(--ink-2);
-    font-weight: 400;
-    line-height: 1.6;
-  }
-  @media (max-width: 600px) {
-    .support-grid { grid-template-columns: 1fr; }
-  }
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
+  <link rel="stylesheet" href="/css/shared.css" />
+</head>
+<body>
 
-<header class="article-header">
-  <a href="/blog/" class="back-link">← Back to blog</a>
-  <p class="article-topic">Onboarding strategy</p>
-  <h1 class="article-title">The Part of Onboarding Nobody Builds: Knowing Who to Lean On</h1>
-  <div class="article-meta">
-    <span class="meta-item">March 2026</span>
-    <span class="meta-sep">·</span>
-    <span class="meta-item">7 min read</span>
-    <span class="meta-sep">·</span>
-    <span class="meta-item">By Sheety Tools</span>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/" class="nav-active">Blog</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-</header>
+</nav>
 
-<article class="article-body">
-  <div class="prose">
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/blog/">Blog</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+</div>
 
-    <p>
-      Chaos is a great diagnostic tool. When everything goes sideways at once, you find
-      out very quickly who your real support network is. Not the org chart version. The
-      actual version: who picks up the phone, who knows the backup plan, who you can be
-      honest with about the fact that you're lost.
-    </p>
+<div class="progress-bar" id="progressBar"></div>
 
-    <p>
-      Most people build that network over time, through repeated small moments of trust
-      and reciprocity. It takes months. Sometimes longer. And in the middle of a genuinely
-      bad week, you either have it or you don't.
-    </p>
+<article style="padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 5vw, 3rem);">
+  <div class="section-inner">
+    <div class="prose">
 
-    <p>
-      New hires don't have it. They walk in on day one with zero of it. And most onboarding
-      programs do nothing to help them build it faster.
-    </p>
+      <style>
+        .progress-bar { position: fixed; top: 62px; left: 0; height: 2px; background: var(--green); width: 0%; z-index: 99; transition: width 0.1s linear; opacity: 0.7; }
+        .article-header { padding: 0 0 2.5rem; max-width: var(--prose-max); margin: 0 auto; position: relative; }
+        .article-header::before { content: ''; position: absolute; top: -4rem; left: 50%; transform: translateX(-50%); width: 500px; height: 280px; background: radial-gradient(ellipse at 50% 0%, rgba(46,201,126,0.05) 0%, transparent 65%); pointer-events: none; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ink-3); text-decoration: none; margin-bottom: 2rem; transition: color .18s; opacity: 0; animation: fadeUp 0.4s 0.05s ease forwards; }
+        .back-link:hover { color: var(--ink-2); }
+        .article-topic { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.4s 0.1s ease forwards; }
+        .article-title { font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem; color: var(--ink); opacity: 0; animation: fadeUp 0.4s 0.16s ease forwards; }
+        .article-meta { display: flex; align-items: center; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.4s 0.22s ease forwards; }
+        .meta-item { font-size: 0.8rem; color: var(--ink-3); }
+        .meta-sep { color: var(--ink-3); opacity: 0.4; }
+        .article-body { max-width: var(--prose-max); margin: 0 auto; opacity: 0; animation: fadeUp 0.4s 0.3s ease forwards; }
+        .prose > * + * { margin-top: 1.5rem; }
+        .prose p { font-size: 1rem; color: var(--ink-2); font-weight: 400; line-height: 1.85; }
+        .prose p strong { color: var(--ink); font-weight: 600; }
+        .prose h2 { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: 3rem !important; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+        .prose h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-top: 2rem !important; }
+        .prose blockquote { border-left: 3px solid var(--green); padding: 0.75rem 1.25rem; background: var(--green-sub); border-radius: 0 8px 8px 0; font-size: 1rem; color: var(--ink); font-weight: 400; line-height: 1.7; font-style: normal; }
+        .prose blockquote cite { display: block; font-size: 0.8rem; color: var(--ink-3); margin-top: 0.5rem; font-style: normal; }
+        .stat-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+        .stat-number { font-family: var(--font-head); font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--green); line-height: 1; flex-shrink: 0; }
+        .stat-label { font-size: 0.875rem; color: var(--ink-2); line-height: 1.65; padding-top: 0.25rem; }
+        .stat-label cite { display: block; margin-top: 0.4rem; font-size: 0.75rem; color: var(--ink-3); font-style: normal; }
+        .support-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; }
+        .support-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; }
+        .support-card-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+        .support-card-title { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
+        .support-card-desc { font-size: 0.82rem; color: var(--ink-2); line-height: 1.6; }
+        .article-cta { max-width: var(--prose-max); margin: 0 auto; padding: 2.5rem 0 2rem; }
+        .cta-box { background: var(--bg-card); border: 1px solid var(--green-border); border-radius: var(--radius-lg); padding: 2rem 2.25rem; position: relative; overflow: hidden; }
+        .cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 5%, var(--green) 50%, transparent 95%); opacity: 0.3; }
+        .cta-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem; }
+        .cta-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; color: var(--ink); }
+        .cta-sub { font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1.5rem; max-width: 440px; }
+        .related { max-width: var(--prose-max); margin: 0 auto; padding: 3rem 0 2rem; border-top: 1px solid var(--border); }
+        .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.25rem; }
+        .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; }
+        .related-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+        .related-topic { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+        .related-title { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; color: var(--ink); }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } .article-meta { flex-wrap: wrap; gap: 0.5rem; } .support-grid { grid-template-columns: 1fr; } }
+      </style>
 
-    <h2>What Chaos Actually Reveals</h2>
+      <header class="article-header">
+        <a href="/blog/" class="back-link">← Back to blog</a>
+        <p class="article-topic">Onboarding strategy</p>
+        <h1 class="article-title">The Part of Onboarding Nobody Builds: Knowing Who to Lean On</h1>
+        <div class="article-meta">
+          <span class="meta-item">March 2026</span>
+          <span class="meta-sep">·</span>
+          <span class="meta-item">7 min read</span>
+          <span class="meta-sep">·</span>
+          <span class="meta-item">By Sheety Tools</span>
+        </div>
+      </header>
 
-    <p>
-      Think about the last time something went badly wrong at work. A deadline collapsed.
-      A system went down. A decision needed to be made with incomplete information and no
-      time to get more. What got you through it wasn't the employee handbook. It was knowing
-      exactly who to call and being confident they'd actually help.
-    </p>
+      <div class="article-body">
 
-    <p>
-      That confidence is built on two things: knowing the person exists, and knowing they're
-      safe to go to. Both take time to establish under normal conditions. Under onboarding
-      conditions, where everything is new and the stakes of first impressions feel high,
-      most new hires won't reach out at all. They'll try to figure it out alone rather than
-      look like they don't know what they're doing.
-    </p>
-
-    <blockquote>
-      69% of employees are more likely to stay with a company for three years if they had
-      a great onboarding experience. The research consistently points to connection and
-      belonging as the primary driver, not information transfer.
-      <cite>SHRM, Onboarding New Employees: Maximizing Success</cite>
-    </blockquote>
-
-    <p>
-      Connection isn't a nice-to-have. It's the mechanism by which a new hire becomes
-      resilient. Without it, every hard moment in the first 90 days becomes a referendum
-      on whether they made the right choice taking this job.
-    </p>
-
-    <h2>The Org Chart Doesn't Tell You Anything Useful</h2>
-
-    <p>
-      Most onboarding programs address the "who to talk to" problem by handing over an org
-      chart and a directory. Which is about as useful as giving someone a map of a city
-      they've never visited and expecting them to know which neighborhoods are actually
-      worth walking through.
-    </p>
-
-    <p>
-      What a new hire actually needs to know isn't who technically owns a process. It's
-      things like: who is the person everyone goes to when the official channel is too slow?
-      Who is patient with questions that might seem obvious? Who has context on a decision
-      that isn't written down anywhere? Who should you loop in before doing something that
-      touches their area, even if they're not on the org chart for it?
-    </p>
-
-    <p>
-      That's institutional knowledge. It lives in people's heads. And it almost never makes
-      it into onboarding materials because the people writing those materials have had it so
-      long they've forgotten it wasn't always obvious.
-    </p>
-
-    <h2>The Four Relationships Every New Hire Needs</h2>
-
-    <p>
-      Not every workplace relationship matters equally in those first 90 days. Research from
-      Dr. Talya Bauer's onboarding framework identifies connection as one of the four
-      foundational Cs of effective onboarding, alongside compliance, clarification, and
-      culture. But connection without structure is just hope.
-    </p>
-
-    <p>
-      In practice, there are four types of relationships that meaningfully reduce a new
-      hire's vulnerability during the adjustment period:
-    </p>
-
-    <div class="support-grid">
-      <div class="support-card">
-        <p class="support-card-label">The anchor</p>
-        <p class="support-card-title">The manager</p>
-        <p class="support-card-desc">
-          The person who sets expectations and holds the context for what success looks like.
-          Not just a taskmaster. The person a new hire should be able to say "I don't know
-          what to prioritize" to without consequence.
+        <p>
+          Chaos is a great diagnostic tool. When everything goes sideways at once, you find
+          out very quickly who your real support network is. Not the org chart version. The
+          actual version: who picks up the phone, who knows the backup plan, who you can be
+          honest with about the fact that you're lost.
         </p>
-      </div>
-      <div class="support-card">
-        <p class="support-card-label">The guide</p>
-        <p class="support-card-title">A peer with context</p>
-        <p class="support-card-desc">
-          Someone who has been there long enough to know the unwritten rules but recent enough
-          to remember not knowing them. The person you message when you're not sure if a
-          question is stupid.
+
+        <p>
+          Most people build that network over time, through repeated small moments of trust
+          and reciprocity. It takes months. Sometimes longer. And in the middle of a
+          genuinely bad week, you either have it or you don't.
         </p>
-      </div>
-      <div class="support-card">
-        <p class="support-card-label">The connector</p>
-        <p class="support-card-title">Someone cross-functional</p>
-        <p class="support-card-desc">
-          A person outside the immediate team who can introduce the new hire to the broader
-          organization. Helps avoid the trap of only ever knowing your own corner of the company.
+
+        <p>
+          New hires don't have it. They walk in on day one with zero of it. And most
+          onboarding programs do nothing to help them build it faster.
         </p>
-      </div>
-      <div class="support-card">
-        <p class="support-card-label">The escalation path</p>
-        <p class="support-card-title">A named backup</p>
-        <p class="support-card-desc">
-          Explicitly: who do you go to when your manager isn't available and something needs
-          a decision? Most onboarding programs never name this person. Most new hires spend
-          weeks figuring it out by accident.
+
+        <h2>What Chaos Actually Reveals</h2>
+
+        <p>
+          Think about the last time something went badly wrong at work. A deadline collapsed.
+          A system went down. A decision needed to be made with incomplete information and no
+          time to get more. What got you through it wasn't the employee handbook. It was
+          knowing exactly who to call and being confident they'd actually help.
         </p>
+
+        <p>
+          That confidence is built on two things: knowing the person exists, and knowing
+          they're safe to go to. Both take time to establish under normal conditions. Under
+          onboarding conditions, where everything is new and the stakes of first impressions
+          feel high, most new hires won't reach out at all. They'll try to figure it out
+          alone rather than look like they don't know what they're doing.
+        </p>
+
+        <blockquote>
+          69% of employees are more likely to stay with a company for three years if they
+          had a great onboarding experience. The research consistently points to connection
+          and belonging as the primary driver, not information transfer.
+          <cite>SHRM, Onboarding New Employees: Maximizing Success</cite>
+        </blockquote>
+
+        <p>
+          Connection isn't a nice-to-have. It's the mechanism by which a new hire becomes
+          resilient. Without it, every hard moment in the first 90 days becomes a referendum
+          on whether they made the right choice taking this job.
+        </p>
+
+        <h2>The Org Chart Doesn't Tell You Anything Useful</h2>
+
+        <p>
+          Most onboarding programs address the "who to talk to" problem by handing over an
+          org chart and a directory. Which is about as useful as giving someone a map of a
+          city they've never visited and expecting them to know which neighborhoods are
+          actually worth walking through.
+        </p>
+
+        <p>
+          What a new hire actually needs to know isn't who technically owns a process. It's
+          things like: who is the person everyone goes to when the official channel is too
+          slow? Who is patient with questions that might seem obvious? Who has context on a
+          decision that isn't written down anywhere? Who should you loop in before doing
+          something that touches their area, even if they're not on the org chart for it?
+        </p>
+
+        <p>
+          That's institutional knowledge. It lives in people's heads. And it almost never
+          makes it into onboarding materials because the people writing those materials have
+          had it so long they've forgotten it wasn't always obvious.
+        </p>
+
+        <h2>The Four Relationships Every New Hire Needs</h2>
+
+        <p>
+          Not every workplace relationship matters equally in those first 90 days. Research
+          from Dr. Talya Bauer's onboarding framework identifies connection as one of the
+          four foundational Cs of effective onboarding, alongside compliance, clarification,
+          and culture. But connection without structure is just hope.
+        </p>
+
+        <p>
+          In practice, there are four types of relationships that meaningfully reduce a new
+          hire's vulnerability during the adjustment period:
+        </p>
+
+        <div class="support-grid">
+          <div class="support-card">
+            <p class="support-card-label">The anchor</p>
+            <p class="support-card-title">The manager</p>
+            <p class="support-card-desc">
+              The person who sets expectations and holds the context for what success looks
+              like. Not just a taskmaster. The person a new hire should be able to say
+              "I don't know what to prioritize" to without consequence.
+            </p>
+          </div>
+          <div class="support-card">
+            <p class="support-card-label">The guide</p>
+            <p class="support-card-title">A peer with context</p>
+            <p class="support-card-desc">
+              Someone who has been there long enough to know the unwritten rules but recent
+              enough to remember not knowing them. The person you message when you're not
+              sure if a question is stupid.
+            </p>
+          </div>
+          <div class="support-card">
+            <p class="support-card-label">The connector</p>
+            <p class="support-card-title">Someone cross-functional</p>
+            <p class="support-card-desc">
+              A person outside the immediate team who can introduce the new hire to the
+              broader organization. Helps avoid the trap of only ever knowing your own
+              corner of the company.
+            </p>
+          </div>
+          <div class="support-card">
+            <p class="support-card-label">The escalation path</p>
+            <p class="support-card-title">A named backup</p>
+            <p class="support-card-desc">
+              Explicitly: who do you go to when your manager isn't available and something
+              needs a decision? Most onboarding programs never name this person. Most new
+              hires spend weeks figuring it out by accident.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          These don't need to be formally assigned roles. They need to be explicitly named
+          in onboarding materials, with enough context for the new hire to understand what
+          each person is actually for. Not just a name and a title. A sentence or two about
+          when and why to go to them.
+        </p>
+
+        <h2>The Backup Plan Problem</h2>
+
+        <p>
+          There's a related issue that gets even less attention: new hires rarely know what
+          the contingency looks like when something goes wrong.
+        </p>
+
+        <p>
+          Experienced employees know this instinctively. They've seen the thing break before.
+          They know the system has a fallback, or that a certain person keeps the real
+          documentation, or that the process everyone follows has an unofficial shortcut
+          that everyone uses when it's urgent. New hires don't know any of that. So when
+          something breaks, they either freeze or escalate unnecessarily, both of which
+          cost time and erode confidence.
+        </p>
+
+        <p>
+          Good onboarding anticipates this. It doesn't just describe the normal path. It
+          tells the new hire what to do when the normal path isn't working: who to contact,
+          what to check, and how to know whether something is genuinely urgent or just
+          unfamiliar.
+        </p>
+
+        <h3>The question most onboarding materials never answer</h3>
+
+        <p>
+          "If I'm stuck on something and my manager isn't available, what do I do?"
+        </p>
+
+        <p>
+          It's such a basic question. The answer at most companies is that the new hire
+          figures it out eventually, usually by making a few wrong calls first. There's no
+          particular reason that answer can't just be written down.
+        </p>
+
+        <h2>Why This Gets Left Out</h2>
+
+        <p>
+          Connection and contingency get deprioritized in onboarding for the same reason
+          they get deprioritized everywhere: they feel soft. You can't put a checkbox next
+          to "understands who to lean on." You can put a checkbox next to "completed
+          security training."
+        </p>
+
+        <p>
+          So the checkboxes win. The compliance items, the system access, the policy
+          acknowledgments. All of it important. None of it sufficient. A new hire who has
+          completed every required module and still doesn't know a single person they'd be
+          comfortable calling in a crisis is not actually onboarded. They're documented.
+        </p>
+
+        <p>
+          Being documented is not the same as being ready.
+        </p>
+
+        <h2>What to Actually Include</h2>
+
+        <p>
+          This doesn't require a restructured onboarding program. It requires adding a few
+          things to the onboarding document that most programs currently omit.
+        </p>
+
+        <p>
+          A named guide or buddy, with a sentence about what that person is there for. An
+          explicit escalation path for when the manager isn't reachable. A short "when
+          things go wrong" section that covers the two or three most common failure points
+          and what to do about each one. And a genuine signal that it's fine to not know
+          things yet, because new hires often don't ask for help because nobody has told
+          them it's safe to.
+        </p>
+
+        <p>
+          That last one costs nothing to include and probably does more work than everything
+          else on the list.
+        </p>
+
+        <h2>The Bottom Line</h2>
+
+        <p>
+          The weeks that reveal whether your onboarding worked aren't the easy ones. They're
+          the chaotic ones, the weeks when priorities shift, systems break, and context
+          matters more than any training module could have prepared someone for. Those are
+          the weeks when a new hire either has a support network to lean on or discovers
+          they're on their own.
+        </p>
+
+        <p>
+          Building that network doesn't happen automatically. It happens by design. Good
+          onboarding names the people, explains what they're for, and tells the new hire
+          explicitly that asking for help is the right move. Most onboarding programs don't
+          do any of that. They leave connection to chance and call it culture fit when it
+          doesn't happen.
+        </p>
+
       </div>
+
+      <div class="article-cta">
+        <div class="cta-box">
+          <p class="cta-eyebrow">Sheety Onboarding</p>
+          <h2 class="cta-title">Onboarding docs that include the things most programs skip</h2>
+          <p class="cta-sub">
+            Every document generated by Sheety Onboarding includes a support network section
+            with named contacts and escalation paths. Fill out a short form. Get a complete
+            onboarding package delivered by email.
+          </p>
+          <a href="https://www.sheety.tools/onboarding" class="btn-primary">See how it works →</a>
+        </div>
+      </div>
+
+      <nav class="related" aria-label="Related articles">
+        <p class="related-label">Keep reading</p>
+        <div class="related-grid">
+          <a href="/blog/why-onboarding-fails.html" class="related-card">
+            <p class="related-topic">Onboarding strategy</p>
+            <p class="related-title">Why Most Employee Onboarding Fails in the First Week</p>
+          </a>
+          <a href="/blog/onboarding-checklist-small-team.html" class="related-card">
+            <p class="related-topic">Checklist</p>
+            <p class="related-title">The Simple Onboarding Checklist Small Teams Actually Need</p>
+          </a>
+        </div>
+      </nav>
+
     </div>
-
-    <p>
-      These don't need to be formally assigned roles. They need to be explicitly named in
-      onboarding materials, with enough context for the new hire to understand what each
-      person is actually for. Not just a name and a title. A sentence or two about when
-      and why to go to them.
-    </p>
-
-    <h2>The Backup Plan Problem</h2>
-
-    <p>
-      There's a related issue that gets even less attention: new hires rarely know what the
-      contingency looks like when something goes wrong.
-    </p>
-
-    <p>
-      Experienced employees know this instinctively. They've seen the thing break before.
-      They know the system has a fallback, or that a certain person keeps the real
-      documentation, or that the process everyone follows actually has an unofficial
-      shortcut that everyone uses when it's urgent. New hires don't know any of that. So
-      when something breaks, they either freeze or escalate unnecessarily, both of which
-      cost time and erode confidence.
-    </p>
-
-    <p>
-      Good onboarding anticipates this. It doesn't just describe the normal path. It tells
-      the new hire what to do when the normal path isn't working: who to contact, what to
-      check, and how to know whether something is genuinely urgent or just unfamiliar.
-    </p>
-
-    <h3>The question most onboarding materials never answer</h3>
-
-    <p>
-      "If I'm stuck on something and my manager isn't available, what do I do?"
-    </p>
-
-    <p>
-      It's such a basic question. The answer at most companies is that the new hire figures
-      it out eventually, usually by making a few wrong calls first. There's no particular
-      reason that answer can't just be written down.
-    </p>
-
-    <h2>Why This Gets Left Out</h2>
-
-    <p>
-      Connection and contingency get deprioritized in onboarding for the same reason they
-      get deprioritized everywhere: they feel soft. You can't put a checkbox next to
-      "understands who to lean on." You can put a checkbox next to "completed security
-      training."
-    </p>
-
-    <p>
-      So the checkboxes win. The compliance items, the system access, the policy
-      acknowledgments. All of it important. None of it sufficient. A new hire who has
-      completed every required module and still doesn't know a single person they'd be
-      comfortable calling in a crisis is not actually onboarded. They're documented.
-    </p>
-
-    <p>
-      Being documented is not the same as being ready.
-    </p>
-
-    <h2>What to Actually Include</h2>
-
-    <p>
-      This doesn't require a restructured onboarding program. It requires adding a few
-      things to the onboarding document that most programs currently omit.
-    </p>
-
-    <p>
-      A named guide or buddy, with a sentence about what that person is there for. An
-      explicit escalation path for when the manager isn't reachable. A short "when things
-      go wrong" section that covers the two or three most common failure points and what
-      to do about each one. And a genuine "it's fine to not know things yet" signal,
-      because new hires often don't ask for help because nobody has told them it's safe to.
-    </p>
-
-    <p>
-      That last one costs nothing to include and probably does more work than everything
-      else on the list.
-    </p>
-
-    <h2>The Bottom Line</h2>
-
-    <p>
-      The weeks that reveal whether your onboarding worked aren't the easy ones. They're
-      the chaotic ones, the weeks when priorities shift, systems break, and context matters
-      more than any training module could have prepared someone for. Those are the weeks
-      when a new hire either has a support network to lean on or discovers they're on
-      their own.
-    </p>
-
-    <p>
-      Building that network doesn't happen automatically. It happens by design. Good
-      onboarding names the people, explains what they're for, and tells the new hire
-      explicitly that asking for help is the right move. Most onboarding programs don't
-      do any of that. They leave connection to chance and call it culture fit when
-      it doesn't happen.
-    </p>
-
   </div>
 </article>
 
-<section class="article-cta">
-  <div class="cta-box">
-    <p class="cta-eyebrow">Sheety Onboarding</p>
-    <h2 class="cta-title">Onboarding docs that include the things most programs skip</h2>
-    <p class="cta-sub">
-      Every document generated by Sheety Onboarding includes a support network section
-      with named contacts and escalation paths. Fill out a short form. Get a complete
-      onboarding package delivered by email.
-    </p>
-    <a href="/" class="btn-primary">See how it works →</a>
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Sheety Tools</span>
+    <ul class="footer-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/terms/">Terms</a></li>
+    </ul>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Sheety Tools. Built with AI assistance — product ideas, design decisions, and structure by the human behind it.</p>
+      <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="footer-kofi">
+        ☕ <span>Fuel this project on Ko-fi</span>
+      </a>
+    </div>
   </div>
-</section>
+</footer>
 
-<nav class="related" aria-label="Related articles">
-  <p class="related-label">Keep reading</p>
-  <div class="related-grid">
-    <a href="/blog/why-onboarding-fails.html" class="related-card">
-      <p class="related-topic">Onboarding strategy</p>
-      <p class="related-title">Why Most Employee Onboarding Fails in the First Week</p>
-    </a>
-    <a href="/blog/onboarding-checklist-small-team.html" class="related-card">
-      <p class="related-topic">Checklist</p>
-      <p class="related-title">The Simple Onboarding Checklist Small Teams Actually Need</p>
-    </a>
-  </div>
-</nav>
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('drawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  if (document.querySelector('.fade-up')) {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  }
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      bar.style.width = ((doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100) + '%';
+    }, { passive: true });
+  }
+</script>
+
+</body>
+</html>
