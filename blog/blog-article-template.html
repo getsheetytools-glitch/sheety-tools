@@ -16,22 +16,23 @@
   -->
 
   <!-- EDIT: article description (150–160 chars, include target keyword) -->
-  <meta name="description" content="A simple onboarding checklist for small teams isn't about listing every task. It's about surfacing the right ones at the right time. Here's how to build one that doesn't overwhelm." />
+  <meta name="description" content="ARTICLE_DESCRIPTION_HERE" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph — EDIT all four -->
-  <meta property="og:title"       content="The Simple Onboarding Checklist Small Teams Actually Need | Sheety Tools" />
-  <meta property="og:description" content="A simple onboarding checklist for small teams isn't about listing every task. It's about surfacing the right ones at the right time." />
+  <meta property="og:title"       content="ARTICLE_TITLE — Sheety Tools" />
+  <meta property="og:description" content="ARTICLE_DESCRIPTION_HERE" />
   <meta property="og:type"        content="article" />
-  <meta property="og:url"         content="https://sheety.tools/blog/onboarding-checklist-small-team.html" />
+  <meta property="og:url"         content="https://sheety.tools/blog/SLUG.html" />
   <meta property="og:site_name"   content="Sheety Tools" />
 
+  <!-- Article structured data — EDIT dates & headline -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "The Simple Onboarding Checklist Small Teams Actually Need",
-    "description": "A simple onboarding checklist for small teams isn't about listing every task. It's about surfacing the right ones at the right time. Here's how to build one that doesn't overwhelm.",
+    "headline": "ARTICLE_TITLE_HERE",
+    "description": "ARTICLE_DESCRIPTION_HERE",
     "author": {
       "@type": "Person",
       "name": "Sheety Tools",
@@ -42,17 +43,17 @@
       "name": "Sheety Tools",
       "url": "https://sheety.tools"
     },
-    "datePublished": "2026-03-15",
-    "dateModified": "2026-03-15",
+    "datePublished": "YYYY-MM-DD",
+    "dateModified": "YYYY-MM-DD",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://sheety.tools/blog/onboarding-checklist-small-team.html"
+      "@id": "https://sheety.tools/blog/SLUG.html"
     }
   }
   </script>
 
   <!-- EDIT: page <title> — target keyword first, then brand -->
-  <title>The Simple Onboarding Checklist Small Teams Actually Need | Sheety Tools</title>
+  <title>ARTICLE_TITLE — Sheety Tools</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -511,156 +512,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ─── MILESTONE TIMELINE ──────────────────────────────── */
-    .milestone-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 1.5rem;
-    }
-
-    .milestone-item {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 0 1.25rem;
-      position: relative;
-    }
-
-    .milestone-item + .milestone-item { margin-top: 0; }
-
-    .milestone-time {
-      text-align: right;
-      padding-top: 1.1rem;
-    }
-
-    .milestone-badge {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--green);
-      background: var(--green-sub);
-      border: 1px solid var(--green-border);
-      padding: 0.2rem 0.5rem;
-      border-radius: 5px;
-      white-space: nowrap;
-    }
-
-    .milestone-content {
-      border-left: 1px solid var(--border);
-      padding: 1rem 0 1.5rem 1.5rem;
-      position: relative;
-    }
-
-    .milestone-content::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 1.35rem;
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-    }
-
-    .milestone-title {
-      font-family: var(--font-head);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.4rem;
-    }
-
-    .milestone-tasks {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .milestone-tasks li {
-      font-size: 0.84rem;
-      color: var(--text2);
-      font-weight: 300;
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-    }
-
-    .milestone-tasks li::before {
-      content: '';
-      display: inline-block;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--text3);
-      flex-shrink: 0;
-      margin-top: 0.35rem;
-    }
-
-        /* ─── TOOL CALLOUT ────────────────────────────────────── */
-    .tool-callout {
-      background: var(--surface);
-      border: 1px solid var(--orange-border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tool-callout::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent 5%, var(--orange) 50%, transparent 95%);
-      opacity: 0.35;
-    }
-
-    .tool-callout-eyebrow {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 0.5rem;
-    }
-
-    .tool-callout-title {
-      font-family: var(--font-head);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.5rem;
-    }
-
-    .tool-callout p {
-      font-size: 0.875rem !important;
-      margin-top: 0 !important;
-    }
-
-    .tool-callout-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      margin-top: 0.85rem;
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--orange);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(224,122,58,0.3);
-      transition: border-color .18s;
-    }
-    .tool-callout-link:hover { border-color: var(--orange); }
-
-    .prose a {
-      color: var(--green);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(46,201,126,0.3);
-      transition: border-color .18s;
-    }
-    .prose a:hover { border-color: var(--green); }
-
-    
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .related-grid { grid-template-columns: 1fr; }
@@ -690,14 +541,17 @@
   <header class="article-header">
     <a href="/blog/" class="back-link">← Back to blog</a>
 
-    <p class="article-topic">Checklist</p>
+    <!-- EDIT: topic label -->
+    <p class="article-topic">Onboarding strategy</p>
 
-    <h1 class="article-title">The Simple Onboarding Checklist Small Teams Actually Need</h1>
+    <!-- EDIT: H1 — should match your target keyword closely -->
+    <h1 class="article-title">ARTICLE TITLE GOES HERE</h1>
 
     <div class="article-meta">
+      <!-- EDIT: date and read time -->
       <span class="meta-item">March 2026</span>
       <span class="meta-sep">·</span>
-      <span class="meta-item">7 min read</span>
+      <span class="meta-item">9 min read</span>
       <span class="meta-sep">·</span>
       <span class="meta-item" style="color:var(--text3);">By Sheety Tools</span>
     </div>
@@ -707,261 +561,150 @@
   <article class="article-body">
     <div class="prose">
 
+      <!--
+      ─────────────────────────────────────────────────────────
+      WRITING GUIDE
+      ─────────────────────────────────────────────────────────
+      Structure:
+        <p>          — body copy (color: text2, weight: 300)
+        <h2>         — major section heading
+        <h3>         — minor heading within a section
+        <blockquote> — pull quote or callout (use sparingly)
+        .stat-box    — data callout with large number
+        <a>          — inline link (use for internal linking)
+
+      SEO principles:
+        - H1 in the header contains your primary keyword
+        - H2s contain secondary/related keywords naturally
+        - First paragraph should contain the primary keyword
+        - Add 2-3 internal links to other blog posts or /
+        - Aim for 800–1,200 words for informational posts
+        - One clear CTA at the end (see .article-cta below)
+      ─────────────────────────────────────────────────────────
+      -->
+
+      <!-- ── INTRO ── -->
       <p>
-        The standard onboarding checklist for a new hire runs somewhere between 40 and 80 items.
-        Set up your email. Read the employee handbook. Schedule a 1:1 with your manager.
-        Complete security training. Request access to eight different systems. Meet the team.
-        Learn the product. Shadow someone. Review the org chart.
+        FIRST PARAGRAPH. Should restate the article's core promise and include the primary keyword naturally.
+        This paragraph sets the hook — it tells the reader why this matters to them specifically.
       </p>
 
       <p>
-        All of it lands on day one. Or at least, it feels that way. And the cognitive effect
-        is predictable: the new hire doesn't know what's urgent, what's optional, or what order
-        any of this is supposed to happen in. So they either freeze up or work through it randomly,
-        which is a poor substitute for actually getting oriented.
+        Second intro paragraph. Establish the cost of the problem or the scale of what's at stake.
+        Reference data if you have it — this is where the BambooHR 44-day stat or Enboarder 90-day departure
+        data lives.
       </p>
 
-      <p>
-        The checklist isn't the problem. The presentation is. A good onboarding checklist for a
-        small team doesn't have fewer items. It has better timing.
-      </p>
-
-      <h2>Why the Full Dump Doesn't Work</h2>
-
-      <p>
-        Cognitive load research is pretty clear on this: when people are presented with too much
-        at once, they don't prioritize well. They default to whatever feels most tangible or most
-        urgent based on proximity, not importance. For a new hire, that usually means email setup
-        and introductory meetings crowd out the things that actually build long-term capability
-        including understanding the role, the team's working norms, and what success looks like.
-      </p>
-
+      <!-- ── STAT CALLOUT ── -->
       <div class="stat-box">
-        <div class="stat-number">~54</div>
+        <div class="stat-number">44</div>
         <div class="stat-label">
-          The average number of onboarding tasks a new hire receives in their first week,
-          according to a Sapling HR audit of mid-size company onboarding programs.
-          Most are undifferentiated: no priority, no sequence, no grouping by milestone.
-          <cite>Sapling HR, State of Onboarding Report</cite>
+          The average number of days it takes a new hire to reach full productivity.
+          Most companies don't have a plan for those 44 days.
+          <cite>Source: BambooHR Employee Onboarding Research</cite>
         </div>
       </div>
 
+
+      <!-- ── SECTION 1 ── -->
+      <h2>Section Heading One — Make It Keyword-Rich</h2>
+
       <p>
-        The fix isn't a shorter list. It's a sequenced one. Tasks need to be grouped by
-        when they matter. Not alphabetically, not by department, and not all at once.
+        Section body copy. Be direct. One idea per paragraph. The voice is punchy and opinionated —
+        back claims with research but don't over-hedge.
       </p>
 
-      <h2>A Framework That Actually Holds Up</h2>
+      <blockquote>
+        Pull quote or key insight here. Use for the single most quotable line in this section.
+        <cite>Source or attribution if applicable</cite>
+      </blockquote>
 
       <p>
-        The most useful structure for a new hire task list mirrors the same milestone
-        framework that good onboarding documents use. Five phases, each with a clear
-        focus and a manageable number of tasks:
+        Follow-up to the pull quote. Interpret it. Tell the reader what it means for them specifically.
       </p>
 
-      <div class="milestone-list">
 
-        <div class="milestone-item">
-          <div class="milestone-time">
-            <span class="milestone-badge">Week 1</span>
-          </div>
-          <div class="milestone-content">
-            <p class="milestone-title">Foundations</p>
-            <ul class="milestone-tasks">
-              <li>Set up accounts, tools, and access</li>
-              <li>Read the team's working norms document</li>
-              <li>Schedule introductory 1:1s with direct teammates</li>
-              <li>Confirm 30/60/90 day expectations with manager</li>
-              <li>Identify the go-to person for operational questions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="milestone-item">
-          <div class="milestone-time">
-            <span class="milestone-badge">Week 2</span>
-          </div>
-          <div class="milestone-content">
-            <p class="milestone-title">Tool Activation</p>
-            <ul class="milestone-tasks">
-              <li>Complete required training or compliance modules</li>
-              <li>Get hands-on with the core tools for this role</li>
-              <li>Shadow at least one relevant workflow end-to-end</li>
-              <li>Ask manager: what's the biggest current priority?</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="milestone-item">
-          <div class="milestone-time">
-            <span class="milestone-badge">Weeks 3–4</span>
-          </div>
-          <div class="milestone-content">
-            <p class="milestone-title">Guided Practice</p>
-            <ul class="milestone-tasks">
-              <li>Take on a first real task with a defined scope</li>
-              <li>Ask for feedback before assuming you got it right</li>
-              <li>Document anything that was unclear during onboarding</li>
-              <li>Identify one process you could improve</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="milestone-item">
-          <div class="milestone-time">
-            <span class="milestone-badge">Day 45</span>
-          </div>
-          <div class="milestone-content">
-            <p class="milestone-title">Confidence Check</p>
-            <ul class="milestone-tasks">
-              <li>Self-assess against the 30/60/90 criteria</li>
-              <li>Schedule a check-in with manager: what's working, what isn't</li>
-              <li>Update your own task list based on what the role actually requires</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="milestone-item">
-          <div class="milestone-time">
-            <span class="milestone-badge">Day 90</span>
-          </div>
-          <div class="milestone-content">
-            <p class="milestone-title">Independent Momentum</p>
-            <ul class="milestone-tasks">
-              <li>Lead something without being asked</li>
-              <li>Know who to escalate to and when</li>
-              <li>Have at least one peer relationship that feels real</li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
+      <!-- ── SECTION 2 ── -->
+      <h2>Section Heading Two</h2>
 
       <p>
-        The point isn't to be prescriptive about every item. It's to give the new hire
-        a mental model for what the next 90 days are supposed to feel like. Foundations
-        first. Real work second. Independent contribution third.
+        Body copy for section two. Continue the argument or introduce the next problem/insight.
       </p>
 
-      <h2>The New Hire's Role in Managing Their Own List</h2>
+      <h3>A sub-point worth naming</h3>
 
       <p>
-        Here's something most onboarding programs get wrong: they treat the new hire as a
-        passive recipient. The manager builds the list. The manager tracks the progress.
-        The manager decides what's done.
+        Smaller point that deserves a heading but isn't a full section.
+        Use h3 sparingly — only when the sub-point would get lost in paragraph flow.
       </p>
 
       <p>
-        That dynamic produces learned helplessness. A new hire who has never managed
-        their own onboarding tasks doesn't build the habit of self-direction. That's exactly what every manager wants from a hire by month three.
+        Wrap up the section. Transition naturally toward the next idea.
+      </p>
+
+
+      <!-- ── SECTION 3 — SOLUTION/TAKEAWAY ── -->
+      <h2>What Actually Works</h2>
+
+      <p>
+        Every article that diagnoses a problem should offer a directional fix.
+        This doesn't have to be a complete guide — it's a bridge to the product without being a pitch.
       </p>
 
       <p>
-        Good onboarding hands the list to the new hire and trusts them to work it.
-        Sequenced, with clear priorities, surfacing only what's relevant right now. The manager's job becomes coaching, not tracking.
+        Frame the solution in a way that's useful whether or not the reader uses Sheety.
+        This is what earns trust. The product mention at the end should feel earned, not inserted.
       </p>
 
-      <div class="tool-callout">
-        <p class="tool-callout-eyebrow">Sheety List</p>
-        <p class="tool-callout-title">A task manager built for focus, not lists</p>
-        <p>
-          Sheety List is a free PWA that stores everything in your own Google Drive.
-          No account to create, no subscription, no data handed to anyone.
-          The Today's Briefing feature is the relevant part here: it surfaces only the
-          tasks that matter right now, based on priority and category rules you set.
-          For a new hire working through a sequenced onboarding plan, that means
-          week-one tasks stay front and center until they're done, without the rest of the list creating noise in the background.
-        </p>
-        <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="tool-callout-link">
-          Try Sheety List free →
-        </a>
-      </div>
 
-      <h2>What Small Teams Get Wrong Specifically</h2>
-
-      <p>
-        At a larger company, there's usually an HR team, an onboarding program, and
-        someone whose job includes making sure new hires don't get lost. At a small team,
-        the manager is usually doing five other things and onboarding happens informally.
-      </p>
-
-      <p>
-        Informal isn't the same as bad. But it does mean the new hire has less structure
-        to fall back on when they don't know what to do next. That's where a
-        well-sequenced task list earns its keep. It gives the new hire a reference point
-        that doesn't require the manager to be available.
-      </p>
-
-      <p>
-        Three specific mistakes small teams make:
-      </p>
-
-      <h3>Treating everything as equally urgent</h3>
-
-      <p>
-        Without explicit prioritization, new hires default to whatever got mentioned most
-        recently. That's fine if the most recent thing was important. It's a problem when
-        it was a passing comment in a Slack channel.
-      </p>
-
-      <h3>Skipping the culture tasks because they feel soft</h3>
-
-      <p>
-        Meeting the team, understanding working norms, knowing who makes decisions and how: these feel optional compared to getting system access and completing compliance training.
-        They aren't. A new hire who knows how decisions get made at this company is going to
-        move faster than one who's still mapping the politics at week six.
-      </p>
-
-      <h3>Not telling the new hire when they're done</h3>
-
-      <p>
-        Completion criteria matter. A task like "read the employee handbook" is technically
-        done when you've scrolled to the bottom. But the intent is usually something more
-        specific: know the PTO policy, understand the code of conduct, be able to find the
-        escalation process. Write the task to reflect what done actually means.
-      </p>
-
+      <!-- ── CLOSING ── -->
       <h2>The Bottom Line</h2>
 
       <p>
-        A simple onboarding checklist for a small team isn't about reducing the number
-        of tasks. It's about sequencing them, prioritizing them, and making sure the new
-        hire knows what to work on now versus what can wait until week three. The list
-        itself is the easy part. The structure around it is what determines whether the
-        new hire feels oriented or overwhelmed.
+        Short closing paragraph. Restate the core insight in one or two sentences.
+        What should the reader take with them?
       </p>
 
       <p>
-        Build the list with milestones. Hand it to the hire. Let them own it.
-        That's the whole system.
+        Light, natural product mention. "If you want a head start, <a href="/">Sheety Onboarding</a> does X."
+        One sentence max. Never the main point of the closing.
       </p>
 
     </div>
   </article>
 
   <!-- ═══ CTA ═══════════════════════════════════════════════════ -->
-  <section class="article-cta"><div class="cta-box">
+  <section class="article-cta">
+    <div class="cta-box">
       <p class="cta-eyebrow">Sheety Onboarding</p>
-      <h2 class="cta-title">Get a personalized onboarding doc without building it from scratch</h2>
+      <!-- EDIT: headline should connect to the article's argument -->
+      <h2 class="cta-title">Onboarding docs that don't require hovering over them</h2>
       <p class="cta-sub">
-        Fill out a short form about your new hire. Get a complete, milestone-structured
-        onboarding package (PDF and editable Word doc) delivered by email.
+        Fill out a form about your new hire. Get a complete, customizable onboarding package by email.
+        No bloat, no setup overhead.
       </p>
       <a href="/" class="btn-primary">See how it works →</a>
-    </div></section>
+    </div>
+  </section>
 
   <!-- ═══ RELATED ARTICLES ══════════════════════════════════════ -->
-  <nav class="related" aria-label="Related articles"><p class="related-label">Keep reading</p>
+  <nav class="related" aria-label="Related articles">
+    <p class="related-label">Keep reading</p>
     <div class="related-grid">
-      <a href="/blog/why-onboarding-fails.html" class="related-card">
-        <p class="related-topic">Onboarding strategy</p>
-        <p class="related-title">Why Most Employee Onboarding Fails in the First Week</p>
-      </a>
-      <div class="related-card coming">
+
+      <!-- EDIT: update slugs and titles for actual related posts -->
+      <a href="/blog/id-lens-on-onboarding.html" class="related-card">
         <p class="related-topic">Instructional design</p>
         <p class="related-title">What a Learning Designer Sees When They Look at Your Onboarding</p>
-      </div>
-    </div></nav>
+      </a>
+
+      <a href="/blog/pre-day-one-checklist.html" class="related-card">
+        <p class="related-topic">Checklist</p>
+        <p class="related-title">Five Things Every New Hire Needs Before Day One</p>
+      </a>
+
+    </div>
+  </nav>
 
   <footer>
     <div class="footer-inner">
