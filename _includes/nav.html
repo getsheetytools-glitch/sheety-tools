@@ -1,0 +1,25 @@
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" {% if navActive == 'list' %}class="nav-active"{% endif %}>Sheety List</a></li>
+      <li><a href="/focus-budget/" {% if navActive == 'focus-budget' %}class="nav-active"{% endif %}>Focus Budget</a></li>
+      <li><a href="/blog/" {% if navActive == 'blog' %}class="nav-active"{% endif %}>Blog</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/blog/">Blog</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+</div>
