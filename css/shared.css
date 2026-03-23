@@ -38,18 +38,6 @@
   /* Typography */
   --font-head:    'Bricolage Grotesque', sans-serif;
   --font-body:    'DM Sans', sans-serif;
-
-  /* ── Blog / legacy aliases ── */
-  /* Old blog pages used --text/--surface naming. These map them to
-     the canonical tokens so old article styles just work. */
-  --text:          var(--ink);
-  --text2:         var(--ink-2);
-  --text3:         var(--ink-3);
-  --surface:       var(--bg-card);
-  --surface2:      var(--bg-card-h);
-  --border2:       var(--border-h);
-  --orange-border: rgba(224, 122, 58, 0.2);
-  --prose-max:     720px;
 }
 
 /* ─── Reset ──────────────────────────────────────────────── */
