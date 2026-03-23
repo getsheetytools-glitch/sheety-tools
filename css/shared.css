@@ -268,7 +268,7 @@ section { padding: clamp(3.5rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem); }
   align-items: center;
   gap: 0.45rem;
   background: var(--green);
-  color: #0d1f14;
+  color: #0d1f14 !important;
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
