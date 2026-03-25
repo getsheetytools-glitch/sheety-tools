@@ -17,8 +17,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
   <link rel="stylesheet" href="/css/shared.css" />
-
-  
 </head>
 <body>
 
@@ -30,7 +28,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
-      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/focus-budget/">Sheety Focus</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
@@ -43,7 +41,7 @@
 
 <div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
   <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
-  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/focus-budget/">Sheety Focus</a>
   <a href="/blog/">Blog</a>
   <a href="/about/">About</a>
   <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
@@ -52,13 +50,337 @@
 
 
   
+<style>
+  .about-hero {
+    position: relative;
+    padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 3rem) clamp(3rem, 8vw, 5rem);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(46,201,126,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-hero-inner { max-width: 720px; margin: 0 auto; position: relative; }
+
+  .about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-h);
+    border-radius: 100px;
+    padding: 0.35rem 0.9rem 0.35rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.01em;
+  }
+  .about-eyebrow .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .about-hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.07;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+  }
+  .about-hero h1 em { font-style: normal; color: var(--green); }
+
+  .about-hero-body {
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: var(--ink-2);
+    line-height: 1.75;
+    max-width: 580px;
+  }
+  .about-hero-body p + p { margin-top: 1rem; }
+
+  .about-section {
+    padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 5vw, 3rem);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-section:last-of-type { border-bottom: none; }
+  .about-section-inner { max-width: 720px; margin: 0 auto; }
+
+  .about-label {
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .about-label::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--green);
+    opacity: 0.4;
+  }
+
+  .case {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.25rem;
+    transition: background 0.2s;
+  }
+  .case:last-child { margin-bottom: 0; }
+  .case:hover { background: var(--bg-card-h); }
+
+  .case-num {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+  .case h3 {
+    font-family: var(--font-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+  .case-context {
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.85rem;
+  }
+  .case p { font-size: 0.9rem; color: var(--ink-2); line-height: 1.75; }
+  .case p + p { margin-top: 0.65rem; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    background: var(--green-sub);
+    border: 1px solid var(--green-border);
+    color: var(--green);
+    border-radius: 100px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .service-item {
+    background: var(--bg-card);
+    padding: 1.5rem 1.75rem;
+    transition: background 0.2s;
+  }
+  .service-item:hover { background: var(--bg-card-h); }
+  .service-item h4 {
+    font-family: var(--font-head);
+    font-size: 0.975rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 0.45rem;
+  }
+  .service-item p { font-size: 0.845rem; color: var(--ink-2); line-height: 1.65; }
+  .service-item a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+
+  .contact-block {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2.5rem;
+  }
+  .contact-block h2 {
+    font-family: var(--font-head);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+  }
+  .contact-lead {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+    margin-bottom: 1.75rem;
+    max-width: 520px;
+  }
+  .contact-lead a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+  .contact-door {
+    background: var(--bg);
+    border: 1px solid var(--border-h);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+  }
+  .door-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.4rem;
+  }
+  .contact-door h4 {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .contact-door p { font-size: 0.845rem; color: var(--ink-2); line-height: 1.65; margin-bottom: 1rem; }
+  .contact-door a.email-link {
+    font-size: 0.845rem;
+    font-weight: 600;
+    color: var(--green);
+    border-bottom: 1px solid var(--green-border);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .contact-door a.email-link:hover { border-color: var(--green); }
+
+  @media (max-width: 540px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-block { padding: 1.5rem; }
+  }
+</style>
+
+<div class="about-hero">
+  <div class="about-hero-inner">
+    <div class="about-eyebrow fade-up">
+      <span class="dot"></span>
+      Instructional Architect &amp; Systems Builder
+    </div>
+    <h1 class="fade-up">I design learning systems.<br><em>Then I build them.</em></h1>
+    <div class="about-hero-body fade-up">
+      <p>Most instructional designers hand you a course and call it a day. I'm more interested in the infrastructure — the workflows, tools, and logic that make learning actually stick after go-live.</p>
+      <p>My background spans healthcare, corporate learning, and product development. AI is part of my toolkit when it's the right tool. So are custom web builds, process documentation, and occasionally just a well-placed spreadsheet.</p>
+      <p>You're currently on one of my products. Make of that what you will.</p>
+    </div>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-section-inner">
+    <div class="about-label">Selected work</div>
+
+    <div class="case fade-up">
+      <div class="case-num">01</div>
+      <h3>A Task Management Product, Built from Scratch</h3>
+      <div class="case-context">Product Design &nbsp;·&nbsp; UX &nbsp;·&nbsp; Full Build</div>
+      <p>Identified a gap in how people manage recurring tasks — existing tools were either too heavy or too dumb. Designed the logic, built the interface, shipped it. What you're using right now is the result.</p>
+      <p>The process was the same as any ID engagement: define the problem, map the workflow, design for the actual user, iterate on feedback. The output just happened to be an app instead of a course.</p>
+      <div class="tag-row">
+        <span class="tag">UX Design</span>
+        <span class="tag">Systems Thinking</span>
+        <span class="tag">Product Development</span>
+        <span class="tag">Iteration</span>
+      </div>
+    </div>
+
+    <div class="case fade-up">
+      <div class="case-num">02</div>
+      <h3>Gamified Sales Training for a Retail Network</h3>
+      <div class="case-context">Instructional Design &nbsp;·&nbsp; Gamification &nbsp;·&nbsp; Retail</div>
+      <p>Built a gamified learning experience for an eyewear retailer's sales team. The challenge wasn't the content — it was getting people to actually engage with it. Turned product knowledge into a competitive format that didn't feel like mandatory compliance training.</p>
+      <p>Completion went up. Nobody asked when it would be over. That's usually the goal.</p>
+      <div class="tag-row">
+        <span class="tag">Gamification</span>
+        <span class="tag">Sales Enablement</span>
+        <span class="tag">Engagement Design</span>
+        <span class="tag">Retail L&amp;D</span>
+      </div>
+    </div>
+
+    <div class="case fade-up">
+      <div class="case-num">03</div>
+      <h3>Automation Protocol for Learning Sustainment</h3>
+      <div class="case-context">Healthcare &nbsp;·&nbsp; Systems Design &nbsp;·&nbsp; Post-Launch</div>
+      <p>Most learning programs have a launch plan and no plan after that. For a regulated industry program, I designed an automation protocol to handle the post-launch sustainment phase — surfacing the right content to the right people without requiring a full-time administrator to manage it.</p>
+      <p>The program kept running. Nobody had to babysit it.</p>
+      <div class="tag-row">
+        <span class="tag">Healthcare L&amp;D</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Sustainment Design</span>
+        <span class="tag">Process Architecture</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-section-inner">
+    <div class="about-label">What I take on</div>
+    <div class="services-grid fade-up">
+      <div class="service-item">
+        <h4>Learning Architecture</h4>
+        <p>Program structure, curriculum logic, and the scaffolding that holds a learning system together.</p>
+      </div>
+      <div class="service-item">
+        <h4>Custom Tooling</h4>
+        <p>Web tools, interactive modules, and custom builds when off-the-shelf doesn't cut it. <a href="https://onboarding.sheety.tools" target="_blank" rel="noopener">Sheety Onboarding</a> is one example.</p>
+      </div>
+      <div class="service-item">
+        <h4>AI Implementation</h4>
+        <p>Practical integration of AI into learning workflows — not the hype, the actual application.</p>
+      </div>
+      <div class="service-item">
+        <h4>Sustainment Systems</h4>
+        <p>Post-launch architecture so your program doesn't quietly die three months after go-live.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="about-section">
+  <div class="about-section-inner">
+    <div class="about-label">Get in touch</div>
+    <div class="contact-block fade-up">
+      <h2>Let's talk scope.</h2>
+      <p class="contact-lead">
+        I take on fixed-scope consulting engagements with a minimum hourly commitment.
+        Whether you're a potential consulting client or evaluating my portfolio work,
+        reach out at <a href="mailto:getsheetytools@gmail.com">getsheetytools@gmail.com</a> — just mention which in your subject line.
+      </p>
+
+    </div>
+  </div>
+</div>
+
 
   <footer class="footer">
   <div class="footer-inner">
     <span class="footer-brand">Sheety Tools</span>
     <ul class="footer-links">
       <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
-      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/focus-budget/">Sheety Focus</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/about/">About</a></li>
       <li><a href="/terms/">Terms</a></li>
@@ -100,8 +422,6 @@
       document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     }
   </script>
-
-  
 
 </body>
 </html>
