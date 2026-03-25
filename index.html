@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheety Tools — Free Productivity Tools</title>
+  <meta name="description" content="Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title"       content="Sheety Tools — Free Productivity Tools" />
+  <meta property="og:description" content="Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful." />
+  <meta property="og:type"        content="website" />
+  
+  <meta property="og:site_name"   content="Sheety Tools" />
+
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
+  <link rel="stylesheet" href="/css/shared.css" />
+
+  
+  <style> .hero { position: relative; padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem) clamp(3.5rem, 9vw, 6.5rem); text-align: center; overflow: hidden; } .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(46,201,126,0.12) 0%, transparent 70%); pointer-events: none; } .hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border: 1px solid var(--border-h); border-radius: 100px; padding: 0.35rem 0.9rem 0.35rem 0.6rem; font-size: 0.8rem; font-weight: 500; color: var(--ink-2); margin-bottom: 1.75rem; letter-spacing: 0.01em; } .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2.4s ease-in-out infinite; } @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50%       { opacity: 0.5; transform: scale(0.7); } } .hero h1 { font-family: var(--font-head); font-size: clamp(2.2rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; max-width: 720px; margin: 0 auto 1.25rem; } .hero h1 em { font-style: normal; color: var(--green); } .hero-sub { font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--ink-2); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.65; } .hero-actions { display: flex; align-items: center; justify-content: center; gap: 0.85rem; flex-wrap: wrap; } .onboarding-teaser { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.1rem clamp(1.25rem, 5vw, 3rem); } .onboarding-teaser-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; } .teaser-left { display: flex; align-items: center; gap: 0.75rem; } .teaser-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 6px var(--orange); flex-shrink: 0; animation: pulse 2.4s ease-in-out infinite; } .teaser-text { font-size: 0.875rem; color: var(--ink-2); } .teaser-text strong { color: var(--ink); font-weight: 600; } .teaser-link { font-size: 0.82rem; font-weight: 600; color: var(--orange); border: 1px solid rgba(224,122,58,0.3); border-radius: 8px; padding: 0.4rem 0.9rem; transition: background 0.15s; white-space: nowrap; min-height: 36px; display: inline-flex; align-items: center; flex-shrink: 0; } .teaser-link:hover { background: rgba(224,122,58,0.08); } .proof { padding: 1rem clamp(1.25rem, 5vw, 3rem); border-bottom: 1px solid var(--border); } .proof-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.75rem; flex-wrap: wrap; } .proof-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--ink-3); } .proof-item svg { width: 13px; height: 13px; stroke: var(--green); flex-shrink: 0; } .tools { background: var(--bg-2); } .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; } .tool-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.65rem 1.75rem; transition: border-color 0.2s, transform 0.2s, background 0.2s; } .tool-card:hover { border-color: var(--border-h); background: var(--bg-card-h); transform: translateY(-2px); } .tool-card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.85rem; } .tool-icon { font-size: 1.75rem; line-height: 1; } .badge { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 100px; } .badge-free { background: var(--green-glow); color: var(--green); } .badge-note { background: rgba(255,255,255,0.06); color: var(--ink-3); } .tool-name { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 0.45rem; } .tool-desc { font-size: 0.875rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 1.15rem; flex: 1; } .tool-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; } .tool-features li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.825rem; color: var(--ink-3); line-height: 1.5; } .tool-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; } .tool-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); } .tool-link { font-size: 0.85rem; font-weight: 600; color: var(--green); display: flex; align-items: center; gap: 0.3rem; transition: gap 0.15s; } .tool-card:hover .tool-link { gap: 0.5rem; } @media (max-width: 640px) { .onboarding-teaser-inner { flex-direction: column; align-items: flex-start; } .proof-inner { gap: 0.85rem 1.5rem; justify-content: flex-start; } .hero-actions { flex-direction: column; align-items: stretch; } .hero-actions a { justify-content: center; } .tools-grid { grid-template-columns: 1fr; } } </style>
+  
+</head>
+<body>
+
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" >Sheety List</a></li>
+      <li><a href="/focus-budget/" >Focus Budget</a></li>
+      <li><a href="/blog/" >Blog</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/blog/">Blog</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+</div>
+
+
+  
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Free tools for focused people
+  </div>
+  <h1>Simple tools that<br>get out of your <em>way</em></h1>
+  <p class="hero-sub">Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful.</p>
+  <div class="hero-actions">
+    <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="btn-primary">Try Sheety List →</a>
+    <a href="#tools" class="btn-ghost">See all tools</a>
+  </div>
+</header>
+
+<!-- Onboarding teaser -->
+<div class="onboarding-teaser">
+  <div class="onboarding-teaser-inner">
+    <div class="teaser-left">
+      <span class="teaser-dot"></span>
+      <p class="teaser-text"><strong>Sheety Onboarding</strong> — a no-bloat employee onboarding platform for fast-moving teams. Currently in development.</p>
+    </div>
+    <a href="https://forms.gle/8ptuwNmgn8xt34sW7" target="_blank" rel="noopener" class="teaser-link">Join the waitlist →</a>
+  </div>
+</div>
+
+<!-- Proof strip -->
+<div class="proof">
+  <div class="proof-inner">
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      No account needed
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      Free to use
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      No trackers or ads
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      Human-designed, AI-assisted
+    </span>
+  </div>
+</div>
+
+<!-- Free tools -->
+<section class="tools" id="tools">
+  <div class="section-inner">
+    <p class="section-label fade-up">Free tools</p>
+    <h2 class="section-title fade-up">Free tools. No account needed.</h2>
+    <p class="section-sub fade-up">Side projects that got useful. Free to use, free to share.</p>
+    <div class="tools-grid">
+
+      <a href="https://list.sheety.tools" class="tool-card fade-up" target="_blank" rel="noopener">
+        <div class="tool-card-head">
+          <div class="tool-icon">✅</div>
+          <span class="badge badge-free">Free</span>
+        </div>
+        <div class="tool-name">Sheety List</div>
+        <p class="tool-desc">A clean, no-friction checklist tool. Build lists, check things off, move on.</p>
+        <ul class="tool-features">
+          <li>Create and manage multiple named lists</li>
+          <li>Life happens: pick up where you left off</li>
+          <li>Save progress with Google sign-in</li>
+          <li>Works on any device, no install needed</li>
+        </ul>
+        <div class="tool-foot">
+          <span class="badge badge-note">Google sign-in to save</span>
+          <span class="tool-link">Open tool →</span>
+        </div>
+      </a>
+
+      <a href="/focus-budget/" class="tool-card fade-up">
+        <div class="tool-card-head">
+          <div class="tool-icon">🥧</div>
+          <span class="badge badge-free">Free</span>
+        </div>
+        <div class="tool-name">Focus Budget</div>
+        <p class="tool-desc">Visualize your priorities as a weighted pie chart. Makes tradeoffs visible when everything feels urgent.</p>
+        <ul class="tool-features">
+          <li>Add priorities and assign effort weights</li>
+          <li>Live pie chart updates as you type</li>
+          <li>Runs entirely in your browser</li>
+          <li>No account, no data sent anywhere</li>
+        </ul>
+        <div class="tool-foot">
+          <span class="badge badge-note">No sign-in needed</span>
+          <span class="tool-link">Open tool →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mouse-following glow
+  const glow = document.createElement('div');
+  glow.style.cssText = `
+    position: fixed; pointer-events: none; z-index: 0;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,201,126,0.07) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease;
+    top: -300px; left: -300px;
+  `;
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+</script>
+
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Sheety Tools</span>
+    <ul class="footer-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/terms/">Terms</a></li>
+    </ul>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Sheety Tools. Built with AI assistance — product ideas, design decisions, and structure by the human behind it.</p>
+      <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="footer-kofi">
+        ☕ <span>Fuel this project on Ko-fi</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script>
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('drawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+  if (document.querySelector('.fade-up')) {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  }
+</script>
+
+
+</body>
+</html>
