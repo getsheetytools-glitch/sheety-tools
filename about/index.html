@@ -4,7 +4,6 @@ title: About — Sheety Tools
 description: The instructional architect and systems builder behind Sheety Tools.
 ---
 
-{% block head %}
 <style>
   .about-hero {
     position: relative;
@@ -65,7 +64,6 @@ description: The instructional architect and systems builder behind Sheety Tools
   }
   .about-hero-body p + p { margin-top: 1rem; }
 
-  /* ── Shared section ── */
   .about-section {
     padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 5vw, 3rem);
     border-bottom: 1px solid var(--border);
@@ -93,7 +91,6 @@ description: The instructional architect and systems builder behind Sheety Tools
     opacity: 0.4;
   }
 
-  /* ── Case studies ── */
   .case {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -101,7 +98,7 @@ description: The instructional architect and systems builder behind Sheety Tools
     border-radius: 0 var(--radius) var(--radius) 0;
     padding: 1.75rem 2rem;
     margin-bottom: 1.25rem;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s;
   }
   .case:last-child { margin-bottom: 0; }
   .case:hover { background: var(--bg-card-h); }
@@ -130,11 +127,7 @@ description: The instructional architect and systems builder behind Sheety Tools
     letter-spacing: 0.07em;
     margin-bottom: 0.85rem;
   }
-  .case p {
-    font-size: 0.9rem;
-    color: var(--ink-2);
-    line-height: 1.75;
-  }
+  .case p { font-size: 0.9rem; color: var(--ink-2); line-height: 1.75; }
   .case p + p { margin-top: 0.65rem; }
 
   .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
@@ -146,10 +139,8 @@ description: The instructional architect and systems builder behind Sheety Tools
     border: 1px solid var(--green-border);
     color: var(--green);
     border-radius: 100px;
-    letter-spacing: 0.04em;
   }
 
-  /* ── Services grid ── */
   .services-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -173,18 +164,9 @@ description: The instructional architect and systems builder behind Sheety Tools
     color: var(--ink);
     margin-bottom: 0.45rem;
   }
-  .service-item p {
-    font-size: 0.845rem;
-    color: var(--ink-2);
-    line-height: 1.65;
-  }
-  .service-item a {
-    color: var(--green);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+  .service-item p { font-size: 0.845rem; color: var(--ink-2); line-height: 1.65; }
+  .service-item a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ── Contact block ── */
   .contact-block {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -205,11 +187,7 @@ description: The instructional architect and systems builder behind Sheety Tools
     margin-bottom: 1.75rem;
     max-width: 520px;
   }
-  .contact-lead a {
-    color: var(--green);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+  .contact-lead a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
   .contact-door {
     background: var(--bg);
     border: 1px solid var(--border-h);
@@ -231,12 +209,7 @@ description: The instructional architect and systems builder behind Sheety Tools
     color: var(--ink);
     margin-bottom: 0.5rem;
   }
-  .contact-door p {
-    font-size: 0.845rem;
-    color: var(--ink-2);
-    line-height: 1.65;
-    margin-bottom: 1rem;
-  }
+  .contact-door p { font-size: 0.845rem; color: var(--ink-2); line-height: 1.65; margin-bottom: 1rem; }
   .contact-door a.email-link {
     font-size: 0.845rem;
     font-weight: 600;
@@ -252,11 +225,7 @@ description: The instructional architect and systems builder behind Sheety Tools
     .contact-block { padding: 1.5rem; }
   }
 </style>
-{% endblock %}
 
-{% block content %}
-
-<!-- Hero -->
 <div class="about-hero">
   <div class="about-hero-inner">
     <div class="about-eyebrow fade-up">
@@ -265,24 +234,13 @@ description: The instructional architect and systems builder behind Sheety Tools
     </div>
     <h1 class="fade-up">I design learning systems.<br><em>Then I build them.</em></h1>
     <div class="about-hero-body fade-up">
-      <p>
-        Most instructional designers hand you a course and call it a day.
-        I'm more interested in the infrastructure — the workflows, tools, and logic
-        that make learning actually stick after go-live.
-      </p>
-      <p>
-        My background spans healthcare, corporate learning, and product development.
-        AI is part of my toolkit when it's the right tool. So are custom web builds,
-        process documentation, and occasionally just a well-placed spreadsheet.
-      </p>
-      <p>
-        You're currently on one of my products. Make of that what you will.
-      </p>
+      <p>Most instructional designers hand you a course and call it a day. I'm more interested in the infrastructure — the workflows, tools, and logic that make learning actually stick after go-live.</p>
+      <p>My background spans healthcare, corporate learning, and product development. AI is part of my toolkit when it's the right tool. So are custom web builds, process documentation, and occasionally just a well-placed spreadsheet.</p>
+      <p>You're currently on one of my products. Make of that what you will.</p>
     </div>
   </div>
 </div>
 
-<!-- Case studies -->
 <div class="about-section">
   <div class="about-section-inner">
     <div class="about-label">Selected work</div>
@@ -291,16 +249,8 @@ description: The instructional architect and systems builder behind Sheety Tools
       <div class="case-num">01</div>
       <h3>A Task Management Product, Built from Scratch</h3>
       <div class="case-context">Product Design &nbsp;·&nbsp; UX &nbsp;·&nbsp; Full Build</div>
-      <p>
-        Identified a gap in how people manage recurring tasks — existing tools were either too
-        heavy or too dumb. Designed the logic, built the interface, shipped it. What you're
-        using right now is the result.
-      </p>
-      <p>
-        The process was the same as any ID engagement: define the problem, map the workflow,
-        design for the actual user, iterate on feedback. The output just happened to be an app
-        instead of a course.
-      </p>
+      <p>Identified a gap in how people manage recurring tasks — existing tools were either too heavy or too dumb. Designed the logic, built the interface, shipped it. What you're using right now is the result.</p>
+      <p>The process was the same as any ID engagement: define the problem, map the workflow, design for the actual user, iterate on feedback. The output just happened to be an app instead of a course.</p>
       <div class="tag-row">
         <span class="tag">UX Design</span>
         <span class="tag">Systems Thinking</span>
@@ -313,14 +263,8 @@ description: The instructional architect and systems builder behind Sheety Tools
       <div class="case-num">02</div>
       <h3>Gamified Sales Training for a Retail Network</h3>
       <div class="case-context">Instructional Design &nbsp;·&nbsp; Gamification &nbsp;·&nbsp; Retail</div>
-      <p>
-        Built a gamified learning experience for an eyewear retailer's sales team. The challenge
-        wasn't the content — it was getting people to actually engage with it. Turned product
-        knowledge into a competitive format that didn't feel like mandatory compliance training.
-      </p>
-      <p>
-        Completion went up. Nobody asked when it would be over. That's usually the goal.
-      </p>
+      <p>Built a gamified learning experience for an eyewear retailer's sales team. The challenge wasn't the content — it was getting people to actually engage with it. Turned product knowledge into a competitive format that didn't feel like mandatory compliance training.</p>
+      <p>Completion went up. Nobody asked when it would be over. That's usually the goal.</p>
       <div class="tag-row">
         <span class="tag">Gamification</span>
         <span class="tag">Sales Enablement</span>
@@ -333,15 +277,8 @@ description: The instructional architect and systems builder behind Sheety Tools
       <div class="case-num">03</div>
       <h3>Automation Protocol for Learning Sustainment</h3>
       <div class="case-context">Healthcare &nbsp;·&nbsp; Systems Design &nbsp;·&nbsp; Post-Launch</div>
-      <p>
-        Most learning programs have a launch plan and no plan after that. For a regulated
-        industry program, I designed an automation protocol to handle the post-launch
-        sustainment phase — surfacing the right content to the right people without
-        requiring a full-time administrator to manage it.
-      </p>
-      <p>
-        The program kept running. Nobody had to babysit it.
-      </p>
+      <p>Most learning programs have a launch plan and no plan after that. For a regulated industry program, I designed an automation protocol to handle the post-launch sustainment phase — surfacing the right content to the right people without requiring a full-time administrator to manage it.</p>
+      <p>The program kept running. Nobody had to babysit it.</p>
       <div class="tag-row">
         <span class="tag">Healthcare L&amp;D</span>
         <span class="tag">Automation</span>
@@ -352,7 +289,6 @@ description: The instructional architect and systems builder behind Sheety Tools
   </div>
 </div>
 
-<!-- What I take on -->
 <div class="about-section">
   <div class="about-section-inner">
     <div class="about-label">What I take on</div>
@@ -377,7 +313,6 @@ description: The instructional architect and systems builder behind Sheety Tools
   </div>
 </div>
 
-<!-- Contact -->
 <div class="about-section">
   <div class="about-section-inner">
     <div class="about-label">Get in touch</div>
@@ -397,5 +332,3 @@ description: The instructional architect and systems builder behind Sheety Tools
     </div>
   </div>
 </div>
-
-{% endblock %}

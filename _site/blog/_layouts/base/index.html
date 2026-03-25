@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheety Tools</title>
+  <meta name="description" content="Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title"       content="Sheety Tools" />
+  <meta property="og:description" content="Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Sheety Tools" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
+  <link rel="stylesheet" href="/css/shared.css" />
+
+  
+</head>
+<body>
+
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/blog/">Blog</a>
+  <a href="/about/">About</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+</div>
+
+
+  
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-brand">Sheety Tools</span>
+    <ul class="footer-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/terms/">Terms</a></li>
+    </ul>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Sheety Tools. Built with AI assistance — product ideas, design decisions, and structure by the human behind it.</p>
+      <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="footer-kofi">
+        ☕ <span>Fuel this project on Ko-fi</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+    if (hamburger && drawer) {
+      hamburger.addEventListener('click', () => {
+        const open = drawer.classList.toggle('open');
+        hamburger.classList.toggle('open', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          drawer.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    if (document.querySelector('.fade-up')) {
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+  </script>
+
+  
+
+</body>
+</html>
