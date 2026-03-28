@@ -13,12 +13,12 @@ permalink: /blog/task-app-for-procrastinators/index.html
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Best Task App for Procrastinators: No Guilt, No Streak to Break</title>
-  <meta name="description" content="Most to-do apps punish you for skipping a day. Todoist harassed me. Wunderlist's successor still made me untangle overdue items. Here's what I built instead." />
+  <title>The Best Task App for Procrastinators: No Guilt, No Streak to Break — Sheety Tools</title>
+  <meta name="description" content="Most to-do apps punish you for skipping a day. Todoist harassed me. Superlist still made me untangle overdue items. Here's what I built instead." />
   <meta name="robots" content="index, follow" />
 
-  <meta property="og:title"       content="The Best Task App for Procrastinators: No Guilt, No Streak to Break" />
-  <meta property="og:description" content="Most to-do apps punish you for skipping a day. Todoist harassed me. Wunderlist's successor still made me untangle overdue items. Here's what I built instead." />
+  <meta property="og:title"       content="The Best Task App for Procrastinators: No Guilt, No Streak to Break — Sheety Tools" />
+  <meta property="og:description" content="Most to-do apps punish you for skipping a day. Todoist harassed me. Superlist still made me untangle overdue items. Here's what I built instead." />
   <meta property="og:type"        content="article" />
   <meta property="og:site_name"   content="Sheety Tools" />
   <meta property="og:image"       content="https://sheety.tools/public/Sheety_Logo.png" />
@@ -28,168 +28,211 @@ permalink: /blog/task-app-for-procrastinators/index.html
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
   <link rel="stylesheet" href="/css/shared.css" />
-  <link rel="stylesheet" href="/css/blog-post.css" />
+
 </head>
 <body>
 
   <nav class="nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
-        Sheety Tools
-      </a>
-      <ul class="nav-links">
-        <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
-        <li><a href="/focus-budget/">Focus Budget</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
-      </ul>
-      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
-    <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
-    <a href="/focus-budget/">Focus Budget</a>
-    <a href="/blog/">Blog</a>
-    <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
-    <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/" class="nav-active">Blog</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener" class="nav-cta">Try Sheety List →</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
 
-  <main class="post-layout">
-    <div class="post-inner">
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/focus-budget/">Focus Budget</a>
+  <a href="/blog/">Blog</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="drawer-cta">Try Sheety List →</a>
+</div>
 
-      <a href="/blog/" class="post-back">← Back to blog</a>
+  <style>
+  .progress-bar { position: fixed; top: 62px; left: 0; height: 2px; background: var(--green); width: 0%; z-index: 99; transition: width 0.1s linear; opacity: 0.7; }
+  .article-header { padding: 8rem clamp(1.5rem,5vw,4rem) 3rem; max-width: 680px; margin: 0 auto; position: relative; }
+  .article-header::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 500px; height: 280px; background: radial-gradient(ellipse at 50% 0%, rgba(46,201,126,0.05) 0%, transparent 65%); pointer-events: none; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ink-3); text-decoration: none; margin-bottom: 2rem; transition: color .18s; opacity: 0; animation: fadeUp 0.4s 0.05s ease forwards; }
+  .back-link:hover { color: var(--ink-2); }
+  .article-topic { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.4s 0.1s ease forwards; }
+  .article-title { font-family: var(--font-head); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.4s 0.16s ease forwards; }
+  .article-meta { display: flex; align-items: center; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.4s 0.22s ease forwards; }
+  .meta-item { font-size: 0.8rem; color: var(--ink-3); }
+  .meta-sep { color: var(--ink-3); opacity: 0.4; }
+  .article-body { max-width: 680px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,4rem) 6rem; opacity: 0; animation: fadeUp 0.4s 0.3s ease forwards; }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose p { font-size: 1rem; color: var(--ink-2); font-weight: 300; line-height: 1.85; margin-bottom: 1.4rem; }
+  .prose p strong { color: var(--ink); font-weight: 500; }
+  .article-body h2, .article-body h3 { margin-top: 3rem; }
+  .article-body p { margin-bottom: 1.4rem; }
+  .prose h2 { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: 3rem !important; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .prose h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-top: 2rem !important; }
+  .prose ul { padding-left: 1.25rem; margin-bottom: 1.4rem; }
+  .prose ul li { font-size: 1rem; color: var(--ink-2); font-weight: 300; line-height: 1.85; margin-bottom: 0.5rem; }
+  .prose a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(46,201,126,0.3); transition: border-color .18s; }
+  .prose a:hover { border-color: var(--green); }
+  .article-cta { max-width: 680px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,4rem) 4rem; }
+  .cta-box { background: var(--bg-card); border: 1px solid var(--green-border); border-radius: 16px; padding: 2rem 2.25rem; position: relative; overflow: hidden; }
+  .cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 5%, var(--green) 50%, transparent 95%); opacity: 0.3; }
+  .cta-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem; }
+  .cta-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .cta-sub { font-size: 0.875rem; color: var(--ink-2); font-weight: 300; line-height: 1.7; margin-bottom: 1.5rem; max-width: 440px; }
+  .related { max-width: 680px; margin: 0 auto; padding: 3rem clamp(1.5rem,5vw,4rem) 5rem; border-top: 1px solid var(--border); }
+  .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.25rem; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; }
+  .related-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+  .related-topic { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+  .related-title { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } .article-meta { flex-wrap: wrap; gap: 0.5rem; } }
+</style>
 
-      <div class="post-category">Productivity</div>
+<div class="progress-bar" id="progressBar"></div>
 
-      <h1 class="post-title">I tried every to-do app. They all punished me for being human.</h1>
+<header class="article-header">
+  <a href="/blog/" class="back-link">← Back to blog</a>
+  <p class="article-topic">Productivity</p>
+  <h1 class="article-title">I tried every to-do app. They all punished me for being human.</h1>
+  <div class="article-meta">
+    <span class="meta-item">March 2026</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-item">6 min read</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-item">By Sheety Tools</span>
+  </div>
+</header>
 
-      <div class="post-meta">
-        March 2026
-        &middot;
-        6 min read
-        &middot;
-        By Sheety Tools
-      </div>
+<div class="article-body prose">
 
-      <div class="post-body">
+  <p>I have a complicated relationship with to-do lists. Not the concept. I love the concept. Getting things out of your head and onto a list is genuinely one of the most useful things you can do for your brain. The problem was always the app.</p>
 
-        <p>I have a complicated relationship with to-do lists. Not the concept. I love the concept. Getting things out of your head and onto a list is genuinely one of the most useful things you can do for your brain. The problem was always the app.</p>
+  <p>Every task manager I tried came with an implicit deal: stay consistent, or get punished. Miss a day, and you'd come back to a wall of overdue items, angry notification badges, and the vague feeling that you'd already failed before you'd even started. I wasn't looking for discipline. I was looking for a list that would be there when I came back, no questions asked.</p>
 
-        <p>Every task manager I tried came with an implicit deal: stay consistent, or get punished. Miss a day, and you'd come back to a wall of overdue items, angry notification badges, and the vague feeling that you'd already failed before you'd even started. I wasn't looking for discipline. I was looking for a list that would be there when I came back, no questions asked.</p>
+  <p>It took me a while, and a few wrong turns, to find that.</p>
 
-        <p>It took me a while, and a few wrong turns, to find that.</p>
+  <h2>Todoist was the worst offender</h2>
 
-        <h2>Todoist was the worst offender</h2>
+  <p>I gave Todoist a serious shot. It's polished, it's powerful, and if you're the kind of person who hits every recurring task on the day it's due, it's probably great. I am not that person.</p>
 
-        <p>I gave Todoist a serious shot. It's polished, it's powerful, and if you're the kind of person who hits every recurring task on the day it's due, it's probably great. I am not that person.</p>
+  <p>The recurring task system was what got me. Miss a daily item and Todoist doesn't just move it forward. It starts piling up. Suddenly a "water the plants" task I missed twice is showing three overdue instances. A habit I set up for three times a week has turned into a guilt spiral by Thursday. The app wasn't helping me stay on top of things. It was keeping score.</p>
 
-        <p>The recurring task system was what got me. Miss a daily item and Todoist doesn't just move it forward. It starts piling up. Suddenly a "water the plants" task I missed twice is showing three overdue instances. A habit I set up for three times a week has turned into a guilt spiral by Thursday. The app wasn't helping me stay on top of things. It was keeping score.</p>
+  <p>I turned off the recurring items. Then I turned off the due dates. At that point I was basically using a glorified notes app, which felt like a waste of a perfectly good to-do list.</p>
 
-        <p>I turned off the recurring items. Then I turned off the due dates. At that point I was basically using a glorified notes app, which felt like a waste of a perfectly good to-do list.</p>
+  <h2>Superlist was the closest, but still had rough edges</h2>
 
-        <h2>Superlist was the closest, but still had rough edges</h2>
+  <p>After Wunderlist got acquired and eventually shut down, a lot of people went looking for something lighter. Superlist, made by the same team behind Wunderlist, was the closest I found to what I actually wanted. The design was calm, the lists were easy to manage, and it didn't try to turn everything into a productivity system.</p>
 
-        <p>After Wunderlist got acquired and eventually shut down, a lot of people went looking for something lighter. Superlist, made by the same team behind Wunderlist, was the closest I found to what I actually wanted. The design was calm, the lists were easy to manage, and it didn't try to turn everything into a productivity system.</p>
+  <p>But it still had one problem: it used due dates, and if you didn't hit them, items turned red. Not catastrophic, but enough that I found myself regularly going in just to move due dates forward, not to actually do anything, just to keep the list from looking like a failure. That's a lot of maintenance for something that's supposed to reduce friction.</p>
 
-        <p>But it still had one problem: it used due dates, and if you didn't hit them, items turned red. Not catastrophic, but enough that I found myself regularly going in just to move due dates forward, not to actually do anything, just to keep the list from looking like a failure. That's a lot of maintenance for something that's supposed to reduce friction.</p>
+  <p>What I wanted was an app that would just wait. Open it on a Tuesday after ignoring it since Saturday, and everything would be exactly where I left it. No red items. No dates to reschedule. No explanations required.</p>
 
-        <p>What I wanted was an app that would just wait. Open it on a Tuesday after ignoring it since Saturday, and everything would be exactly where I left it. No red items. No dates to reschedule. No explanations required.</p>
+  <h2>What a task app for procrastinators actually needs</h2>
 
-        <h2>What a task app for procrastinators actually needs</h2>
+  <p>Here's the thing about being a procrastinator with a to-do list: the list isn't your problem. The procrastination isn't your problem either, usually. It's often a signal that something is unclear, overwhelming, or just not the right priority right now. The app piling on doesn't help. It makes re-entry feel harder than it needs to be.</p>
 
-        <p>Here's the thing about being a procrastinator with a to-do list: the list isn't your problem. The procrastination isn't your problem either, usually. It's often a signal that something is unclear, overwhelming, or just not the right priority right now. The app piling on doesn't help. It makes re-entry feel harder than it needs to be.</p>
+  <p>A low-pressure task manager needs to do a few specific things well:</p>
 
-        <p>A low-pressure task manager needs to do a few specific things well:</p>
+  <ul>
+    <li>Pick up where you left off without ceremony</li>
+    <li>Not escalate undone items into a crisis</li>
+    <li>Make it easy to reorganize when your priorities shift</li>
+    <li>Get out of the way when you're actually trying to work</li>
+  </ul>
 
-        <ul>
-          <li>Pick up where you left off without ceremony</li>
-          <li>Not escalate undone items into a crisis</li>
-          <li>Make it easy to reorganize when your priorities shift</li>
-          <li>Get out of the way when you're actually trying to work</li>
-        </ul>
+  <p>That last one is underrated. The best to-do apps are nearly invisible when you're using them. You open them, you see what's there, you close them. No dashboard, no analytics, no streak counter watching you.</p>
 
-        <p>That last one is underrated. The best to-do apps are nearly invisible when you're using them. You open them, you see what's there, you close them. No dashboard, no analytics, no streak counter watching you.</p>
+  <h2>So I built the thing I wanted</h2>
 
-        <h2>So I built the thing I wanted</h2>
+  <p>Sheety List started as a personal project: a Google Sheets-backed task manager that does exactly what I described above and nothing else. Lists that hold your items until you're ready for them. Categories you can name yourself. A snooze function for when something genuinely needs to wait. And a Today's Briefing that surfaces what actually matters without manufacturing urgency.</p>
 
-        <p>Sheety List started as a personal project: a Google Sheets-backed task manager that does exactly what I described above and nothing else. Lists that hold your items until you're ready for them. Categories you can name yourself. A snooze function for when something genuinely needs to wait. And a Today's Briefing that surfaces what actually matters without manufacturing urgency.</p>
+  <p>One-time tasks can have due dates, and yes, they'll turn red if you miss them, but that's intentional. A deadline is a deadline. The difference is recurring tasks work differently: they don't stack, they don't pile up, and missing a cycle doesn't turn your list into an overdue graveyard. You come back, you see what's there, you move on.</p>
 
-        <p>It doesn't have recurring tasks in the Todoist sense. One-time tasks can have due dates, and yes, they'll turn red if you miss them, but that's intentional. A deadline is a deadline. The difference is recurring tasks work differently: they don't stack, they don't pile up, and missing a cycle doesn't turn your list into an overdue graveyard. You come back, you see what's there, you move on.</p>
+  <p>It uses Google sign-in to save your data, so no account to create, no new password to forget. If you already have a Google account, you're set. And because it's a PWA (Progressive Web App), you can install it on your phone or desktop straight from the browser. On iPhone, open it in Safari and tap "Add to Home Screen." On Android, your browser will usually prompt you automatically. Either way, it shows up on your home screen and behaves like a native app, no app store required.</p>
 
-        <p>It uses Google sign-in to save your data, so no account to create, no new password to forget. If you already have a Google account, you're set. And because it's a PWA (Progressive Web App), you can install it on your phone or desktop straight from the browser. On iPhone, open it in Safari and tap "Add to Home Screen." On Android, your browser will usually prompt you automatically. Either way, it shows up on your home screen and behaves like a native app, no app store required.</p>
+  <p>It's not for everyone. If you need deadline tracking, project dependencies, or team collaboration, there are much better tools for that. But if you've ever abandoned a task app because coming back to it felt worse than not having one. This might be what you're looking for.</p>
 
-        <p>It's not for everyone. If you need deadline tracking, project dependencies, or team collaboration, there are much better tools for that. But if you've ever abandoned a task app because coming back to it felt worse than not having one. This might be what you're looking for.</p>
+</div>
 
-      </div>
+<div class="article-cta">
+  <div class="cta-box">
+    <p class="cta-eyebrow">Sheety List</p>
+    <h2 class="cta-title">A to-do list that doesn't mind if you skip a few days</h2>
+    <p class="cta-sub">No overdue pile. No streak to break. Just your lists, waiting where you left them. Sign in with Google to save your progress, no new account needed.</p>
+    <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="btn-primary">Try Sheety List →</a>
+  </div>
+</div>
 
-      <!-- CTA -->
-      <div class="post-cta">
-        <div class="post-cta-label">Sheety List</div>
-        <h3 class="post-cta-title">A to-do list that doesn't mind if you skip a few days</h3>
-        <p class="post-cta-body">No overdue pile. No streak to break. Just your lists, waiting where you left them. Sign in with Google to save your progress, no new account needed.</p>
-        <a href="https://list.sheety.tools" target="_blank" rel="noopener" class="btn-primary">Try Sheety List →</a>
-      </div>
+<nav class="related" aria-label="Related articles">
+  <p class="related-label">Keep reading</p>
+  <div class="related-grid">
+    <a href="/blog/onboarding-who-to-lean-on/" class="related-card">
+      <p class="related-topic">Onboarding strategy</p>
+      <p class="related-title">The Part of Onboarding Nobody Builds: Knowing Who to Lean On</p>
+    </a>
+    <a href="/blog/onboarding-checklist-small-team/" class="related-card">
+      <p class="related-topic">Checklist</p>
+      <p class="related-title">The Simple Onboarding Checklist Small Teams Actually Need</p>
+    </a>
+  </div>
+</nav>
 
-      <!-- Keep reading -->
-      <div class="post-related">
-        <p class="section-label">Keep reading</p>
-        <div class="post-related-grid">
-          <a href="/blog/onboarding-who-to-lean-on/" class="post-related-card">
-            <div class="post-related-cat">Onboarding strategy</div>
-            <div class="post-related-title">The Part of Onboarding Nobody Builds: Knowing Who to Lean On</div>
-          </a>
-          <a href="/blog/onboarding-checklist-small-team/" class="post-related-card">
-            <div class="post-related-cat">Checklist</div>
-            <div class="post-related-title">The Simple Onboarding Checklist Small Teams Actually Need</div>
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </main>
+<script>
+  const bar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    bar.style.width = ((doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100) + '%';
+  }, { passive: true });
+</script>
 
   <footer class="footer">
-    <div class="footer-inner">
-      <span class="footer-brand">Sheety Tools</span>
-      <ul class="footer-links">
-        <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
-        <li><a href="/focus-budget/">Focus Budget</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/terms/">Terms</a></li>
-      </ul>
-      <div class="footer-bottom">
-        <p class="footer-copy">© 2026 Sheety Tools. Built with AI assistance, product ideas, design decisions, and structure by the human behind it.</p>
-        <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="footer-kofi">
-          ☕ <span>Fuel this project on Ko-fi</span>
-        </a>
-      </div>
+  <div class="footer-inner">
+    <span class="footer-brand">Sheety Tools</span>
+    <ul class="footer-links">
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/focus-budget/">Focus Budget</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/terms/">Terms</a></li>
+    </ul>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Sheety Tools. Built with AI assistance, product ideas, design decisions, and structure by the human behind it.</p>
+      <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener" class="footer-kofi">
+        ☕ <span>Fuel this project on Ko-fi</span>
+      </a>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const drawer    = document.getElementById('drawer');
-    if (hamburger && drawer) {
-      hamburger.addEventListener('click', () => {
-        const open = drawer.classList.toggle('open');
-        hamburger.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', String(open));
-        document.body.style.overflow = open ? 'hidden' : '';
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('drawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
-      drawer.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-          drawer.classList.remove('open');
-          hamburger.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
-        });
-      });
-    }
-  </script>
+    });
+  }
+</script>
 
 </body>
 </html>
