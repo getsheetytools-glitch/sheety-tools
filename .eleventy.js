@@ -12,7 +12,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("**/*.json");
   eleventyConfig.addPassthroughCopy("sw.js");
 eleventyConfig.addPassthroughCopy("sitemap.xml");
-eleventyConfig.addPassthroughCopy("robots.txt"); // if you have this too
+eleventyConfig.addPassthroughCopy("robots.txt"); 
 
   // Watch CSS for changes during dev
   eleventyConfig.addWatchTarget("css/");
