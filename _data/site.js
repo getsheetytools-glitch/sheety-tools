@@ -5,7 +5,7 @@
 // ─────────────────────────────────────────────────────────────
 module.exports = {
   name:       "Sheety Tools",
-  tagline:    "Free productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful.",
+  tagline:    "Productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful.",
   url:        "https://sheety.tools",
 
   // Primary CTA
