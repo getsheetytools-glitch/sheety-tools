@@ -74,7 +74,7 @@
       <h2 class="featured-title">{{ featured.data.title }}</h2>
       <p class="featured-excerpt">{{ featured.data.description }}</p>
       <div class="featured-meta">
-        <span class="post-date" style="font-size:0.8rem; color:var(--ink-3);">{{ featured.data.date | date("MMMM YYYY") }} · {{ featured.data.readTime }} read</span>
+        <span class="post-date" style="font-size:0.8rem; color:var(--ink-3);">{{ featured.data.dateDisplay }} · {{ featured.data.readTime }} read</span>
       </div>
     </div>
     <div class="post-arrow">→</div>
@@ -89,7 +89,7 @@
         <h3 class="post-title">{{ post.data.title }}</h3>
         <p class="post-excerpt">{{ post.data.description }}</p>
         <div class="post-foot">
-          <span class="post-date">{{ post.data.date | date("MMMM YYYY") }} · {{ post.data.readTime }}</span>
+          <span class="post-date">{{ post.data.dateDisplay }} · {{ post.data.readTime }}</span>
           <span class="card-arrow">→</span>
         </div>
       </a>
