@@ -1,0 +1,64 @@
+---
+layout: base.njk
+title: Page not found
+description: This page doesn't exist.
+robots: noindex, nofollow
+permalink: /404.html
+---
+
+<style>
+  .error-wrap {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 5vw, 3rem);
+    text-align: center;
+  }
+  .error-inner {
+    max-width: 480px;
+  }
+  .error-code {
+    font-family: var(--font-head);
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--bg-card-h);
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+  .error-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+  .error-sub {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+    line-height: 1.65;
+    margin-bottom: 2.25rem;
+  }
+  .error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+</style>
+
+<div class="error-wrap">
+  <div class="error-inner">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Nothing here</h1>
+    <p class="error-sub">This page doesn't exist or has moved. If you were looking for Sheety Onboarding, it lives at onboarding.sheety.tools.</p>
+    <div class="error-actions">
+      <a href="/" class="btn-primary">Back to home</a>
+      <a href="https://onboarding.sheety.tools" target="_blank" rel="noopener" class="btn-ghost">Sheety Onboarding</a>
+    </div>
+  </div>
+</div>
