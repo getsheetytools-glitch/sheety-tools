@@ -1,23 +1,19 @@
 // _data/site.js
-// ─────────────────────────────────────────────────────────────
-// Single source of truth for shared site values.
-// Available in every template as {{ site.name }}, {{ site.year }}, etc.
-// ─────────────────────────────────────────────────────────────
 module.exports = {
   name:       "Sheety Tools",
-  tagline:    "Productivity tools built without bloat. No accounts unless you need them. No subscriptions. Just useful.",
+  tagline:    "Personalized onboarding documents for every new hire. Plus free tools for focused work.",
   url:        "https://sheety.tools",
 
-  // Primary CTA
-  ctaUrl:     "https://list.sheety.tools",
-  ctaLabel:   "Try Sheety List →",
+  // Primary CTA — Sheety Onboarding
+  ctaUrl:     "https://onboarding.sheety.tools/submit/",
+  ctaLabel:   "Order now",
 
-  // Support link
-  kofi:       "https://ko-fi.com/sheetytools",
+  // Product URLs
+  onboardingUrl: "https://onboarding.sheety.tools",
+  listUrl:       "https://list.sheety.tools",
 
-  // Waitlist (Sheety Onboarding)
-  waitlistUrl: "https://forms.gle/8ptuwNmgn8xt34sW7",
+  // Support
+  kofi: "https://ko-fi.com/sheetytools",
 
-  // Auto-updating year for footer copyright
   year: new Date().getFullYear(),
 };

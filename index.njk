@@ -1,0 +1,171 @@
+---
+layout: base.njk
+title: Sheety Tools — Onboarding documents and free productivity tools
+description: Personalized onboarding documents for every new hire, built by an instructional designer. Plus free tools for focused work.
+---
+
+<style>
+.hero { position: relative; padding: clamp(4rem, 10vw, 8rem) clamp(1.25rem, 5vw, 3rem) clamp(3.5rem, 9vw, 6.5rem); text-align: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(46,201,126,0.12) 0%, transparent 70%); pointer-events: none; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border: 1px solid var(--border-h); border-radius: 100px; padding: 0.35rem 0.9rem 0.35rem 0.6rem; font-size: 0.8rem; font-weight: 500; color: var(--ink-2); margin-bottom: 1.75rem; letter-spacing: 0.01em; }
+.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.7); } }
+.hero h1 { font-family: var(--font-head); font-size: clamp(2.2rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; max-width: 720px; margin: 0 auto 1.25rem; }
+.hero h1 em { font-style: normal; color: var(--green); }
+.hero-sub { font-size: clamp(0.95rem, 2vw, 1.15rem); color: var(--ink-2); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.65; }
+.hero-actions { display: flex; align-items: center; justify-content: center; gap: 0.85rem; flex-wrap: wrap; }
+.hero-note { margin-top: 1rem; font-size: 0.8rem; color: var(--ink-3); }
+.proof { padding: 1rem clamp(1.25rem, 5vw, 3rem); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-2); }
+.proof-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.75rem; flex-wrap: wrap; }
+.proof-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.82rem; color: var(--ink-3); }
+.proof-item svg { width: 13px; height: 13px; stroke: var(--green); flex-shrink: 0; }
+.tools { background: var(--bg-2); }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.25rem; }
+.tool-card { display: flex; flex-direction: column; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.65rem 1.75rem; transition: border-color 0.2s, transform 0.2s, background 0.2s; }
+.tool-card:hover { border-color: var(--border-h); background: var(--bg-card-h); transform: translateY(-2px); }
+.tool-card.featured { border-color: var(--green-border); }
+.tool-card.featured:hover { border-color: var(--green); }
+.tool-card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.85rem; }
+.tool-icon { font-size: 1.75rem; line-height: 1; }
+.badge { font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.55rem; border-radius: 100px; }
+.badge-free { background: var(--green-glow); color: var(--green); }
+.badge-paid { background: rgba(46,201,126,0.12); color: var(--green); border: 1px solid var(--green-border); }
+.badge-note { background: rgba(255,255,255,0.06); color: var(--ink-3); }
+.tool-name { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 0.45rem; }
+.tool-desc { font-size: 0.875rem; color: var(--ink-2); line-height: 1.6; margin-bottom: 1.15rem; flex: 1; }
+.tool-features { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; }
+.tool-features li { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.825rem; color: var(--ink-3); line-height: 1.5; }
+.tool-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.tool-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border); }
+.tool-link { font-size: 0.85rem; font-weight: 600; color: var(--green); display: flex; align-items: center; gap: 0.3rem; transition: gap 0.15s; }
+.tool-card:hover .tool-link { gap: 0.5rem; }
+@media (max-width: 640px) {
+  .proof-inner { gap: 0.85rem 1.5rem; justify-content: flex-start; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions a { justify-content: center; }
+  .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    Now live
+  </div>
+  <h1>Give every new hire the <em>start</em> they deserve</h1>
+  <p class="hero-sub">Personalized onboarding documents built by an instructional designer. No bloat, no subscriptions, no HR suite required.</p>
+  <div class="hero-actions">
+    <a href="{{ site.ctaUrl }}" target="_blank" rel="noopener" class="btn-primary">{{ site.ctaLabel }} →</a>
+    <a href="#tools" class="btn-ghost">See all tools</a>
+  </div>
+  <p class="hero-note">No account needed. One-time payment.</p>
+</header>
+
+<!-- Proof strip -->
+<div class="proof">
+  <div class="proof-inner">
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      One-time payment
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      No account needed
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      Documents in minutes
+    </span>
+    <span class="proof-item">
+      <svg viewBox="0 0 16 16" fill="none" stroke-width="2.5"><polyline points="2 9 6 13 14 3"/></svg>
+      Built by an instructional designer
+    </span>
+  </div>
+</div>
+
+<!-- Tools -->
+<section class="tools" id="tools">
+  <div class="section-inner">
+    <p class="section-label fade-up">Everything we build</p>
+    <h2 class="section-title fade-up">One paid product. Two free tools.</h2>
+    <p class="section-sub fade-up">Sheety Onboarding is the flagship. Sheety List and Sheety Focus are free, no strings attached.</p>
+    <div class="tools-grid">
+
+      <a href="{{ site.onboardingUrl }}" class="tool-card featured fade-up" target="_blank" rel="noopener">
+        <div class="tool-card-head">
+          <div class="tool-icon">📋</div>
+          <span class="badge badge-paid">Paid</span>
+        </div>
+        <div class="tool-name">Sheety Onboarding</div>
+        <p class="tool-desc">Personalized onboarding documents for every new hire. Fill in the form, pick your tier, get PDFs in the manager's inbox.</p>
+        <ul class="tool-features">
+          <li>Hire roadmap PDF for every new team member</li>
+          <li>Leader guide for managers (Premium and Ultimate)</li>
+          <li>Bulk orders for whole cohorts via CSV upload</li>
+          <li>Branded with your logo and colors</li>
+        </ul>
+        <div class="tool-foot">
+          <span class="badge badge-note">From $69 per hire</span>
+          <span class="tool-link">Order now →</span>
+        </div>
+      </a>
+
+      <a href="{{ site.listUrl }}" class="tool-card fade-up" target="_blank" rel="noopener">
+        <div class="tool-card-head">
+          <div class="tool-icon">✅</div>
+          <span class="badge badge-free">Free</span>
+        </div>
+        <div class="tool-name">Sheety List</div>
+        <p class="tool-desc">A clean, no-friction checklist tool. Build lists, check things off, move on.</p>
+        <ul class="tool-features">
+          <li>Create and manage multiple named lists</li>
+          <li>Pick up where you left off</li>
+          <li>Save progress with Google sign-in</li>
+          <li>Works on any device, no install needed</li>
+        </ul>
+        <div class="tool-foot">
+          <span class="badge badge-note">Google sign-in to save</span>
+          <span class="tool-link">Open tool →</span>
+        </div>
+      </a>
+
+      <a href="/focus-budget/" class="tool-card fade-up">
+        <div class="tool-card-head">
+          <div class="tool-icon">🥧</div>
+          <span class="badge badge-free">Free</span>
+        </div>
+        <div class="tool-name">Sheety Focus</div>
+        <p class="tool-desc">Visualize your priorities as a weighted pie chart. Makes tradeoffs visible when everything feels urgent.</p>
+        <ul class="tool-features">
+          <li>Add priorities and assign effort weights</li>
+          <li>Live pie chart updates as you type</li>
+          <li>Runs entirely in your browser</li>
+          <li>No account, no data sent anywhere</li>
+        </ul>
+        <div class="tool-foot">
+          <span class="badge badge-note">No sign-in needed</span>
+          <span class="tool-link">Open tool →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const glow = document.createElement('div');
+  glow.style.cssText = `
+    position: fixed; pointer-events: none; z-index: 0;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,201,126,0.07) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: left 0.12s ease, top 0.12s ease;
+    top: -300px; left: -300px;
+  `;
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+</script>
