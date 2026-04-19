@@ -1,0 +1,272 @@
+---
+title: "Sheety Onboarding Is Live"
+description: "It's out. A tool built for the small businesses and scrappy teams who know onboarding matters and have never had something worth using to do it right."
+date: 2026-04-19
+dateDisplay: "April 2026"
+topic: Building in public
+readTime: 4 min
+tags: post
+permalink: /blog/sheety-onboarding-is-live/index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheety Onboarding Is Live — Sheety Tools</title>
+  <meta name="description" content="It's out. A tool built for the small businesses and scrappy teams who know onboarding matters and have never had something worth using to do it right." />
+  <meta name="robots" content="index, follow" />
+
+  <meta property="og:title"       content="Sheety Onboarding Is Live" />
+  <meta property="og:description" content="It's out. A tool built for the small businesses and scrappy teams who know onboarding matters and have never had something worth using to do it right." />
+  <meta property="og:type"        content="article" />
+  <meta property="og:site_name"   content="Sheety Tools" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/public/Sheety_Logo.png" />
+  <link rel="stylesheet" href="/css/shared.css" />
+
+  <style>
+  .progress-bar { position: fixed; top: 62px; left: 0; height: 2px; background: var(--green); width: 0%; z-index: 99; transition: width 0.1s linear; opacity: 0.7; }
+  .article-header { padding: 8rem clamp(1.5rem,5vw,4rem) 3rem; max-width: 680px; margin: 0 auto; position: relative; }
+  .article-header::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 500px; height: 280px; background: radial-gradient(ellipse at 50% 0%, rgba(46,201,126,0.05) 0%, transparent 65%); pointer-events: none; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--ink-3); text-decoration: none; margin-bottom: 2rem; transition: color .18s; opacity: 0; animation: fadeUp 0.4s 0.05s ease forwards; }
+  .back-link:hover { color: var(--ink-2); }
+  .article-topic { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--green); margin-bottom: 1rem; opacity: 0; animation: fadeUp 0.4s 0.1s ease forwards; }
+  .article-title { font-family: var(--font-head); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem; opacity: 0; animation: fadeUp 0.4s 0.16s ease forwards; }
+  .article-meta { display: flex; align-items: center; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); opacity: 0; animation: fadeUp 0.4s 0.22s ease forwards; }
+  .meta-item { font-size: 0.8rem; color: var(--ink-3); }
+  .meta-sep { color: var(--ink-3); opacity: 0.4; }
+  .article-body { max-width: 680px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,4rem) 6rem; opacity: 0; animation: fadeUp 0.4s 0.3s ease forwards; }
+  .prose > * + * { margin-top: 1.5rem; }
+  .prose p { font-size: 1rem; color: var(--ink-2); font-weight: 300; line-height: 1.85; margin-bottom: 1.4rem; }
+  .prose p strong { color: var(--ink); font-weight: 500; }
+  .article-body h2, .article-body h3 { margin-top: 3rem; }
+  .article-body p { margin-bottom: 1.4rem; }
+  .prose h2 { font-family: var(--font-head); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: 3rem !important; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .prose h3 { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin-top: 2rem !important; }
+  .prose blockquote { border-left: 3px solid var(--green); padding: 0.75rem 1.25rem; background: var(--green-sub); border-radius: 0 8px 8px 0; font-size: 1rem; color: var(--ink); font-weight: 400; line-height: 1.7; font-style: normal; }
+  .prose blockquote cite { display: block; font-size: 0.8rem; color: var(--ink-3); margin-top: 0.5rem; font-style: normal; }
+  .prose a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(46,201,126,0.3); transition: border-color .18s; }
+  .prose a:hover { border-color: var(--green); }
+  .article-cta { max-width: 680px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,4rem) 4rem; }
+  .cta-box { background: var(--bg-card); border: 1px solid var(--green-border); border-radius: 16px; padding: 2rem 2.25rem; position: relative; overflow: hidden; }
+  .cta-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent 5%, var(--green) 50%, transparent 95%); opacity: 0.3; }
+  .cta-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.6rem; }
+  .cta-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .cta-sub { font-size: 0.875rem; color: var(--ink-2); font-weight: 300; line-height: 1.7; margin-bottom: 1.5rem; max-width: 440px; }
+  .related { max-width: 680px; margin: 0 auto; padding: 3rem clamp(1.5rem,5vw,4rem) 5rem; border-top: 1px solid var(--border); }
+  .related-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.25rem; }
+  .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .related-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; text-decoration: none; color: inherit; transition: border-color .2s, background .2s; }
+  .related-card:hover { border-color: var(--border-h); background: var(--bg-card-h); }
+  .related-topic { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+  .related-title { font-family: var(--font-head); font-size: 0.9rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } .article-meta { flex-wrap: wrap; gap: 0.5rem; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/public/Sheety_Logo.png" alt="Sheety Tools" />
+      Sheety Tools
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://onboarding.sheety.tools" target="_blank" rel="noopener">Sheety Onboarding</a></li>
+      <li><a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a></li>
+      <li><a href="/blog/" class="nav-active">Blog</a></li>
+      <li><a href="https://onboarding.sheety.tools/submit/" target="_blank" rel="noopener" class="nav-cta">Order now &rarr;</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" id="drawer" role="dialog" aria-label="Navigation menu">
+  <a href="https://onboarding.sheety.tools" target="_blank" rel="noopener">Sheety Onboarding</a>
+  <a href="https://list.sheety.tools" target="_blank" rel="noopener">Sheety List</a>
+  <a href="/blog/">Blog</a>
+  <a href="https://ko-fi.com/sheetytools" target="_blank" rel="noopener">Support this project</a>
+  <a href="https://onboarding.sheety.tools/submit/" target="_blank" rel="noopener" class="drawer-cta">Order now &rarr;</a>
+</div>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="article-header">
+  <a href="/blog/" class="back-link">&larr; Back to blog</a>
+  <p class="article-topic">Building in public</p>
+  <h1 class="article-title">Sheety Onboarding Is Live</h1>
+  <div class="article-meta">
+    <span class="meta-item">April 2026</span>
+    <span class="meta-sep">&middot;</span>
+    <span class="meta-item">4 min read</span>
+    <span class="meta-sep">&middot;</span>
+    <span class="meta-item">By Sheety Tools</span>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="prose">
+
+    <p>
+      It's out. Payments process. Documents generate. Emails land. The whole thing works,
+      end to end, for real customers, with real money. That sentence took a lot longer to
+      be true than I expected.
+    </p>
+
+    <p>
+      I'm not going to pretend I'm calm about it. I've been building toward this for months,
+      and the feeling of watching a live order come through is genuinely different from
+      watching a test order come through. The product is in the world now. That's not a small thing.
+    </p>
+
+    <h2>Who This Is For</h2>
+
+    <p>
+      Sheety Onboarding is for the company where the founder is also the person sending
+      the welcome email. It's for the 12-person team where the manager is doing their
+      own onboarding while also trying to ship a product. It's for the HR director at a
+      growing company who is onboarding six people this quarter and doing it from a
+      Google Doc that was last updated in 2022.
+    </p>
+
+    <p>
+      Those are real situations. The people in them know onboarding matters. They've
+      seen what happens when a new hire spends their first two weeks confused and
+      under-supported and starts wondering if they made a mistake taking the job.
+      They just haven't had something worth using to do it properly.
+    </p>
+
+    <p>
+      If you're onboarding a whole cohort at once, there's a bulk option for that too.
+      The same logic applies whether it's one hire or twenty: every person walking into
+      a new role deserves a document that was actually designed for them.
+    </p>
+
+    <h2>What Makes It Different</h2>
+
+    <p>
+      I'm an instructional designer. That's not a detail. That's the whole thing.
+    </p>
+
+    <p>
+      Most onboarding tools approach the problem as a logistics problem: get information
+      to the new hire, track completion, send reminders. That's useful. It's also not
+      what onboarding actually is.
+    </p>
+
+    <p>
+      Good onboarding is about psychological safety. It's about giving someone a clear
+      picture of what success looks like before they've had a chance to feel like they're
+      failing. It's about the manager having a framework, not just a checklist.
+    </p>
+
+    <p>
+      The documents Sheety Onboarding generates are built on that logic. There's a hire
+      guide that gives the new employee context, clarity, and a sense of what the first
+      30 days are supposed to feel like. And there's a manager guide that gives the person
+      responsible for that new hire a structured approach: the first conversations,
+      the first check-ins, the early signals that something might need attention.
+    </p>
+
+    <p>
+      That's the result of years of working in learning and development, applied to the
+      thing I kept seeing done badly.
+    </p>
+
+    <h2>You Fill Out a Form. Documents Land in Your Inbox.</h2>
+
+    <p>
+      You pick a tier based on how much detail you want in the documents. You fill in the
+      specifics: the new hire's name and role, your company's tone, the tools they'll be
+      using, the challenges you're anticipating. You check out. Within minutes, a
+      personalized PDF lands in the manager's inbox.
+    </p>
+
+    <p>
+      No account. No subscription. No setup. No software to learn. You order when you
+      need it and you're done.
+    </p>
+
+    <h2>What I Hope This Becomes</h2>
+
+    <p>
+      I hope it becomes the thing that makes someone's first week at a new company feel
+      like it was designed for them. I hope a new hire somewhere opens a document that
+      came through this tool and feels, for the first time in a new job, like someone
+      actually thought about what they were walking into.
+    </p>
+
+    <p>
+      That's the whole ambition. The rest is just making sure the product keeps working.
+    </p>
+
+    <p>
+      If you're onboarding someone soon, or if you know you will be: <a href="https://onboarding.sheety.tools/submit/">give it a try</a>.
+      It's genuinely good. I made sure of that before I let it out.
+    </p>
+
+  </div>
+</article>
+
+<div class="article-cta">
+  <div class="cta-box">
+    <p class="cta-eyebrow">Sheety Onboarding</p>
+    <p class="cta-title">Personalized onboarding documents for every new hire</p>
+    <p class="cta-sub">Fill in the form, pick your tier, check out. PDFs land in the manager's inbox within minutes. No account, no setup, no subscription.</p>
+    <a href="https://onboarding.sheety.tools/submit/" target="_blank" rel="noopener" class="btn-primary">Order now &rarr;</a>
+  </div>
+</div>
+
+<section class="related">
+  <p class="related-label">Keep reading</p>
+  <div class="related-grid">
+    <a href="/blog/why-onboarding-fails/" class="related-card">
+      <p class="related-topic">Onboarding strategy</p>
+      <p class="related-title">Why Most Employee Onboarding Fails in the First Week</p>
+    </a>
+    <a href="/blog/onboarding-checklist-small-team/" class="related-card">
+      <p class="related-topic">Onboarding strategy</p>
+      <p class="related-title">The Onboarding Checklist for Small Teams</p>
+    </a>
+  </div>
+</section>
+
+{% include "footer.njk" %}
+
+<script>
+  const bar = document.getElementById('progressBar');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = (window.scrollY / total * 100) + '%';
+    });
+  }
+  const hamburger = document.getElementById('hamburger');
+  const drawer    = document.getElementById('drawer');
+  if (hamburger && drawer) {
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
